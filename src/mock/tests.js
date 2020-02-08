@@ -1,9 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import nanoid from 'nanoid';
-import App from './components/app/app.jsx';
-
-const LOCATIONS = [
+export const locations = [
   {
     title: `Paris`,
     isActive: true
@@ -30,27 +25,29 @@ const LOCATIONS = [
   }
 ];
 
-const OFFERS = [
+export const offers = [
   {
-    id: nanoid(),
+    id: `01`,
     title: `Beautiful & luxurious apartment at great location`
   },
   {
-    id: nanoid(),
+    id: `02`,
     title: `Wood and stone place`
   },
   {
-    id: nanoid(),
+    id: `03`,
     title: `Canal View Prinsengracht`
   },
   {
-    id: nanoid(),
+    id: `04`,
     title: `Nice, cozy, warm big bed apartment`
   },
   {
-    id: nanoid(),
+    id: `05`,
     title: `Cozy rooms in the city center`
   }
 ];
 
-ReactDOM.render(<App locations={LOCATIONS} offers={OFFERS} />, document.querySelector(`#root`));
+export const title = `Canal View Prinsengracht`;
+
+export const onTitleClick = () => {};

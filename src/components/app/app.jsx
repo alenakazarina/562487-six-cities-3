@@ -2,14 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
 
+const titleClickHandler = () => {};
+
 const App = ({locations, offers}) => {
   return (
-    <Main locations={locations} offers={offers} />
+    <Main locations={locations} offers={offers} onTitleClick={titleClickHandler} />
   );
 };
 
 App.propTypes = {
-  locations: PropTypes.arrayOf(PropTypes.string).isRequired,
+  locations: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    isActive: PropTypes.bool.isRequired
+  })).isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired

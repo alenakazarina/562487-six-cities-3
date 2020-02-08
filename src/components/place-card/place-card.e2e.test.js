@@ -16,7 +16,6 @@ it(`should card title be pressed`, () => {
         onTitleClick={onTitleClick}
       />
   );
-  const cardTitle = placeCard.find(`h2.place-card__name a`);
-  cardTitle.props().onClick();
+  placeCard.find(`h2.place-card__name a`).at(0).simulate(`click`);
   expect(onTitleClick.mock.calls.length).toBe(1);
 });

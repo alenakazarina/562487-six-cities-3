@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import nanoid from 'nanoid';
-import App from './components/app/app.jsx';
+import App from './components/app/app';
 
 const LOCATIONS = [
   {

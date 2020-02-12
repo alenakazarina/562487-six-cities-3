@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import LocationTab from './location-tab.jsx';
+import LocationTab from './location-tab';
 import {locations} from '../../mock/tests';
 
 it(`should render LocationTab correctly`, () => {

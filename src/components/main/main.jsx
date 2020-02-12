@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from '../header/header.jsx';
-import LocationTab from '../location-tab/location-tab.jsx';
-import Sorting from '../sorting/sorting.jsx';
-import PlaceCard from '../place-card/place-card.jsx';
+import Header from '../header/header';
+import LocationTab from '../location-tab/location-tab';
+import Sorting from '../sorting/sorting';
+import PlaceCard from '../place-card/place-card';
 
 const Main = ({locations, offers, onTitleClick}) => {
   const activeLocation = locations.find((location) => location.isActive).title;

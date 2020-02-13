@@ -4,20 +4,29 @@ import Main from '../main/main';
 
 const titleClickHandler = () => {};
 
-const App = ({locations, offers}) => {
+const App = ({offers}) => {
   return (
-    <Main locations={locations} offers={offers} onTitleClick={titleClickHandler} />
+    <Main
+      city={offers[0].city}
+      offers={offers[0].offers}
+      onTitleClick={titleClickHandler}
+    />
   );
 };
 
 App.propTypes = {
-  locations: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    isActive: PropTypes.bool.isRequired
-  })).isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
+    city: PropTypes.string.isRequired,
+    offers: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      previewImage: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      isFavorite: PropTypes.bool.isRequired,
+      isPremium: PropTypes.bool.isRequired,
+      rating: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired
+    })).isRequired
   })).isRequired
 };
 

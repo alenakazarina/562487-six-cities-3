@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render LocationTab correctly 1`] = `
+exports[`LocationTab should render LocationTab correctly 1`] = `
 <li
   className="locations__item"
 >
@@ -15,7 +15,7 @@ exports[`should render LocationTab correctly 1`] = `
 </li>
 `;
 
-exports[`should render LocationTab with active class correctly 1`] = `
+exports[`LocationTab should render LocationTab with active class correctly 1`] = `
 <li
   className="locations__item"
 >

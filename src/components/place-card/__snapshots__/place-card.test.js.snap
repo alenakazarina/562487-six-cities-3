@@ -1,16 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render PlaceCard with title 1`] = `
+exports[`PlaceCard should render PlaceCard of Favorite House with rating equals 2 1`] = `
 <article
   className="cities__place-card place-card"
+  onMouseOver={[Function]}
 >
-  <div
-    className="place-card__mark"
-  >
-    <span>
-      Premium
-    </span>
-  </div>
+  
   <div
     className="cities__image-wrapper place-card__image-wrapper"
   >
@@ -21,7 +16,7 @@ exports[`should render PlaceCard with title 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="img/apartment-01.jpg"
+        src="image"
         width="260"
       />
     </a>
@@ -38,7 +33,8 @@ exports[`should render PlaceCard with title 1`] = `
         <b
           className="place-card__price-value"
         >
-          €120
+          €
+          500
         </b>
         <span
           className="place-card__price-text"
@@ -47,7 +43,7 @@ exports[`should render PlaceCard with title 1`] = `
         </span>
       </div>
       <button
-        className="place-card__bookmark-button button"
+        className="place-card__bookmark-button button place-card__bookmark-button--active"
         type="button"
       >
         <svg
@@ -75,7 +71,7 @@ exports[`should render PlaceCard with title 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "40%",
             }
           }
         />
@@ -93,13 +89,120 @@ exports[`should render PlaceCard with title 1`] = `
         href="#"
         onClick={[Function]}
       >
-        Canal View Prinsengracht
+        title
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Apartment
+      House
+    </p>
+  </div>
+</article>
+`;
+
+exports[`PlaceCard should render PlaceCard of Premium Hotel with rating equals 5 1`] = `
+<article
+  className="cities__place-card place-card"
+  onMouseOver={[Function]}
+>
+  <div
+    className="place-card__mark"
+  >
+    <span>
+      Premium
+    </span>
+  </div>
+  <div
+    className="cities__image-wrapper place-card__image-wrapper"
+  >
+    <a
+      href="#"
+    >
+      <img
+        alt="Place image"
+        className="place-card__image"
+        height="200"
+        src="image"
+        width="260"
+      />
+    </a>
+  </div>
+  <div
+    className="place-card__info"
+  >
+    <div
+      className="place-card__price-wrapper"
+    >
+      <div
+        className="place-card__price"
+      >
+        <b
+          className="place-card__price-value"
+        >
+          €
+          1000
+        </b>
+        <span
+          className="place-card__price-text"
+        >
+          / night
+        </span>
+      </div>
+      <button
+        className="place-card__bookmark-button button "
+        type="button"
+      >
+        <svg
+          className="place-card__bookmark-icon"
+          height="19"
+          width="18"
+        >
+          <use
+            xlinkHref="#icon-bookmark"
+          />
+        </svg>
+        <span
+          className="visually-hidden"
+        >
+          To bookmarks
+        </span>
+      </button>
+    </div>
+    <div
+      className="place-card__rating rating"
+    >
+      <div
+        className="place-card__stars rating__stars"
+      >
+        <span
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        />
+        <span
+          className="visually-hidden"
+        >
+          Rating
+        </span>
+      </div>
+    </div>
+    <h2
+      className="place-card__name"
+    >
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        title
+      </a>
+    </h2>
+    <p
+      className="place-card__type"
+    >
+      Hotel
     </p>
   </div>
 </article>

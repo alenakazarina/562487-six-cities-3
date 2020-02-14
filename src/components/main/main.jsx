@@ -4,6 +4,9 @@ import Header from '../header/header';
 import Tabs from '../tabs/tabs';
 import Sorting from '../sorting/sorting';
 import PlacesList from '../places-list/places-list';
+import {offerPropTypes} from '../../types';
+
+const PREFIX = `cities__`;
 
 const Main = ({city, offers, onTitleClick}) => {
   const offersCount = offers.length;
@@ -21,6 +24,7 @@ const Main = ({city, offers, onTitleClick}) => {
               <b className="places__found">{offersCount} places to stay in {city}</b>
               <Sorting />
               <PlacesList
+                prefix={PREFIX}
                 offers={offers}
                 onTitleClick={onTitleClick}
               />
@@ -56,16 +60,7 @@ const Main = ({city, offers, onTitleClick}) => {
 
 Main.propTypes = {
   city: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired
-  })).isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   onTitleClick: PropTypes.func.isRequired
 };
 

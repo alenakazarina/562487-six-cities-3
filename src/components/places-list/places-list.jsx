@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card';
+import {offerPropTypes} from '../../types';
 
 class PlacesList extends PureComponent {
   constructor(props) {
@@ -30,12 +31,16 @@ class PlacesList extends PureComponent {
   }
 
   render() {
-    const {offers, onTitleClick} = this.props;
+    const {prefix, offers, onTitleClick} = this.props;
+    const classes = (prefix === `cities__`) ?
+      `cities__places-list places__list tabs__content`
+      : `near-places__list places__list`;
     return (
-      <div className="cities__places-list places__list tabs__content">
+      <div className={classes}>
         {offers.map((offer) => (
           <PlaceCard
             key={offer.id}
+            prefix={prefix}
             offer={offer}
             onTitleClick={onTitleClick}
             onCardMouseOver={this._handleCardMouseOver}
@@ -47,16 +52,8 @@ class PlacesList extends PureComponent {
 }
 
 PlacesList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired
-  })).isRequired,
+  prefix: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   onTitleClick: PropTypes.func.isRequired
 };
 

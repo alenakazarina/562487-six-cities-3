@@ -2,34 +2,58 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import PlaceCard from './place-card';
 
-const offers = [
-  {
-    id: `01`,
-    previewImage: `image`,
-    title: `title`,
-    isFavorite: true,
-    isPremium: false,
-    rating: 2,
+const offer = {
+  id: `01`,
+  previewImage: `image`,
+  title: `title`,
+  images: [`image`, `image`],
+  isFavorite: true,
+  isPremium: false,
+  rating: 3,
+  features: {
     type: `House`,
-    price: 500
+    bedrooms: 3,
+    maxAdults: 6
   },
-  {
-    id: `02`,
-    previewImage: `image`,
-    title: `title`,
-    isFavorite: false,
-    isPremium: true,
-    rating: 5,
-    type: `Hotel`,
-    price: 1000
+  price: 200,
+  amenities: [`amenity`, `amenity`],
+  host: {
+    id: `01`,
+    name: `James`,
+    isPro: true,
+    avatarUrl: `avatar`
+  },
+  description: `House description`,
+  reviews: [{
+    id: `01`,
+    user: {
+      id: `10`,
+      name: `Bob`,
+      isPro: false,
+      avatarUrl: `avatar`
+    },
+    rating: 4,
+    comment: `comment`,
+    date: new Date(`2019-04-24`)
+  }],
+  city: {
+    name: `Hamburg`,
+    location: {
+      latitude: 53.552645,
+      longitude: 9.966287,
+      zoom: 13
+    }
   }
-];
+};
+
+const prefixes = [`cities__`, `near-places__`];
 
 describe(`PlaceCard`, () => {
-  it(`should render PlaceCard of Favorite House with rating equals 2`, () => {
+  it(`should render cities PlaceCard`, () => {
     const tree = renderer.create(
         <PlaceCard
-          offer={offers[0]}
+          prefix={prefixes[0]}
+          offer={offer}
           onTitleClick={()=>{}}
           onCardMouseOver={()=>{}}
         />
@@ -37,10 +61,11 @@ describe(`PlaceCard`, () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it(`should render PlaceCard of Premium Hotel with rating equals 5`, () => {
+  it(`should render near places PlaceCard`, () => {
     const tree = renderer.create(
         <PlaceCard
-          offer={offers[1]}
+          prefix={prefixes[1]}
+          offer={offer}
           onTitleClick={()=>{}}
           onCardMouseOver={()=>{}}
         />

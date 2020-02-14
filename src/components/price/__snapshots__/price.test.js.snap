@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rating should render place card's Price 1`] = `
+<div
+  className="place-card__price"
+>
+  <b
+    className="place-card__price-value"
+  >
+    €
+    200
+  </b>
+  <span
+    className="place-card__price-text"
+    style={
+      Object {
+        "marginLeft": "3px",
+      }
+    }
+  >
+    / night
+  </span>
+</div>
+`;
+
+exports[`Rating should render property's Price 1`] = `
+<div
+  className="property__price"
+>
+  <b
+    className="property__price-value"
+  >
+    €
+    300
+  </b>
+  <span
+    className="property__price-text"
+    style={
+      Object {
+        "marginLeft": "3px",
+      }
+    }
+  >
+     night
+  </span>
+</div>
+`;

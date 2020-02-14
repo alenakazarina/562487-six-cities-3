@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User should render User with host user pro 1`] = `
+<div
+  className="property__host-user user"
+>
+  <div
+    className="property__host-avatar-wrapper user__avatar-wrapper property__host-avatar-wrapper--pro"
+  >
+    <img
+      alt="James avatar"
+      className="property__host-avatar user__avatar"
+      height={74}
+      src="avatar"
+      width={74}
+    />
+  </div>
+  <span
+    className="property__host-user-name"
+  >
+    James
+  </span>
+</div>
+`;
+
+exports[`User should render User with review user 1`] = `
+<div
+  className="reviews__user user"
+>
+  <div
+    className="reviews__avatar-wrapper user__avatar-wrapper "
+  >
+    <img
+      alt="Bob avatar"
+      className="reviews__avatar user__avatar"
+      height={54}
+      src="avatar"
+      width={54}
+    />
+  </div>
+  <span
+    className="reviews__user-name"
+  >
+    Bob
+  </span>
+</div>
+`;

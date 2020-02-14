@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PlaceCard should render PlaceCard of Favorite House with rating equals 2 1`] = `
+exports[`PlaceCard should render cities PlaceCard 1`] = `
 <article
   className="cities__place-card place-card"
   onMouseOver={[Function]}
@@ -34,12 +34,17 @@ exports[`PlaceCard should render PlaceCard of Favorite House with rating equals 
           className="place-card__price-value"
         >
           €
-          500
+          200
         </b>
         <span
           className="place-card__price-text"
+          style={
+            Object {
+              "marginLeft": "3px",
+            }
+          }
         >
-          / night
+          / night
         </span>
       </div>
       <button
@@ -48,8 +53,8 @@ exports[`PlaceCard should render PlaceCard of Favorite House with rating equals 
       >
         <svg
           className="place-card__bookmark-icon"
-          height="19"
-          width="18"
+          height={19}
+          width={18}
         >
           <use
             xlinkHref="#icon-bookmark"
@@ -71,7 +76,7 @@ exports[`PlaceCard should render PlaceCard of Favorite House with rating equals 
         <span
           style={
             Object {
-              "width": "40%",
+              "width": "60%",
             }
           }
         />
@@ -86,7 +91,6 @@ exports[`PlaceCard should render PlaceCard of Favorite House with rating equals 
       className="place-card__name"
     >
       <a
-        href="#"
         onClick={[Function]}
       >
         title
@@ -94,27 +98,19 @@ exports[`PlaceCard should render PlaceCard of Favorite House with rating equals 
     </h2>
     <p
       className="place-card__type"
-    >
-      House
-    </p>
+    />
   </div>
 </article>
 `;
 
-exports[`PlaceCard should render PlaceCard of Premium Hotel with rating equals 5 1`] = `
+exports[`PlaceCard should render near places PlaceCard 1`] = `
 <article
-  className="cities__place-card place-card"
+  className="near-places__card place-card"
   onMouseOver={[Function]}
 >
+  
   <div
-    className="place-card__mark"
-  >
-    <span>
-      Premium
-    </span>
-  </div>
-  <div
-    className="cities__image-wrapper place-card__image-wrapper"
+    className="near-places__image-wrapper place-card__image-wrapper"
   >
     <a
       href="#"
@@ -141,22 +137,27 @@ exports[`PlaceCard should render PlaceCard of Premium Hotel with rating equals 5
           className="place-card__price-value"
         >
           €
-          1000
+          200
         </b>
         <span
           className="place-card__price-text"
+          style={
+            Object {
+              "marginLeft": "3px",
+            }
+          }
         >
-          / night
+          / night
         </span>
       </div>
       <button
-        className="place-card__bookmark-button button "
+        className="place-card__bookmark-button button place-card__bookmark-button--active"
         type="button"
       >
         <svg
           className="place-card__bookmark-icon"
-          height="19"
-          width="18"
+          height={19}
+          width={18}
         >
           <use
             xlinkHref="#icon-bookmark"
@@ -178,7 +179,7 @@ exports[`PlaceCard should render PlaceCard of Premium Hotel with rating equals 5
         <span
           style={
             Object {
-              "width": "100%",
+              "width": "60%",
             }
           }
         />
@@ -193,7 +194,6 @@ exports[`PlaceCard should render PlaceCard of Premium Hotel with rating equals 5
       className="place-card__name"
     >
       <a
-        href="#"
         onClick={[Function]}
       >
         title
@@ -201,9 +201,7 @@ exports[`PlaceCard should render PlaceCard of Premium Hotel with rating equals 5
     </h2>
     <p
       className="place-card__type"
-    >
-      Hotel
-    </p>
+    />
   </div>
 </article>
 `;

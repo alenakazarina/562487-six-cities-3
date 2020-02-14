@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main';
+import Property from './property';
 
 const offers = [{
   id: `01`,
@@ -89,29 +89,15 @@ const offers = [{
   }
 }];
 
-const onTitleClick = () => {};
-
-describe(`Main`, () => {
-  it(`should render Main correctly with no empty offers`, () => {
+describe(`Property`, () => {
+  it(`should render Property correctly`, () => {
     const tree = renderer.create(
-        <Main
-          city={`Paris`}
-          offers={offers}
-          onTitleClick={onTitleClick}
-        />
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`should render Main correctly with empty offers`, () => {
-    const tree = renderer.create(
-        <Main
-          city={`Paris`}
-          offers={[]}
-          onTitleClick={onTitleClick}
+        <Property
+          offer={offers[0]}
+          nearOffers={offers}
+          onTitleClick={()=>{}}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
-

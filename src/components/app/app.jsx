@@ -1,32 +1,72 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {PureComponent} from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {arrayOf, shape, string} from 'prop-types';
 import Main from '../main/main';
+import Property from '../property/property';
+import {offerPropTypes} from '../../types';
 
-const titleClickHandler = () => {};
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      offer: null
+    };
+    this._handleTitleClick = this._handleTitleClick.bind(this);
+  }
 
-const App = ({offers}) => {
-  return (
-    <Main
-      city={offers[0].city}
-      offers={offers[0].offers}
-      onTitleClick={titleClickHandler}
-    />
-  );
-};
+  _handleTitleClick(activeOffer) {
+    this.setState(() => ({
+      offer: activeOffer
+    }));
+  }
+
+  _renderApp() {
+    const {offer} = this.state;
+    const {offers} = this.props;
+    if (offer) {
+      return (
+        <Property
+          offer={offer}
+          nearOffers={offers[0].offers.slice(0, 3)}
+          onTitleClick={this._handleTitleClick}
+        />
+      );
+    }
+
+    return (
+      <Main
+        city={offers[0].city}
+        offers={offers[0].offers}
+        onTitleClick={this._handleTitleClick}
+      />
+    );
+  }
+
+  render() {
+    const {offers} = this.props;
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/dev-offer">
+            <Property
+              offer={offers[0].offers[0]}
+              nearOffers={offers[0].offers.slice(0, 3)}
+              onTitleClick={this._handleTitleClick}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    city: PropTypes.string.isRequired,
-    offers: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      previewImage: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      isFavorite: PropTypes.bool.isRequired,
-      isPremium: PropTypes.bool.isRequired,
-      rating: PropTypes.number.isRequired,
-      type: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired
-    })).isRequired
+  offers: arrayOf(shape({
+    city: string.isRequired,
+    offers: arrayOf(offerPropTypes).isRequired
   })).isRequired
 };
 

@@ -3,28 +3,49 @@ import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import PlaceCard from './place-card';
 
-const offers = [
-  {
-    id: `01`,
-    previewImage: `image`,
-    title: `title`,
-    isFavorite: true,
-    isPremium: false,
-    rating: 2,
+const offer = {
+  id: `01`,
+  previewImage: `image`,
+  title: `title`,
+  images: [`image`, `image`],
+  isFavorite: true,
+  isPremium: false,
+  rating: 3,
+  features: {
     type: `House`,
-    price: 500
+    bedrooms: 3,
+    maxAdults: 6
   },
-  {
-    id: `02`,
-    previewImage: `image`,
-    title: `title`,
-    isFavorite: false,
-    isPremium: true,
-    rating: 5,
-    type: `Hotel`,
-    price: 1000
+  price: 200,
+  amenities: [`amenity`, `amenity`],
+  host: {
+    id: `01`,
+    name: `James`,
+    isPro: true,
+    avatarUrl: `avatar`
+  },
+  description: `House description`,
+  reviews: [{
+    id: `01`,
+    user: {
+      id: `10`,
+      name: `Bob`,
+      isPro: false,
+      avatarUrl: `avatar`
+    },
+    rating: 4,
+    comment: `comment`,
+    date: new Date(`2019-04-24`)
+  }],
+  city: {
+    name: `Hamburg`,
+    location: {
+      latitude: 53.552645,
+      longitude: 9.966287,
+      zoom: 13
+    }
   }
-];
+};
 
 configure({
   adapter: new Adapter(),
@@ -35,20 +56,23 @@ describe(`PlaceCard`, () => {
     const onTitleClick = jest.fn();
     const placeCard = shallow(
         <PlaceCard
-          offer={offers[0]}
+          prefix={`cities__`}
+          offer={offer}
           onTitleClick={onTitleClick}
           onCardMouseOver={()=>{}}
         />
     );
     placeCard.find(`h2.place-card__name a`).simulate(`click`);
     expect(onTitleClick).toHaveBeenCalledTimes(1);
+    expect(onTitleClick.mock.calls[0][0]).toMatchObject(offer);
   });
 
   it(`should card on mouseover to call cb with card and offer`, () => {
     const onCardMouseOver = jest.fn();
     const placeCard = shallow(
         <PlaceCard
-          offer={offers[1]}
+          prefix={`cities__`}
+          offer={offer}
           onTitleClick={()=>{}}
           onCardMouseOver={onCardMouseOver}
         />
@@ -57,9 +81,6 @@ describe(`PlaceCard`, () => {
     card.simulate(`mouseover`, {currentTarget: card});
     expect(onCardMouseOver).toHaveBeenCalledTimes(1);
     expect(onCardMouseOver.mock.calls[0][0]).toMatchObject(card);
-    expect(onCardMouseOver.mock.calls[0][1]).toMatchObject(offers[1]);
+    expect(onCardMouseOver.mock.calls[0][1]).toMatchObject(offer);
   });
 });
-
-
-// Для компонента «Карточка предложения» напишите e2e-тест. Он будет проверять, что при наведении курсора на карточку предложения в обработчик попадает информация об объекте недвижимости.

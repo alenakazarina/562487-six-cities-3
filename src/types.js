@@ -1,4 +1,6 @@
-import {shape, number, string, bool, arrayOf, instanceOf} from 'prop-types';
+import {shape, number, string, bool, arrayOf, instanceOf, oneOfType, element, node} from 'prop-types';
+
+export const childrenPropTypes = oneOfType([element, node]);
 
 export const userPropTypes = shape({
   id: string.isRequired,

@@ -1,31 +1,21 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import User from './user';
+import {users} from '../../mocks/tests';
 
-const users = [{
-  id: `01`,
-  name: `James`,
-  isPro: true,
-  avatarUrl: `avatar`
-},
-{
-  id: `02`,
-  name: `Bob`,
-  isPro: false,
-  avatarUrl: `avatar`
-}];
+const prefixes = [`property__host-`, `reviews__`];
 
 describe(`User`, () => {
   it(`should render User with host user pro`, () => {
     const tree = renderer.create(
-        <User prefix={`property__host-`} user={users[0]} />
+        <User prefix={prefixes[0]} user={users[0]} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it(`should render User with review user`, () => {
     const tree = renderer.create(
-        <User prefix={`reviews__`} user={users[1]} />
+        <User prefix={prefixes[1]} user={users[1]} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

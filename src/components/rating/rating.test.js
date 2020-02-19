@@ -8,7 +8,7 @@ describe(`Rating`, () => {
   it(`should render review Rating with 3 stars`, () => {
     const tree = renderer.create(
         <Rating
-          prefix={`reviews__`}
+          prefix={`reviews`}
           rating={ratings[0]}
         />
     ).toJSON();
@@ -17,7 +17,7 @@ describe(`Rating`, () => {
   it(`should render place card's Rating with 5 stars`, () => {
     const tree = renderer.create(
         <Rating
-          prefix={`place-card__`}
+          prefix={`place-card`}
           rating={ratings[1]}
         />
     ).toJSON();

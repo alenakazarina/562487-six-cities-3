@@ -6,7 +6,7 @@ describe(`BookmarkButton`, () => {
   it(`should render property's BookmarkButton active`, () => {
     const tree = renderer.create(
         <BookmarkButton
-          prefix={`property__`}
+          prefix={`property`}
           isFavorite={true}
           width={31}
           height={33}
@@ -18,7 +18,7 @@ describe(`BookmarkButton`, () => {
   it(`should render place card's BookmarkButton`, () => {
     const tree = renderer.create(
         <BookmarkButton
-          prefix={`place-card__`}
+          prefix={`place-card`}
           isFavorite={false}
           width={18}
           height={19}

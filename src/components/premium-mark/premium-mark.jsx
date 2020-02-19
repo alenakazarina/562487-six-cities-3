@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const PremiumMark = ({prefix}) => (
-  <div className={`${prefix}mark`}>
+  <div className={`${prefix}__mark`}>
     <span>Premium</span>
   </div>
 );

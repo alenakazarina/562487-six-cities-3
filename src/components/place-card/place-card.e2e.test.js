@@ -2,50 +2,7 @@ import React from 'react';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import PlaceCard from './place-card';
-
-const offer = {
-  id: `01`,
-  previewImage: `image`,
-  title: `title`,
-  images: [`image`, `image`],
-  isFavorite: true,
-  isPremium: false,
-  rating: 3,
-  features: {
-    type: `House`,
-    bedrooms: 3,
-    maxAdults: 6
-  },
-  price: 200,
-  amenities: [`amenity`, `amenity`],
-  host: {
-    id: `01`,
-    name: `James`,
-    isPro: true,
-    avatarUrl: `avatar`
-  },
-  description: `House description`,
-  reviews: [{
-    id: `01`,
-    user: {
-      id: `10`,
-      name: `Bob`,
-      isPro: false,
-      avatarUrl: `avatar`
-    },
-    rating: 4,
-    comment: `comment`,
-    date: new Date(`2019-04-24`)
-  }],
-  city: {
-    name: `Hamburg`,
-    location: {
-      latitude: 53.552645,
-      longitude: 9.966287,
-      zoom: 13
-    }
-  }
-};
+import {appOffers} from '../../mocks/tests';
 
 configure({
   adapter: new Adapter(),
@@ -53,10 +10,11 @@ configure({
 
 describe(`PlaceCard`, () => {
   it(`should card title be pressed`, () => {
+    const offer = appOffers[0].offers[0];
     const onTitleClick = jest.fn();
     const placeCard = shallow(
         <PlaceCard
-          prefix={`cities__`}
+          prefix={`cities`}
           offer={offer}
           onTitleClick={onTitleClick}
           onCardMouseOver={()=>{}}
@@ -68,10 +26,11 @@ describe(`PlaceCard`, () => {
   });
 
   it(`should card on mouseover to call cb with card and offer`, () => {
+    const offer = appOffers[0].offers[1];
     const onCardMouseOver = jest.fn();
     const placeCard = shallow(
         <PlaceCard
-          prefix={`cities__`}
+          prefix={`cities`}
           offer={offer}
           onTitleClick={()=>{}}
           onCardMouseOver={onCardMouseOver}

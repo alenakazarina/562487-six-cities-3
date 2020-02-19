@@ -7,13 +7,13 @@ const prices = [200, 300];
 describe(`Rating`, () => {
   it(`should render place card's Price`, () => {
     const tree = renderer.create(
-        <Price prefix={`place-card__`} price={prices[0]} />
+        <Price prefix={`place-card`} price={prices[0]} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
   it(`should render property's Price`, () => {
     const tree = renderer.create(
-        <Price prefix={`property__`} price={prices[1]} />
+        <Price prefix={`property`} price={prices[1]} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

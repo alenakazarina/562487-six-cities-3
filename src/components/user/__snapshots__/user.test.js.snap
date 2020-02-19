@@ -28,7 +28,7 @@ exports[`User should render User with review user 1`] = `
   className="reviews__user user"
 >
   <div
-    className="reviews__avatar-wrapper user__avatar-wrapper "
+    className="reviews__avatar-wrapper user__avatar-wrapper false"
   >
     <img
       alt="Bob avatar"

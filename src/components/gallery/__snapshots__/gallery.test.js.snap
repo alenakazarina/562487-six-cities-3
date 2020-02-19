@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gallery should render Gallery correctly 1`] = `
+<div
+  className="property__gallery-container container"
+>
+  <div
+    className="property__gallery"
+  >
+    <div
+      className="property__image-wrapper"
+    >
+      <img
+        alt="Interior photo"
+        className="property__image"
+        src="image1"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+    >
+      <img
+        alt="Interior photo"
+        className="property__image"
+        src="image2"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+    >
+      <img
+        alt="Interior photo"
+        className="property__image"
+        src="image3"
+      />
+    </div>
+  </div>
+</div>
+`;

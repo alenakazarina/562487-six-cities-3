@@ -59,29 +59,7 @@ export const generateOffers = (count = 3) => {
   return new Array(count).fill(``).map(generateOffer);
 };
 
-export const offers = [
-  {
-    city: `Paris`,
-    offers: generateOffers(4)
-  },
-  {
-    city: `Cologne`,
-    offers: generateOffers(5)
-  },
-  {
-    city: `Brussels`,
-    offers: generateOffers(4)
-  },
-  {
-    city: `Amsterdam`,
-    offers: generateOffers(5)
-  },
-  {
-    city: `Hamburg`,
-    offers: generateOffers(4)
-  },
-  {
-    city: `Dusseldorf`,
-    offers: generateOffers(5)
-  }
-];
+export const offers = LOCATIONS.map((location) => ({
+  city: location,
+  offers: generateOffers(4)
+}));

@@ -1,9 +1,10 @@
 import React, {PureComponent} from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import {arrayOf, shape, string} from 'prop-types';
+import {arrayOf, shape} from 'prop-types';
+import Page from '../page/page';
 import Main from '../main/main';
 import Property from '../property/property';
-import {offerPropTypes} from '../../types';
+import {cityPropTypes, offerPropTypes} from '../../types';
 
 class App extends PureComponent {
   constructor(props) {
@@ -25,20 +26,24 @@ class App extends PureComponent {
     const {offers} = this.props;
     if (offer) {
       return (
-        <Property
-          offer={offer}
-          nearOffers={offers[0].offers.slice(0, 3)}
-          onTitleClick={this._handleTitleClick}
-        />
+        <Page className="page--property">
+          <Property
+            offer={offer}
+            nearOffers={offers[0].offers.slice(0, 3)}
+            onTitleClick={this._handleTitleClick}
+          />
+        </Page>
       );
     }
 
     return (
-      <Main
-        city={offers[0].city}
-        offers={offers[0].offers}
-        onTitleClick={this._handleTitleClick}
-      />
+      <Page className="page--gray page--main">
+        <Main
+          city={offers[0].city}
+          offers={offers[0].offers}
+          onTitleClick={this._handleTitleClick}
+        />
+      </Page>
     );
   }
 
@@ -51,11 +56,13 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-offer">
-            <Property
-              offer={offers[0].offers[0]}
-              nearOffers={offers[0].offers.slice(0, 3)}
-              onTitleClick={this._handleTitleClick}
-            />
+            <Page className="page--property">
+              <Property
+                offer={offers[0].offers[0]}
+                nearOffers={offers[0].offers.slice(0, 3)}
+                onTitleClick={this._handleTitleClick}
+              />
+            </Page>
           </Route>
         </Switch>
       </BrowserRouter>
@@ -65,7 +72,7 @@ class App extends PureComponent {
 
 App.propTypes = {
   offers: arrayOf(shape({
-    city: string.isRequired,
+    city: cityPropTypes,
     offers: arrayOf(offerPropTypes).isRequired
   })).isRequired
 };

@@ -32,11 +32,11 @@ class PlacesList extends PureComponent {
 
   render() {
     const {prefix, offers, onTitleClick} = this.props;
-    const classes = (prefix === `cities__`) ?
+    const className = (prefix === `cities`) ?
       `cities__places-list places__list tabs__content`
       : `near-places__list places__list`;
     return (
-      <div className={classes}>
+      <div className={className}>
         {offers.map((offer) => (
           <PlaceCard
             key={offer.id}

@@ -6,7 +6,7 @@ const PRO_USER_CLASS = `avatar-wrapper--pro`;
 
 const User = ({prefix, user}) => {
   const {name, isPro, avatarUrl} = user;
-  const proClass = isPro ? `${prefix}${PRO_USER_CLASS}` : ``;
+  const proClass = isPro && `${prefix}${PRO_USER_CLASS}`;
   const size = prefix === `reviews__` ? 54 : 74;
   return (
     <div className={`${prefix}user user`}>

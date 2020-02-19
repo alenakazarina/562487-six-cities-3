@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Map should render cities Map correctly 1`] = `
+<section
+  className="cities__map map"
+/>
+`;
+
+exports[`Map should render property Map correctly 1`] = `
+<section
+  className="property__map map"
+/>
+`;

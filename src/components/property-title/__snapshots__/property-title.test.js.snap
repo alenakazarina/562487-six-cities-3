@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PropertyTitle should render PropertyTitle correctly 1`] = `
+<div
+  className="property__name-wrapper"
+>
+  <h1
+    className="property__name"
+  >
+    Property Title
+  </h1>
+  <div>
+    Childrens content
+  </div>
+</div>
+`;

@@ -6,20 +6,20 @@ import Price from '../price/price';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import {offerPropTypes} from '../../types';
 
-const PREFIX = `place-card__`;
+const PREFIX = `place-card`;
 
 const PlaceCard = ({prefix, offer, onTitleClick, onCardMouseOver}) => {
   const {previewImage, title, isFavorite, isPremium, rating, type, price} = offer;
-  const classes = (prefix === `cities__`) ?
+  const className = (prefix === `cities`) ?
     `cities__place-card place-card`
     : `near-places__card place-card`;
 
   return (
-    <article className={classes}
+    <article className={className}
       onMouseOver={(evt) => onCardMouseOver(evt.currentTarget, offer)}
     >
       {isPremium ? <PremiumMark prefix={PREFIX} /> : ``}
-      <div className={`${prefix}image-wrapper place-card__image-wrapper`}>
+      <div className={`${prefix}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image"
             src={previewImage}

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PropertyDescription should render PropertyDescription correctly 1`] = `
+<div
+  className="property__description"
+>
+  <p
+    className="property__text"
+  >
+    Property description
+  </p>
+</div>
+`;

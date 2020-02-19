@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BOOKMARK_CLASS = `bookmark-button--active`;
-
 const BookmarkButton = ({prefix, isFavorite, width, height}) => {
   return (
-    <button className={`${prefix}bookmark-button button ${isFavorite ? `${prefix}${BOOKMARK_CLASS}` : ``}`} type="button">
-      <svg className={`${prefix}bookmark-icon`}
+    <button className={`${prefix}__bookmark-button button ${isFavorite && `${prefix}__bookmark-button--active`}`} type="button">
+      <svg className={`${prefix}__bookmark-icon`}
         width={width}
         height={height}
       >

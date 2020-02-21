@@ -1,11 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import App from './app';
-import {appOffers} from '../../mocks/tests';
+import {cityOffers} from '../../mocks/tests';
 
-it(`should render App correctly`, () => {
-  const tree = renderer.create(
-      <App offers={appOffers} />
-  ).toJSON();
-  expect(tree).toMatchSnapshot();
+describe(`App`, () => {
+  it(`should render App correctly`, () => {
+    const tree = renderer.create(
+        <App offers={cityOffers} />,
+        {createNodeMock: () => document.createElement(`div`)}
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

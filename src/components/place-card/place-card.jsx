@@ -37,7 +37,7 @@ const PlaceCard = ({prefix, offer, onTitleClick, onCardMouseOver}) => {
             height={19}
           />
         </div>
-        <Rating prefix={PREFIX} rating={rating}/>
+        <Rating prefix={PREFIX} rating={rating} isValue={false} />
         <h2 className="place-card__name">
           <a onClick={() => onTitleClick(offer)}>{title}</a>
         </h2>

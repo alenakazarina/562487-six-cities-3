@@ -1,6 +1,6 @@
 export const IMAGE_PATH = `./img/`;
 
-const LOCATIONS_ZOOM = 13;
+export const LOCATIONS_ZOOM = 12;
 
 export const MONTHS = [
   `January`, `February`, `March`, `April`, `May`, `June`, `July`,
@@ -52,42 +52,50 @@ export const LOCATIONS = [
     name: `Paris`,
     location: {
       latitude: 48.856663,
-      longitude: 2.351556,
-      zoom: LOCATIONS_ZOOM
+      longitude: 2.351556
     }
   }, {
     name: `Cologne`,
     location: {
       latitude: 50.930779,
-      longitude: 6.938399,
-      zoom: LOCATIONS_ZOOM
+      longitude: 6.938399
     }
   }, {
     name: `Brussels`,
     location: {
       latitude: 50.851309,
-      longitude: 4.351718,
-      zoom: LOCATIONS_ZOOM
+      longitude: 4.351718
     }
   }, {
     name: `Amsterdam`,
     location: {
-      latitude: 52.373057,
-      longitude: 4.892557,
-      zoom: LOCATIONS_ZOOM
+      latitude: 52.38333,
+      longitude: 4.9
     }
   }, {
     name: `Hamburg`,
     location: {
       latitude: 53.552645,
-      longitude: 9.966287,
-      zoom: LOCATIONS_ZOOM
+      longitude: 9.966287
     }
   }, {
     name: `Dusseldorf`,
     location: {
       latitude: 51.230569,
-      longitude: 6.787428,
-      zoom: LOCATIONS_ZOOM
+      longitude: 6.787428
     }
   }];
+
+export const offersLocations = [{
+  latitude: 52.3909553943508,
+  longitude: 4.85309666406198
+}, {
+  latitude: 52.369553943508,
+  longitude: 4.85309666406198
+}, {
+  latitude: 52.3909553943508,
+  longitude: 4.929309666406198
+}, {
+  latitude: 52.3809553943508,
+  longitude: 4.939309666406198
+}];

@@ -22,7 +22,7 @@ exports[`Main should render Main correctly with empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item false"
             href="#"
           >
             <span>
@@ -34,7 +34,7 @@ exports[`Main should render Main correctly with empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item false"
             href="#"
           >
             <span>
@@ -46,7 +46,7 @@ exports[`Main should render Main correctly with empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item false"
             href="#"
           >
             <span>
@@ -58,7 +58,7 @@ exports[`Main should render Main correctly with empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item tabs__item--active"
             href="#"
           >
             <span>
@@ -70,7 +70,7 @@ exports[`Main should render Main correctly with empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item false"
             href="#"
           >
             <span>
@@ -82,7 +82,7 @@ exports[`Main should render Main correctly with empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item false"
             href="#"
           >
             <span>
@@ -97,7 +97,7 @@ exports[`Main should render Main correctly with empty offers 1`] = `
     className="cities"
   >
     <div
-      className="cities__places-container cities__places-container--empty container"
+      className="cities__places-container container cities__places-container--empty"
     >
       <section
         className="cities__no-places"
@@ -114,15 +114,10 @@ exports[`Main should render Main correctly with empty offers 1`] = `
             className="cities__status-description"
           >
             We could not find any property availbale at the moment in 
-            Location1
+            Amsterdam
           </p>
         </div>
       </section>
-      <div
-        className="cities__right-section"
-      >
-        0
-      </div>
     </div>
   </div>
 </main>
@@ -130,7 +125,7 @@ exports[`Main should render Main correctly with empty offers 1`] = `
 
 exports[`Main should render Main correctly with no empty offers 1`] = `
 <main
-  className="page__main page__main--index false"
+  className="page__main page__main--index "
 >
   <h1
     className="visually-hidden"
@@ -150,7 +145,7 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item false"
             href="#"
           >
             <span>
@@ -162,7 +157,7 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item false"
             href="#"
           >
             <span>
@@ -174,7 +169,7 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item false"
             href="#"
           >
             <span>
@@ -186,7 +181,7 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item tabs__item--active"
             href="#"
           >
             <span>
@@ -198,7 +193,7 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item false"
             href="#"
           >
             <span>
@@ -210,7 +205,7 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item false"
             href="#"
           >
             <span>
@@ -225,7 +220,7 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
     className="cities"
   >
     <div
-      className="cities__places-container cities__places-container--empty container"
+      className="cities__places-container container "
     >
       <section
         className="cities__places places"
@@ -240,7 +235,7 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
         >
           2
            places to stay in 
-          Location1
+          Amsterdam
         </b>
         <form
           action="#"
@@ -267,6 +262,34 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
               />
             </svg>
           </span>
+          <ul
+            className="places__options places__options--custom"
+          >
+            <li
+              className="places__option places__option--active"
+              tabIndex="0"
+            >
+              Popular
+            </li>
+            <li
+              className="places__option"
+              tabIndex="0"
+            >
+              Price: low to high
+            </li>
+            <li
+              className="places__option"
+              tabIndex="0"
+            >
+              Price: high to low
+            </li>
+            <li
+              className="places__option"
+              tabIndex="0"
+            >
+              Top rated first
+            </li>
+          </ul>
         </form>
         <div
           className="cities__places-list places__list tabs__content"

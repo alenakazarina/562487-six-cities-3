@@ -2,7 +2,7 @@ import React from 'react';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import PlaceCard from './place-card';
-import {appOffers} from '../../mocks/tests';
+import {cityOffers} from '../../mocks/tests';
 
 configure({
   adapter: new Adapter(),
@@ -10,7 +10,7 @@ configure({
 
 describe(`PlaceCard`, () => {
   it(`should card title be pressed`, () => {
-    const offer = appOffers[0].offers[0];
+    const offer = cityOffers[0];
     const onTitleClick = jest.fn();
     const placeCard = shallow(
         <PlaceCard
@@ -26,7 +26,7 @@ describe(`PlaceCard`, () => {
   });
 
   it(`should card on mouseover to call cb with card and offer`, () => {
-    const offer = appOffers[0].offers[1];
+    const offer = cityOffers[1];
     const onCardMouseOver = jest.fn();
     const placeCard = shallow(
         <PlaceCard

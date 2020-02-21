@@ -1,39 +1,52 @@
-import React from 'react';
+import React, {PureComponent, createRef} from 'react';
 import {arrayOf, func} from 'prop-types';
 import Tabs from '../tabs/tabs';
 import Places from '../places/places';
 import NoPlaces from '../no-places/no-places';
+import {offerPropTypes} from '../../types';
 import Map from '../map/map';
-import {offerPropTypes, cityPropTypes} from '../../types';
 
-const Main = ({city, offers, onTitleClick}) => {
-  const offersCount = offers.length;
+const ACTIVE_TAB = `Amsterdam`;
 
-  return (
-    <main className={`page__main page__main--index ${offersCount === 0 && `page__main--index-empty`}`}>
-      <h1 className="visually-hidden">Cities</h1>
-      <Tabs activeTab={city.name} />
-      <div className="cities">
-        <div className="cities__places-container cities__places-container--empty container">
-          {offersCount ?
-            <Places
-              city={city}
-              offers={offers}
-              onTitleClick={onTitleClick}
-            />
-            : <NoPlaces city={city} />
-          }
-          <div className="cities__right-section">
-            {offersCount && <Map city={city} prefix={`cities`} />}
+class Main extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeTab: ACTIVE_TAB
+    };
+    this._mapRef = createRef();
+  }
+
+  render() {
+    const {offers, onTitleClick} = this.props;
+    const {activeTab} = this.state;
+    return (
+      <main className={`page__main page__main--index ${offers.length === 0 ? `page__main--index-empty` : ``}`}>
+        <h1 className="visually-hidden">Cities</h1>
+        <Tabs activeTab={activeTab} />
+        <div className="cities">
+          <div className={`cities__places-container container ${offers.length === 0 ? `cities__places-container--empty` : ``}`}>
+            {offers.length ?
+              <>
+                <Places
+                  city={ACTIVE_TAB}
+                  offers={offers}
+                  onTitleClick={onTitleClick}
+                />
+                <div className="cities__right-section">
+                  <Map prefix={`cities`} offers={offers} />
+                </div>
+              </>
+              : <NoPlaces city={ACTIVE_TAB} />
+            }
           </div>
         </div>
-      </div>
-    </main>
-  );
-};
+      </main>
+    );
+  }
+}
 
 Main.propTypes = {
-  city: cityPropTypes,
   offers: arrayOf(offerPropTypes).isRequired,
   onTitleClick: func.isRequired
 };

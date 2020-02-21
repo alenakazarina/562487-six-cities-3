@@ -8,17 +8,15 @@ import {reviewPropTypes} from '../../types';
 const ReviewsList = ({reviews}) => (
   <ul className="reviews__list">
     {reviews.map((review) => {
+      const {id, user, comment, date, rating} = review;
       return (
-        <li className="reviews__item" key={review.id}>
-          <User prefix={`reviews__`} user={review.user} />
+        <li className="reviews__item" key={id}>
+          <User prefix={`reviews`} user={user} />
           <div className="reviews__info">
-            <Rating
-              prefix={`reviews`}
-              rating={review.rating}
-            />
-            <p className="reviews__text">{review.comment}</p>
-            <time className="reviews__time" dateTime={review.date.toISOString().slice(0, 10)}>
-              {`${MONTHS[review.date.getMonth()]} ${review.date.getFullYear()}`}
+            <Rating prefix={`reviews`} rating={rating} />
+            <p className="reviews__text">{comment}</p>
+            <time className="reviews__time" dateTime={date.toISOString().slice(0, 10)}>
+              {`${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
             </time>
           </div>
         </li>

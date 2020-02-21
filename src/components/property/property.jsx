@@ -1,5 +1,6 @@
 import React from 'react';
 import {arrayOf, func} from 'prop-types';
+import {offerPropTypes} from '../../types';
 import Gallery from '../gallery/gallery';
 import PremiumMark from '../premium-mark/premium-mark';
 import PropertyTitle from '../property-title/property-title';
@@ -9,17 +10,16 @@ import Features from '../features/features';
 import Price from '../price/price';
 import PropertyInside from '../property-inside/property-inside';
 import PropertyHost from '../property-host/property-host';
+import PropertyDescription from '../property-description/property-description';
 import Reviews from '../reviews/reviews';
 import NearPlaces from '../near-places/near-places';
 import Map from '../map/map';
-import {offerPropTypes} from '../../types';
-import PropertyDescription from '../property-description/property-description';
 
 const PREFIX = `property`;
 
 const Property = ({offer, nearOffers, onTitleClick}) => {
   const {title, images, isFavorite, isPremium, rating, features,
-    price, amenities, host, description, reviews, city} = offer;
+    price, amenities, host, description, reviews} = offer;
 
   return (
     <main className="page__main page__main--property">
@@ -36,9 +36,7 @@ const Property = ({offer, nearOffers, onTitleClick}) => {
                 height={33}
               />
             </PropertyTitle>
-            <Rating prefix={PREFIX} rating={rating}>
-              <span className="property__rating-value rating__value">{rating}</span>
-            </Rating>
+            <Rating prefix={PREFIX} rating={rating} isValue />
             <Features features={features} />
             <Price prefix={PREFIX} price={price} />
             <PropertyInside amenities={amenities} />
@@ -48,7 +46,7 @@ const Property = ({offer, nearOffers, onTitleClick}) => {
             <Reviews reviews={reviews} />
           </div>
         </div>
-        <Map city={city} prefix={PREFIX} />
+        <Map prefix={PREFIX} offers={[offer, ...nearOffers]} />
       </section>
       <div className="container">
         <NearPlaces

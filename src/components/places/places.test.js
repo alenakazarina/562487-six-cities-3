@@ -1,16 +1,16 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Places from './places';
-import {appOffers} from '../../mocks/tests';
+import {cityOffers} from '../../mocks/tests';
 
-const {city, offers} = appOffers[0];
+const city = `Amsterdam`;
 
 describe(`Places`, () => {
   it(`should render Places correctly`, () => {
     const tree = renderer.create(
         <Places
           city={city}
-          offers={offers}
+          offers={cityOffers}
           onTitleClick={()=>{}}
         />
     ).toJSON();

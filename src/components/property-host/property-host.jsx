@@ -5,7 +5,7 @@ import {userPropTypes, childrenPropTypes} from '../../types';
 const PropertyHost = ({host, children}) => (
   <div className="property__host">
     <h2 className="property__host-title">Meet the host</h2>
-    <User prefix={`property__host-`} user={host} />
+    <User prefix={`property`} user={host} />
     {children}
   </div>
 );

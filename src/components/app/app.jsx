@@ -1,15 +1,16 @@
 import React, {PureComponent} from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import {arrayOf, shape} from 'prop-types';
+import {arrayOf} from 'prop-types';
 import Page from '../page/page';
 import Main from '../main/main';
 import Property from '../property/property';
-import {cityPropTypes, offerPropTypes} from '../../types';
+import {offerPropTypes} from '../../types';
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      activeTab: `Amsterdam`,
       offer: null
     };
     this._handleTitleClick = this._handleTitleClick.bind(this);
@@ -29,7 +30,7 @@ class App extends PureComponent {
         <Page className="page--property">
           <Property
             offer={offer}
-            nearOffers={offers[0].offers.slice(0, 3)}
+            nearOffers={offers.slice(0, 3)}
             onTitleClick={this._handleTitleClick}
           />
         </Page>
@@ -39,8 +40,7 @@ class App extends PureComponent {
     return (
       <Page className="page--gray page--main">
         <Main
-          city={offers[0].city}
-          offers={offers[0].offers}
+          offers={offers}
           onTitleClick={this._handleTitleClick}
         />
       </Page>
@@ -58,8 +58,8 @@ class App extends PureComponent {
           <Route exact path="/dev-offer">
             <Page className="page--property">
               <Property
-                offer={offers[0].offers[0]}
-                nearOffers={offers[0].offers.slice(0, 3)}
+                offer={offers[0]}
+                nearOffers={offers.slice(0, 3)}
                 onTitleClick={this._handleTitleClick}
               />
             </Page>
@@ -71,10 +71,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offers: arrayOf(shape({
-    city: cityPropTypes,
-    offers: arrayOf(offerPropTypes).isRequired
-  })).isRequired
+  offers: arrayOf(offerPropTypes).isRequired
 };
 
 export default App;

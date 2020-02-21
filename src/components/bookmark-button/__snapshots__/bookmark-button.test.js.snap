@@ -2,7 +2,7 @@
 
 exports[`BookmarkButton should render place card's BookmarkButton 1`] = `
 <button
-  className="place-card__bookmark-button button false"
+  className="place-card__bookmark-button button "
   type="button"
 >
   <svg

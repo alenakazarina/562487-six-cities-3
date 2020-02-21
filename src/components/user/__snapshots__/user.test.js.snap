@@ -2,21 +2,21 @@
 
 exports[`User should render User with host user pro 1`] = `
 <div
-  className="property__host-user user"
+  className="property__host-__user user"
 >
   <div
-    className="property__host-avatar-wrapper user__avatar-wrapper property__host-avatar-wrapper--pro"
+    className="property__host-__avatar-wrapper user__avatar-wrapper property__host-__avatar-wrapper--pro"
   >
     <img
       alt="James avatar"
-      className="property__host-avatar user__avatar"
+      className="property__host-__avatar user__avatar"
       height={74}
       src="avatar"
       width={74}
     />
   </div>
   <span
-    className="property__host-user-name"
+    className="property__host-__user-name"
   >
     James
   </span>
@@ -25,21 +25,21 @@ exports[`User should render User with host user pro 1`] = `
 
 exports[`User should render User with review user 1`] = `
 <div
-  className="reviews__user user"
+  className="reviews____user user"
 >
   <div
-    className="reviews__avatar-wrapper user__avatar-wrapper false"
+    className="reviews____avatar-wrapper user__avatar-wrapper "
   >
     <img
       alt="Bob avatar"
-      className="reviews__avatar user__avatar"
-      height={54}
+      className="reviews____avatar user__avatar"
+      height={74}
       src="avatar"
-      width={54}
+      width={74}
     />
   </div>
   <span
-    className="reviews__user-name"
+    className="reviews____user-name"
   >
     Bob
   </span>

@@ -21,8 +21,7 @@ export const cityPropTypes = shape({
   name: string.isRequired,
   location: shape({
     latitude: number.isRequired,
-    longitude: number.isRequired,
-    zoom: number.isRequired
+    longitude: number.isRequired
   }).isRequired
 }).isRequired;
 

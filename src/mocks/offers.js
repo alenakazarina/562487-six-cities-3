@@ -1,4 +1,4 @@
-import {OffersData, UserData, LOCATIONS} from './const';
+import {OffersData, UserData, offersLocations} from './const';
 import {
   generateId,
   getImage,
@@ -31,7 +31,7 @@ const generateReviews = (count = 1) => {
   return new Array(count).fill(``).map(generateReview);
 };
 
-const generateOffer = () => {
+const generateOffer = (offerLocation) => {
   const offerId = generateId();
   return {
     id: offerId,
@@ -51,15 +51,11 @@ const generateOffer = () => {
     host: generateUser(),
     description: OffersData.description,
     reviews: generateReviews(2),
-    city: getRandomFromArray(LOCATIONS)
+    city: {
+      name: `Amsterdam`,
+      location: offerLocation
+    }
   };
 };
 
-export const generateOffers = (count = 3) => {
-  return new Array(count).fill(``).map(generateOffer);
-};
-
-export const offers = LOCATIONS.map((location) => ({
-  city: location,
-  offers: generateOffers(4)
-}));
+export const offers = offersLocations.map((offerLocation) => generateOffer(offerLocation));

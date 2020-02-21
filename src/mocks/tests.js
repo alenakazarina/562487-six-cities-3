@@ -31,7 +31,14 @@ export const cityOffers = [{
     rating: 4,
     comment: `comment`,
     date: new Date(`2019-04-24`)
-  }]
+  }],
+  city: {
+    name: `Amsterdam`,
+    location: {
+      latitude: 53.552645,
+      longitude: 9.966287
+    }
+  }
 },
 {
   id: `02`,
@@ -66,47 +73,35 @@ export const cityOffers = [{
     rating: 4,
     comment: `comment`,
     date: new Date(`2019-04-24`)
-  }]
+  }],
+  city: {
+    name: `Amsterdam`,
+    location: {
+      latitude: 53.552645,
+      longitude: 9.966287
+    }
+  }
 }];
 
-const locations = [
+export const locations = [
   {
     name: `Location1`,
     location: {
       latitude: 53.552645,
-      longitude: 9.966287,
-      zoom: 13
+      longitude: 9.966287
     }
   },
   {
     name: `Location2`,
     location: {
       latitude: 53.552645,
-      longitude: 9.966287,
-      zoom: 13
+      longitude: 9.966287
     }
   },
 ];
 
-export const mockCity = {
-  name: `Location`,
-  location: {
-    latitude: 53.552645,
-    longitude: 9.966287,
-    zoom: 13
-  }
-};
-
 export const nearOffers = cityOffers.map((offer, i) =>
-  Object.assign({}, offer, {id: `${i}`}, {city: mockCity}));
-
-export const appOffers = locations.map((location) => ({
-  city: location,
-  offers: [
-    Object.assign({}, cityOffers[0], {city: location}),
-    Object.assign({}, cityOffers[1], {city: location})
-  ]
-}));
+  Object.assign({}, offer, {id: `${i}`}));
 
 export const users = [{
   id: `01`,

@@ -46,7 +46,7 @@ const Property = ({offer, nearOffers, onTitleClick}) => {
             <Reviews reviews={reviews} />
           </div>
         </div>
-        <Map prefix={PREFIX} offers={[offer, ...nearOffers]} />
+        <Map prefix={PREFIX} offers={nearOffers} />
       </section>
       <div className="container">
         <NearPlaces

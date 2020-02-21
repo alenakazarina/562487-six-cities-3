@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ReviewForm = () => {
+const ReviewsForm = () => {
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -51,4 +51,4 @@ const ReviewForm = () => {
   );
 };
 
-export default ReviewForm;
+export default ReviewsForm;

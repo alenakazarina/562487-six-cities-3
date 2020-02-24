@@ -1,16 +1,20 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Main from './main';
-import {cityOffers} from '../../mocks/tests';
+import {cities, cityOffers} from '../../mocks/tests';
 
-const onTitleClick = () => {};
+const activeCity = `Brussels`;
+const mockFn = () => {};
 
 describe(`Main`, () => {
   it(`should render Main correctly with no empty offers`, () => {
     const tree = renderer.create(
         <Main
+          cities={cities}
+          activeCity={activeCity}
           offers={cityOffers}
-          onTitleClick={onTitleClick}
+          onTitleClick={mockFn}
+          onTabClick={mockFn}
         />,
         {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();
@@ -20,8 +24,11 @@ describe(`Main`, () => {
   it(`should render Main correctly with empty offers`, () => {
     const tree = renderer.create(
         <Main
+          cities={cities}
+          activeCity={activeCity}
           offers={[]}
-          onTitleClick={onTitleClick}
+          onTitleClick={mockFn}
+          onTabClick={mockFn}
         />,
         {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();

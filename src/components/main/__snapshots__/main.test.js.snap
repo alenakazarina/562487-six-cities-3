@@ -22,8 +22,8 @@ exports[`Main should render Main correctly with empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item false"
-            href="#"
+            className="locations__item-link tabs__item "
+            onClick={[Function]}
           >
             <span>
               Paris
@@ -34,8 +34,8 @@ exports[`Main should render Main correctly with empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item false"
-            href="#"
+            className="locations__item-link tabs__item "
+            onClick={[Function]}
           >
             <span>
               Cologne
@@ -46,8 +46,8 @@ exports[`Main should render Main correctly with empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item false"
-            href="#"
+            className="locations__item-link tabs__item tabs__item--active"
+            onClick={[Function]}
           >
             <span>
               Brussels
@@ -58,8 +58,8 @@ exports[`Main should render Main correctly with empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item tabs__item--active"
-            href="#"
+            className="locations__item-link tabs__item "
+            onClick={[Function]}
           >
             <span>
               Amsterdam
@@ -70,8 +70,8 @@ exports[`Main should render Main correctly with empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item false"
-            href="#"
+            className="locations__item-link tabs__item "
+            onClick={[Function]}
           >
             <span>
               Hamburg
@@ -82,8 +82,8 @@ exports[`Main should render Main correctly with empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item false"
-            href="#"
+            className="locations__item-link tabs__item "
+            onClick={[Function]}
           >
             <span>
               Dusseldorf
@@ -114,7 +114,7 @@ exports[`Main should render Main correctly with empty offers 1`] = `
             className="cities__status-description"
           >
             We could not find any property availbale at the moment in 
-            Amsterdam
+            Brussels
           </p>
         </div>
       </section>
@@ -145,8 +145,8 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item false"
-            href="#"
+            className="locations__item-link tabs__item "
+            onClick={[Function]}
           >
             <span>
               Paris
@@ -157,8 +157,8 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item false"
-            href="#"
+            className="locations__item-link tabs__item "
+            onClick={[Function]}
           >
             <span>
               Cologne
@@ -169,8 +169,8 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item false"
-            href="#"
+            className="locations__item-link tabs__item tabs__item--active"
+            onClick={[Function]}
           >
             <span>
               Brussels
@@ -181,8 +181,8 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item tabs__item--active"
-            href="#"
+            className="locations__item-link tabs__item "
+            onClick={[Function]}
           >
             <span>
               Amsterdam
@@ -193,8 +193,8 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item false"
-            href="#"
+            className="locations__item-link tabs__item "
+            onClick={[Function]}
           >
             <span>
               Hamburg
@@ -205,8 +205,8 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item false"
-            href="#"
+            className="locations__item-link tabs__item "
+            onClick={[Function]}
           >
             <span>
               Dusseldorf

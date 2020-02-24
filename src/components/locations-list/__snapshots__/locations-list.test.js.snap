@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tabs should render Tabs correctly 1`] = `
+exports[`LocationsList should render LocationsList correctly 1`] = `
 <div
   className="tabs"
 >
@@ -14,8 +14,8 @@ exports[`Tabs should render Tabs correctly 1`] = `
         className="locations__item"
       >
         <a
-          className="locations__item-link tabs__item false"
-          href="#"
+          className="locations__item-link tabs__item "
+          onClick={[Function]}
         >
           <span>
             Paris
@@ -26,8 +26,8 @@ exports[`Tabs should render Tabs correctly 1`] = `
         className="locations__item"
       >
         <a
-          className="locations__item-link tabs__item false"
-          href="#"
+          className="locations__item-link tabs__item "
+          onClick={[Function]}
         >
           <span>
             Cologne
@@ -39,7 +39,7 @@ exports[`Tabs should render Tabs correctly 1`] = `
       >
         <a
           className="locations__item-link tabs__item tabs__item--active"
-          href="#"
+          onClick={[Function]}
         >
           <span>
             Brussels
@@ -50,8 +50,8 @@ exports[`Tabs should render Tabs correctly 1`] = `
         className="locations__item"
       >
         <a
-          className="locations__item-link tabs__item false"
-          href="#"
+          className="locations__item-link tabs__item "
+          onClick={[Function]}
         >
           <span>
             Amsterdam
@@ -62,8 +62,8 @@ exports[`Tabs should render Tabs correctly 1`] = `
         className="locations__item"
       >
         <a
-          className="locations__item-link tabs__item false"
-          href="#"
+          className="locations__item-link tabs__item "
+          onClick={[Function]}
         >
           <span>
             Hamburg
@@ -74,8 +74,8 @@ exports[`Tabs should render Tabs correctly 1`] = `
         className="locations__item"
       >
         <a
-          className="locations__item-link tabs__item false"
-          href="#"
+          className="locations__item-link tabs__item "
+          onClick={[Function]}
         >
           <span>
             Dusseldorf

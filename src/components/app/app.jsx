@@ -1,37 +1,31 @@
 import React, {PureComponent} from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import {arrayOf} from 'prop-types';
+import {arrayOf, string, func} from 'prop-types';
+import {offerPropTypes} from '../../types';
+import {connect} from "react-redux";
+import {ActionCreator} from '../../reducers/reducer';
 import Page from '../page/page';
 import Main from '../main/main';
 import Property from '../property/property';
-import {offerPropTypes} from '../../types';
+import {offers as initialOffers} from '../../mocks/offers';
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeTab: `Amsterdam`,
-      offer: null
-    };
-    this._handleTitleClick = this._handleTitleClick.bind(this);
-  }
-
-  _handleTitleClick(activeOffer) {
-    this.setState(() => ({
-      offer: activeOffer
-    }));
+  componentDidMount() {
+    const city = initialOffers[0].city.name;
+    this.props.loadData(initialOffers);
+    this.props.setData(city);
   }
 
   _renderApp() {
-    const {offer} = this.state;
-    const {offers} = this.props;
-    if (offer) {
+    const {offers, cities, activeCity, activeOffer, onTitleClick, onTabClick} = this.props;
+
+    if (activeOffer) {
       return (
         <Page className="page--property">
           <Property
-            offer={offer}
+            offer={activeOffer}
             nearOffers={offers.slice(0, 3)}
-            onTitleClick={this._handleTitleClick}
+            onTitleClick={onTitleClick}
           />
         </Page>
       );
@@ -41,14 +35,17 @@ class App extends PureComponent {
       <Page className="page--gray page--main">
         <Main
           offers={offers}
-          onTitleClick={this._handleTitleClick}
+          cities={cities}
+          activeCity={activeCity}
+          onTitleClick={onTitleClick}
+          onTabClick={onTabClick}
         />
       </Page>
     );
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, onTitleClick} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -60,7 +57,7 @@ class App extends PureComponent {
               <Property
                 offer={offers[0]}
                 nearOffers={offers.slice(0, 3)}
-                onTitleClick={this._handleTitleClick}
+                onTitleClick={onTitleClick}
               />
             </Page>
           </Route>
@@ -71,7 +68,41 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offers: arrayOf(offerPropTypes).isRequired
+  offers: arrayOf(offerPropTypes).isRequired,
+  cities: arrayOf(string).isRequired,
+  activeCity: string.isRequired,
+  activeOffer: offerPropTypes,
+  onTitleClick: func.isRequired,
+  onTabClick: func.isRequired,
+  loadData: func.isRequired,
+  setData: func.isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+  cities: state.cities,
+  activeCity: state.activeCity,
+  activeOffer: state.activeOffer,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadData(offers) {
+    dispatch(ActionCreator.setInitialOffers(offers));
+    dispatch(ActionCreator.setCities(offers));
+  },
+  setData(city) {
+    dispatch(ActionCreator.setActiveCity(city));
+    dispatch(ActionCreator.getOffers(city));
+  },
+  onTitleClick(activeOffer) {
+    dispatch(ActionCreator.setActiveOffer(activeOffer));
+  },
+  onTabClick(activeCity) {
+    dispatch(ActionCreator.setActiveCity(activeCity));
+    dispatch(ActionCreator.getOffers(activeCity));
+  },
+});
+
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

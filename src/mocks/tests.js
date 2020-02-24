@@ -1,3 +1,5 @@
+export const cities = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
+
 export const cityOffers = [{
   id: `01`,
   previewImage: `image`,

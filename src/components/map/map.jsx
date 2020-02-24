@@ -17,23 +17,11 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const {offers} = this.props;
-    const city = LOCATIONS.find((location) => location.name === offers[0].city.name);
-    const cityCenter = [city.location.latitude, city.location.longitude];
-
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [27, 39]
-    });
-
     this._map = leaflet.map(this._mapRef.current, {
-      center: cityCenter,
       zoom: LOCATIONS_ZOOM,
       zoomControl: false,
       marker: true
     });
-
-    this._map.setView(cityCenter, LOCATIONS_ZOOM);
 
     leaflet
       .tileLayer(TileLayer.urlTemplate, {
@@ -41,15 +29,34 @@ class Map extends PureComponent {
       })
       .addTo(this._map);
 
+    this._update();
+  }
+
+  componentDidUpdate() {
+    this._update();
+  }
+
+  componentWillUnmount() {
+    this._map.remove();
+  }
+
+  _update() {
+    const {offers} = this.props;
+    const {location} = LOCATIONS.find((place) => place.name === offers[0].city.name);
+    const cityCenter = [location.latitude, location.longitude];
+
+    this._map.setView(cityCenter, LOCATIONS_ZOOM);
+
+    const icon = leaflet.icon({
+      iconUrl: `img/pin.svg`,
+      iconSize: [27, 39]
+    });
+
     offers.forEach((offer) => {
       leaflet
         .marker([offer.city.location.latitude, offer.city.location.longitude], {icon})
         .addTo(this._map);
     });
-  }
-
-  componentWillUnmount() {
-    this._map.remove();
   }
 
   render() {

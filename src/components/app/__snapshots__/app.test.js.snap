@@ -181,6 +181,7 @@ exports[`App should render App with Main 1`] = `
             </span>
             <span
               className="places__sorting-type"
+              onClick={[Function]}
               tabIndex="0"
             >
               Popular
@@ -195,28 +196,33 @@ exports[`App should render App with Main 1`] = `
               </svg>
             </span>
             <ul
-              className="places__options places__options--custom"
+              className="places__options places__options--custom "
+              onClick={[Function]}
             >
               <li
                 className="places__option places__option--active"
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Popular
               </li>
               <li
-                className="places__option"
+                className="places__option "
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Price: low to high
               </li>
               <li
-                className="places__option"
+                className="places__option "
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Price: high to low
               </li>
               <li
-                className="places__option"
+                className="places__option "
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Top rated first
@@ -359,7 +365,7 @@ exports[`App should render App with Main 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      200
+                      500
                     </b>
                     <span
                       className="place-card__price-text"
@@ -401,7 +407,7 @@ exports[`App should render App with Main 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "60%",
+                          "width": "80%",
                         }
                       }
                     />
@@ -1083,7 +1089,7 @@ Array [
                       className="place-card__price-value"
                     >
                       €
-                      200
+                      500
                     </b>
                     <span
                       className="place-card__price-text"
@@ -1125,7 +1131,7 @@ Array [
                     <span
                       style={
                         Object {
-                          "width": "60%",
+                          "width": "80%",
                         }
                       }
                     />

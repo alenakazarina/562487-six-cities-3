@@ -4,6 +4,7 @@ import PlaceCard from './place-card';
 import {cityOffers} from '../../mocks/tests';
 
 const prefixes = [`cities`, `near-places`];
+const mockFn = () => {};
 
 describe(`PlaceCard`, () => {
   it(`should render cities PlaceCard`, () => {
@@ -11,8 +12,8 @@ describe(`PlaceCard`, () => {
         <PlaceCard
           prefix={prefixes[0]}
           offer={cityOffers[0]}
-          onTitleClick={()=>{}}
-          onCardMouseOver={()=>{}}
+          onTitleClick={mockFn}
+          onCardMouseOver={mockFn}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();
@@ -23,8 +24,8 @@ describe(`PlaceCard`, () => {
         <PlaceCard
           prefix={prefixes[1]}
           offer={cityOffers[1]}
-          onTitleClick={()=>{}}
-          onCardMouseOver={()=>{}}
+          onTitleClick={mockFn}
+          onCardMouseOver={mockFn}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();

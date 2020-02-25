@@ -49,13 +49,13 @@ export const cityOffers = [{
   images: [`image`, `image`],
   isFavorite: true,
   isPremium: false,
-  rating: 3,
+  rating: 4,
   features: {
     type: `Hotel`,
     bedrooms: 3,
     maxAdults: 6
   },
-  price: 200,
+  price: 500,
   amenities: [`amenity`, `amenity`],
   host: {
     id: `03`,

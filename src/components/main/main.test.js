@@ -15,6 +15,8 @@ describe(`Main`, () => {
           offers={cityOffers}
           onTitleClick={mockFn}
           onTabClick={mockFn}
+          onCardMouseOver={mockFn}
+          activeOffer={cityOffers[0]}
         />,
         {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();
@@ -29,6 +31,8 @@ describe(`Main`, () => {
           offers={[]}
           onTitleClick={mockFn}
           onTabClick={mockFn}
+          onCardMouseOver={mockFn}
+          activeOffer={null}
         />,
         {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();

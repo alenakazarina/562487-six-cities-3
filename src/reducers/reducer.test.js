@@ -1,4 +1,4 @@
-import {reducer, ActionCreator, ActionType, getUniqueCities} from "./reducer.js";
+import {reducer, ActionCreator, ActionType} from "./reducer.js";
 import {cityOffers} from '../mocks/tests';
 
 describe(`Reducer works correctly`, () => {
@@ -7,44 +7,6 @@ describe(`Reducer works correctly`, () => {
       initialOffers: [],
       offers: [],
       cities: [],
-      activeOffer: null,
-      activeCity: ``
-    });
-  });
-
-  it(`Reducer should set initial offers by a given offers`, () => {
-    expect(reducer({
-      initialOffers: [],
-      offers: [],
-      cities: [],
-      activeOffer: null,
-      activeCity: ``
-    }, {
-      type: ActionType.SET_INITIAL_OFFERS,
-      payload: cityOffers,
-    })).toEqual({
-      initialOffers: cityOffers,
-      offers: [],
-      cities: [],
-      activeOffer: null,
-      activeCity: ``
-    });
-  });
-
-  it(`Reducer should set cities by a given offers`, () => {
-    expect(reducer({
-      initialOffers: cityOffers,
-      offers: [],
-      cities: [],
-      activeOffer: null,
-      activeCity: ``
-    }, {
-      type: ActionType.SET_CITIES,
-      payload: getUniqueCities(cityOffers),
-    })).toEqual({
-      initialOffers: cityOffers,
-      offers: [],
-      cities: getUniqueCities(cityOffers),
       activeOffer: null,
       activeCity: ``
     });
@@ -89,7 +51,7 @@ describe(`Reducer works correctly`, () => {
     });
   });
 
-  it(`Reducer should set active offers by a given city and state initial offers`, () => {
+  it(`Reducer should get offers by a given city and initialOffers`, () => {
     const city = `Amsterdam`;
     expect(reducer({
       initialOffers: cityOffers,
@@ -111,21 +73,6 @@ describe(`Reducer works correctly`, () => {
 });
 
 describe(`Action creators work correctly`, () => {
-  it(`Action creator for setting initial offers returns correct action`, () => {
-    expect(ActionCreator.setInitialOffers(cityOffers)).toEqual({
-      type: ActionType.SET_INITIAL_OFFERS,
-      payload: cityOffers,
-    });
-  });
-
-  it(`Action creator for setting cities returns correct action`, () => {
-    const cities = [`Amsterdam`];
-    expect(ActionCreator.setCities(cityOffers)).toEqual({
-      type: ActionType.SET_CITIES,
-      payload: cities
-    });
-  });
-
   it(`Action creator for setting active city returns correct action`, () => {
     const city = `Amsterdam`;
     expect(ActionCreator.setActiveCity(city)).toEqual({
@@ -142,7 +89,7 @@ describe(`Action creators work correctly`, () => {
     });
   });
 
-  it(`Action creator for setting active offer returns correct action`, () => {
+  it(`Action creator for getting offers returns correct action`, () => {
     const city = `Amsterdam`;
     expect(ActionCreator.getOffers(city)).toEqual({
       type: ActionType.GET_OFFERS,

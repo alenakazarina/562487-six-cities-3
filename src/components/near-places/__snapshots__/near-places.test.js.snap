@@ -145,7 +145,7 @@ exports[`NearPlaces should render NearPlaces correctly 1`] = `
               className="place-card__price-value"
             >
               €
-              200
+              500
             </b>
             <span
               className="place-card__price-text"
@@ -187,7 +187,7 @@ exports[`NearPlaces should render NearPlaces correctly 1`] = `
             <span
               style={
                 Object {
-                  "width": "60%",
+                  "width": "80%",
                 }
               }
             />

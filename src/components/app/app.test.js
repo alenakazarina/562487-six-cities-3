@@ -20,8 +20,6 @@ describe(`App`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <App
-            loadData={mockFn}
-            setData={mockFn}
             onTitleClick={mockFn}
             onTabClick={mockFn}
           />
@@ -41,8 +39,6 @@ describe(`App`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <App
-            loadData={mockFn}
-            setData={mockFn}
             onTitleClick={mockFn}
             onTabClick={mockFn}
           />,

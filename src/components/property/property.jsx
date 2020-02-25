@@ -17,7 +17,15 @@ import Map from '../map/map';
 
 const PREFIX = `property`;
 
-const Property = ({offer, nearOffers, onTitleClick}) => {
+const Property = (props) => {
+  const {
+    offer,
+    nearOffers,
+    onTitleClick,
+    activeOffer,
+    onCardMouseOver
+  } = props;
+
   const {title, images, isFavorite, isPremium, rating, features,
     price, amenities, host, description, reviews} = offer;
 
@@ -48,14 +56,15 @@ const Property = ({offer, nearOffers, onTitleClick}) => {
         </div>
         <Map
           prefix={PREFIX}
-          city={offer.city.name}
           offers={nearOffers}
+          activeOffer={activeOffer}
         />
       </section>
       <div className="container">
         <NearPlaces
           offers={nearOffers}
           onTitleClick={onTitleClick}
+          onCardMouseOver={onCardMouseOver}
         />
       </div>
     </main>
@@ -65,7 +74,9 @@ const Property = ({offer, nearOffers, onTitleClick}) => {
 Property.propTypes = {
   offer: offerPropTypes,
   nearOffers: arrayOf(offerPropTypes).isRequired,
-  onTitleClick: func.isRequired
+  onTitleClick: func.isRequired,
+  onCardMouseOver: func.isRequired,
+  activeOffer: offerPropTypes
 };
 
 export default Property;

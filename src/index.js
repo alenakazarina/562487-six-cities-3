@@ -4,10 +4,19 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import App from './components/app/app';
 import {reducer} from './reducers/reducer';
+import {offers} from './mocks/offers';
+import {getUniqueCities, getOffersByCity} from './utils';
 
 const store = createStore(
     reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+    {
+      initialOffers: offers,
+      offers: getOffersByCity(offers, offers[0].city.name),
+      cities: getUniqueCities(offers),
+      activeOffer: null,
+      activeCity: offers[0].city.name
+    },
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 ReactDOM.render(

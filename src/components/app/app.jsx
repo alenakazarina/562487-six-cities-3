@@ -7,22 +7,26 @@ import {ActionCreator} from '../../reducers/reducer';
 import Page from '../page/page';
 import Main from '../main/main';
 import Property from '../property/property';
-import {offers as initialOffers} from '../../mocks/offers';
+import withActiveCard from '../../hocs/with-active-card/with-active-card';
+
+const MainWrapped = withActiveCard(Main);
+const PropertyWrapped = withActiveCard(Property);
 
 class App extends PureComponent {
-  componentDidMount() {
-    const city = initialOffers[0].city.name;
-    this.props.loadData(initialOffers);
-    this.props.setData(city);
-  }
-
   _renderApp() {
-    const {offers, cities, activeCity, activeOffer, onTitleClick, onTabClick} = this.props;
+    const {
+      offers,
+      cities,
+      activeCity,
+      activeOffer,
+      onTitleClick,
+      onTabClick
+    } = this.props;
 
     if (activeOffer) {
       return (
         <Page className="page--property">
-          <Property
+          <PropertyWrapped
             offer={activeOffer}
             nearOffers={offers.slice(0, 3)}
             onTitleClick={onTitleClick}
@@ -33,7 +37,7 @@ class App extends PureComponent {
 
     return (
       <Page className="page--gray page--main">
-        <Main
+        <MainWrapped
           offers={offers}
           cities={cities}
           activeCity={activeCity}
@@ -54,7 +58,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-offer">
             <Page className="page--property">
-              <Property
+              <PropertyWrapped
                 offer={offers[0]}
                 nearOffers={offers.slice(0, 3)}
                 onTitleClick={onTitleClick}
@@ -73,9 +77,7 @@ App.propTypes = {
   activeCity: string.isRequired,
   activeOffer: offerPropTypes,
   onTitleClick: func.isRequired,
-  onTabClick: func.isRequired,
-  loadData: func.isRequired,
-  setData: func.isRequired
+  onTabClick: func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -86,14 +88,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadData(offers) {
-    dispatch(ActionCreator.setInitialOffers(offers));
-    dispatch(ActionCreator.setCities(offers));
-  },
-  setData(city) {
-    dispatch(ActionCreator.setActiveCity(city));
-    dispatch(ActionCreator.getOffers(city));
-  },
   onTitleClick(activeOffer) {
     dispatch(ActionCreator.setActiveOffer(activeOffer));
   },
@@ -102,7 +96,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.getOffers(activeCity));
   },
 });
-
 
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);

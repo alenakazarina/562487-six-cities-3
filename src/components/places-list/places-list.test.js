@@ -4,6 +4,7 @@ import PlacesList from './places-list';
 import {cityOffers} from '../../mocks/tests';
 
 const prefixes = [`cities`, `near-places`];
+const mockFn = () => {};
 
 describe(`PlacesList`, () => {
   it(`should render cities PlacesList`, () => {
@@ -11,7 +12,8 @@ describe(`PlacesList`, () => {
         <PlacesList
           prefix={prefixes[0]}
           offers={cityOffers}
-          onTitleClick={()=>{}}
+          onTitleClick={mockFn}
+          onCardMouseOver={mockFn}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();
@@ -22,7 +24,8 @@ describe(`PlacesList`, () => {
         <PlacesList
           prefix={prefixes[1]}
           offers={cityOffers}
-          onTitleClick={()=>{}}
+          onTitleClick={mockFn}
+          onCardMouseOver={mockFn}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();

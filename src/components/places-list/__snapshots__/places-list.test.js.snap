@@ -137,7 +137,7 @@ exports[`PlacesList should render cities PlacesList 1`] = `
             className="place-card__price-value"
           >
             €
-            200
+            500
           </b>
           <span
             className="place-card__price-text"
@@ -179,7 +179,7 @@ exports[`PlacesList should render cities PlacesList 1`] = `
           <span
             style={
               Object {
-                "width": "60%",
+                "width": "80%",
               }
             }
           />
@@ -344,7 +344,7 @@ exports[`PlacesList should render near places PlacesList 1`] = `
             className="place-card__price-value"
           >
             €
-            200
+            500
           </b>
           <span
             className="place-card__price-text"
@@ -386,7 +386,7 @@ exports[`PlacesList should render near places PlacesList 1`] = `
           <span
             style={
               Object {
-                "width": "60%",
+                "width": "80%",
               }
             }
           />

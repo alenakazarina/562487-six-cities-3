@@ -3,7 +3,7 @@ import PlacesList from '../places-list/places-list';
 import {arrayOf, func} from 'prop-types';
 import {offerPropTypes} from '../../types';
 
-const NearPlaces = ({offers, onTitleClick}) => {
+const NearPlaces = ({offers, onTitleClick, onCardMouseOver}) => {
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
@@ -11,6 +11,7 @@ const NearPlaces = ({offers, onTitleClick}) => {
         prefix={`near-places`}
         offers={offers}
         onTitleClick={onTitleClick}
+        onCardMouseOver={onCardMouseOver}
       />
     </section>
   );
@@ -18,7 +19,8 @@ const NearPlaces = ({offers, onTitleClick}) => {
 
 NearPlaces.propTypes = {
   offers: arrayOf(offerPropTypes).isRequired,
-  onTitleClick: func.isRequired
+  onTitleClick: func.isRequired,
+  onCardMouseOver: func.isRequired
 };
 
-export default NearPlaces;
+export default React.memo(NearPlaces);

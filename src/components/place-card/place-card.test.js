@@ -13,7 +13,7 @@ describe(`PlaceCard`, () => {
           prefix={prefixes[0]}
           offer={cityOffers[0]}
           onTitleClick={mockFn}
-          onCardMouseOver={mockFn}
+          onCardMouseEnter={mockFn}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();
@@ -25,7 +25,7 @@ describe(`PlaceCard`, () => {
           prefix={prefixes[1]}
           offer={cityOffers[1]}
           onTitleClick={mockFn}
-          onCardMouseOver={mockFn}
+          onCardMouseEnter={mockFn}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();

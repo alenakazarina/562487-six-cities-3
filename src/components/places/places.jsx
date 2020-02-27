@@ -4,7 +4,10 @@ import {offerPropTypes} from '../../types';
 import Sort from '../sort/sort';
 import PlacesList from '../places-list/places-list';
 import withToggle from '../../hocs/with-toggle/with-toggle';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import {formatPluralNouns} from '../../utils';
 
+const PlacesListWrapped = withActiveItem(PlacesList, `places-list`);
 const SortWithToggle = withToggle(Sort);
 
 const Places = (props) => {
@@ -13,22 +16,24 @@ const Places = (props) => {
     onTitleClick,
     activeSortType,
     onSortTypeChange,
-    onCardMouseOver
+    onCardMouseEnter,
+    onCardMouseLeave
   } = props;
 
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">{offers.length} places to stay in {offers[0].city.name}</b>
+      <b className="places__found">{formatPluralNouns(offers.length, `place`)} to stay in {offers[0].city.name}</b>
       <SortWithToggle
         activeSortType={activeSortType}
         onSortTypeChange={onSortTypeChange}
       />
-      <PlacesList
+      <PlacesListWrapped
         prefix={`cities`}
         offers={offers}
         onTitleClick={onTitleClick}
-        onCardMouseOver={onCardMouseOver}
+        onCardMouseEnter={onCardMouseEnter}
+        onCardMouseLeave={onCardMouseLeave}
       />
     </section>
   );
@@ -39,7 +44,8 @@ Places.propTypes = {
   onTitleClick: func.isRequired,
   activeSortType: string.isRequired,
   onSortTypeChange: func.isRequired,
-  onCardMouseOver: func.isRequired
+  onCardMouseEnter: func.isRequired,
+  onCardMouseLeave: func.isRequired,
 };
 
-export default Places;
+export default React.memo(Places);

@@ -12,8 +12,8 @@ exports[`Places should render Places correctly 1`] = `
   <b
     className="places__found"
   >
-    2
-     places to stay in 
+    2 places
+     to stay in 
     Amsterdam
   </b>
   <form
@@ -81,7 +81,7 @@ exports[`Places should render Places correctly 1`] = `
   >
     <article
       className="cities__place-card place-card"
-      onMouseOver={[Function]}
+      onMouseEnter={[Function]}
     >
       
       <div
@@ -181,7 +181,7 @@ exports[`Places should render Places correctly 1`] = `
     </article>
     <article
       className="cities__place-card place-card"
-      onMouseOver={[Function]}
+      onMouseEnter={[Function]}
     >
       
       <div

@@ -9,9 +9,10 @@ describe(`NearPlaces`, () => {
   it(`should render NearPlaces correctly`, () => {
     const tree = renderer.create(
         <NearPlaces
-          offers={cityOffers}
+          nearOffers={cityOffers}
           onTitleClick={mockFn}
-          onCardMouseOver={mockFn}
+          onCardMouseEnter={mockFn}
+          onCardMouseLeave={mockFn}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();

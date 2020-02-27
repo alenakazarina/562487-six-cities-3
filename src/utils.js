@@ -10,3 +10,8 @@ export const getUniqueCities = (offers) => {
 export const getOffersByCity = (offers, city) => {
   return offers.filter((offer) => offer.city.name === city);
 };
+
+export const formatPluralNouns = (count, noun) => {
+  return count === 1 ? `${count} ${noun}` : `${count} ${noun}s`;
+};
+

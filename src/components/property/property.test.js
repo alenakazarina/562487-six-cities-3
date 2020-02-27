@@ -9,11 +9,12 @@ describe(`Property`, () => {
   it(`should render Property correctly`, () => {
     const tree = renderer.create(
         <Property
-          offer={cityOffers[0]}
+          pageOffer={cityOffers[0]}
+          activeOffer={null}
           nearOffers={nearOffers}
           onTitleClick={mockFn}
-          onCardMouseOver={mockFn}
-          activeOffer={null}
+          onCardMouseEnter={mockFn}
+          onCardMouseLeave={mockFn}
         />,
         {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();

@@ -1,39 +1,25 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Main from './main';
-import {cities, cityOffers} from '../../mocks/tests';
 
-const activeCity = `Brussels`;
-const mockFn = () => {};
+const ChildNodeMock = () => <div>Children</div>;
 
 describe(`Main`, () => {
-  it(`should render Main correctly with no empty offers`, () => {
+  it(`should render Main correctly with children and no empty offers`, () => {
     const tree = renderer.create(
-        <Main
-          cities={cities}
-          activeCity={activeCity}
-          offers={cityOffers}
-          onTitleClick={mockFn}
-          onTabClick={mockFn}
-          onCardMouseOver={mockFn}
-          activeOffer={cityOffers[0]}
-        />,
+        <Main isEmpty={false}>
+          <ChildNodeMock />
+        </Main>,
         {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
-  it(`should render Main correctly with empty offers`, () => {
+  it(`should render Main correctly with children and empty offers`, () => {
     const tree = renderer.create(
-        <Main
-          cities={cities}
-          activeCity={activeCity}
-          offers={[]}
-          onTitleClick={mockFn}
-          onTabClick={mockFn}
-          onCardMouseOver={mockFn}
-          activeOffer={null}
-        />,
+        <Main isEmpty={true}>
+          <ChildNodeMock />
+        </Main>,
         {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();
     expect(tree).toMatchSnapshot();

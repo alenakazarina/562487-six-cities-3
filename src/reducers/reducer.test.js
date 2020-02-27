@@ -7,8 +7,9 @@ describe(`Reducer works correctly`, () => {
       initialOffers: [],
       offers: [],
       cities: [],
+      activeCity: ``,
       activeOffer: null,
-      activeCity: ``
+      pageOffer: null
     });
   });
 
@@ -18,8 +19,9 @@ describe(`Reducer works correctly`, () => {
       initialOffers: cityOffers,
       offers: [],
       cities: [],
+      activeCity: ``,
       activeOffer: null,
-      activeCity: ``
+      pageOffer: null
     }, {
       type: ActionType.SET_ACTIVE_CITY,
       payload: city,
@@ -27,8 +29,9 @@ describe(`Reducer works correctly`, () => {
       initialOffers: cityOffers,
       offers: [],
       cities: [],
+      activeCity: city,
       activeOffer: null,
-      activeCity: city
+      pageOffer: null
     });
   });
 
@@ -37,8 +40,9 @@ describe(`Reducer works correctly`, () => {
       initialOffers: cityOffers,
       offers: [],
       cities: [],
+      activeCity: ``,
       activeOffer: null,
-      activeCity: ``
+      pageOffer: null
     }, {
       type: ActionType.SET_ACTIVE_OFFER,
       payload: cityOffers[0],
@@ -46,8 +50,30 @@ describe(`Reducer works correctly`, () => {
       initialOffers: cityOffers,
       offers: [],
       cities: [],
+      activeCity: ``,
       activeOffer: cityOffers[0],
-      activeCity: ``
+      pageOffer: null
+    });
+  });
+
+  it(`Reducer should set page offer by a given offer`, () => {
+    expect(reducer({
+      initialOffers: cityOffers,
+      offers: [],
+      cities: [],
+      activeCity: ``,
+      activeOffer: null,
+      pageOffer: null
+    }, {
+      type: ActionType.SET_PAGE_OFFER,
+      payload: cityOffers[0],
+    })).toEqual({
+      initialOffers: cityOffers,
+      offers: [],
+      cities: [],
+      activeCity: ``,
+      activeOffer: null,
+      pageOffer: cityOffers[0]
     });
   });
 
@@ -57,8 +83,9 @@ describe(`Reducer works correctly`, () => {
       initialOffers: cityOffers,
       offers: [],
       cities: [],
+      activeCity: ``,
       activeOffer: null,
-      activeCity: ``
+      pageOffer: null
     }, {
       type: ActionType.GET_OFFERS,
       payload: city
@@ -66,8 +93,9 @@ describe(`Reducer works correctly`, () => {
       initialOffers: cityOffers,
       offers: cityOffers,
       cities: [],
+      activeCity: ``,
       activeOffer: null,
-      activeCity: ``
+      pageOffer: null
     });
   });
 });
@@ -85,6 +113,14 @@ describe(`Action creators work correctly`, () => {
     const offer = cityOffers[0];
     expect(ActionCreator.setActiveOffer(offer)).toEqual({
       type: ActionType.SET_ACTIVE_OFFER,
+      payload: offer
+    });
+  });
+
+  it(`Action creator for setting page offer returns correct action`, () => {
+    const offer = cityOffers[0];
+    expect(ActionCreator.setPageOffer(offer)).toEqual({
+      type: ActionType.SET_PAGE_OFFER,
       payload: offer
     });
   });

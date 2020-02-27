@@ -165,8 +165,8 @@ exports[`App should render App with Main 1`] = `
           <b
             className="places__found"
           >
-            2
-             places to stay in 
+            2 places
+             to stay in 
             Amsterdam
           </b>
           <form
@@ -234,7 +234,7 @@ exports[`App should render App with Main 1`] = `
           >
             <article
               className="cities__place-card place-card"
-              onMouseOver={[Function]}
+              onMouseEnter={[Function]}
             >
               
               <div
@@ -334,7 +334,7 @@ exports[`App should render App with Main 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
-              onMouseOver={[Function]}
+              onMouseEnter={[Function]}
             >
               
               <div
@@ -518,6 +518,11 @@ Array [
           >
             <div
               className="property__image-wrapper"
+              style={
+                Object {
+                  "width": "259px",
+                }
+              }
             >
               <img
                 alt="Interior photo"
@@ -527,6 +532,11 @@ Array [
             </div>
             <div
               className="property__image-wrapper"
+              style={
+                Object {
+                  "width": "259px",
+                }
+              }
             >
               <img
                 alt="Interior photo"
@@ -607,15 +617,13 @@ Array [
               <li
                 className="property__feature property__feature--bedrooms"
               >
-                3
-                 Bedrooms
+                3 Bedrooms
               </li>
               <li
                 className="property__feature property__feature--adults"
               >
                 Max 
-                6
-                 adults
+                6 adults
               </li>
             </ul>
             <div
@@ -958,7 +966,7 @@ Array [
           >
             <article
               className="near-places__card place-card"
-              onMouseOver={[Function]}
+              onMouseEnter={[Function]}
             >
               
               <div
@@ -1058,7 +1066,7 @@ Array [
             </article>
             <article
               className="near-places__card place-card"
-              onMouseOver={[Function]}
+              onMouseEnter={[Function]}
             >
               
               <div

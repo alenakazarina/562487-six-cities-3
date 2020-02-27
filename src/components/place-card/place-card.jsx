@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {string, func} from 'prop-types';
 import PremiumMark from '../premium-mark/premium-mark';
 import Rating from '../rating/rating';
 import Price from '../price/price';
@@ -8,15 +8,23 @@ import {offerPropTypes} from '../../types';
 
 const PREFIX = `place-card`;
 
-const PlaceCard = ({prefix, offer, onTitleClick, onCardMouseOver}) => {
+const PlaceCard = (props) => {
+  const {
+    prefix,
+    offer,
+    onTitleClick,
+    onCardMouseEnter
+  } = props;
+
   const {previewImage, title, isFavorite, isPremium, rating, type, price} = offer;
+
   const className = (prefix === `cities`) ?
     `cities__place-card place-card`
     : `near-places__card place-card`;
 
   return (
     <article className={className}
-      onMouseOver={(evt) => onCardMouseOver(evt.currentTarget, offer)}
+      onMouseEnter={(evt) => onCardMouseEnter(evt.currentTarget, offer)}
     >
       {isPremium ? <PremiumMark prefix={PREFIX} /> : ``}
       <div className={`${prefix}__image-wrapper place-card__image-wrapper`}>
@@ -29,7 +37,10 @@ const PlaceCard = ({prefix, offer, onTitleClick, onCardMouseOver}) => {
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
-          <Price prefix={PREFIX} price={price} />
+          <Price
+            prefix={PREFIX}
+            price={price}
+          />
           <BookmarkButton
             prefix={PREFIX}
             isFavorite={isFavorite}
@@ -37,7 +48,11 @@ const PlaceCard = ({prefix, offer, onTitleClick, onCardMouseOver}) => {
             height={19}
           />
         </div>
-        <Rating prefix={PREFIX} rating={rating} isValue={false} />
+        <Rating
+          prefix={PREFIX}
+          rating={rating}
+          isValue={false}
+        />
         <h2 className="place-card__name">
           <a onClick={() => onTitleClick(offer)}>{title}</a>
         </h2>
@@ -48,10 +63,10 @@ const PlaceCard = ({prefix, offer, onTitleClick, onCardMouseOver}) => {
 };
 
 PlaceCard.propTypes = {
-  prefix: PropTypes.string.isRequired,
+  prefix: string.isRequired,
   offer: offerPropTypes,
-  onTitleClick: PropTypes.func.isRequired,
-  onCardMouseOver: PropTypes.func.isRequired
+  onTitleClick: func.isRequired,
+  onCardMouseEnter: func.isRequired
 };
 
-export default PlaceCard;
+export default React.memo(PlaceCard);

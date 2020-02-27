@@ -9,6 +9,11 @@ exports[`Gallery should render Gallery correctly 1`] = `
   >
     <div
       className="property__image-wrapper"
+      style={
+        Object {
+          "width": "259px",
+        }
+      }
     >
       <img
         alt="Interior photo"
@@ -18,6 +23,11 @@ exports[`Gallery should render Gallery correctly 1`] = `
     </div>
     <div
       className="property__image-wrapper"
+      style={
+        Object {
+          "width": "259px",
+        }
+      }
     >
       <img
         alt="Interior photo"
@@ -27,6 +37,11 @@ exports[`Gallery should render Gallery correctly 1`] = `
     </div>
     <div
       className="property__image-wrapper"
+      style={
+        Object {
+          "width": "259px",
+        }
+      }
     >
       <img
         alt="Interior photo"

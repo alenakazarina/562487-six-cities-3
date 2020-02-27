@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Rating should render place card's Rating with 5 stars 1`] = `
+exports[`Rating should render place card's Rating with 5 stars, width = 100%, without value 1`] = `
 <div
   className="place-card__rating rating"
 >
@@ -23,7 +23,7 @@ exports[`Rating should render place card's Rating with 5 stars 1`] = `
 </div>
 `;
 
-exports[`Rating should render review Rating with 3 stars 1`] = `
+exports[`Rating should render review Rating with value, 3 stars, width = 60% 1`] = `
 <div
   className="reviews__rating rating"
 >
@@ -43,5 +43,10 @@ exports[`Rating should render review Rating with 3 stars 1`] = `
       Rating
     </span>
   </div>
+  <span
+    className="reviews__rating-value rating__value"
+  >
+    3
+  </span>
 </div>
 `;

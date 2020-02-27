@@ -39,7 +39,7 @@ const generateOffer = (location) => {
     images: generateImages(),
     isFavorite: getRandomBoolean(),
     isPremium: getRandomBoolean(),
-    rating: getRandomNumber({min: 0, max: OffersData.maxRating}),
+    rating: getRandomNumber({min: 0, max: OffersData.maxRating}) + 0.4,
     features: {
       type: getRandomFromArray(OffersData.types),
       bedrooms: getRandomNumber({min: 1, max: 5}),

@@ -8,7 +8,7 @@ const PlacesList = (props) => {
     prefix,
     offers,
     onTitleClick,
-    onCardMouseOver
+    onCardMouseEnter
   } = props;
 
   const className = (prefix === `cities`) ?
@@ -23,7 +23,7 @@ const PlacesList = (props) => {
           prefix={prefix}
           offer={offer}
           onTitleClick={onTitleClick}
-          onCardMouseOver={onCardMouseOver}
+          onCardMouseEnter={onCardMouseEnter}
         />
       ))}
     </div>
@@ -34,7 +34,7 @@ PlacesList.propTypes = {
   prefix: string.isRequired,
   offers: arrayOf(offerPropTypes).isRequired,
   onTitleClick: func.isRequired,
-  onCardMouseOver: func.isRequired
+  onCardMouseEnter: func.isRequired
 };
 
-export default PlacesList;
+export default React.memo(PlacesList);

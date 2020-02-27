@@ -12,22 +12,23 @@ import PropertyInside from '../property-inside/property-inside';
 import PropertyHost from '../property-host/property-host';
 import PropertyDescription from '../property-description/property-description';
 import Reviews from '../reviews/reviews';
-import NearPlaces from '../near-places/near-places';
 import Map from '../map/map';
+import NearPlaces from '../near-places/near-places';
 
 const PREFIX = `property`;
 
 const Property = (props) => {
   const {
-    offer,
+    pageOffer,
+    activeOffer,
     nearOffers,
     onTitleClick,
-    activeOffer,
-    onCardMouseOver
+    onCardMouseEnter,
+    onCardMouseLeave
   } = props;
 
   const {title, images, isFavorite, isPremium, rating, features,
-    price, amenities, host, description, reviews} = offer;
+    price, amenities, host, description, reviews} = pageOffer;
 
   return (
     <main className="page__main page__main--property">
@@ -62,9 +63,10 @@ const Property = (props) => {
       </section>
       <div className="container">
         <NearPlaces
-          offers={nearOffers}
+          nearOffers={nearOffers}
           onTitleClick={onTitleClick}
-          onCardMouseOver={onCardMouseOver}
+          onCardMouseEnter={onCardMouseEnter}
+          onCardMouseLeave={onCardMouseLeave}
         />
       </div>
     </main>
@@ -72,11 +74,12 @@ const Property = (props) => {
 };
 
 Property.propTypes = {
-  offer: offerPropTypes,
-  nearOffers: arrayOf(offerPropTypes).isRequired,
+  pageOffer: offerPropTypes,
+  activeOffer: offerPropTypes,
+  nearOffers: arrayOf(offerPropTypes),
   onTitleClick: func.isRequired,
-  onCardMouseOver: func.isRequired,
-  activeOffer: offerPropTypes
+  onCardMouseEnter: func.isRequired,
+  onCardMouseLeave: func.isRequired
 };
 
 export default Property;

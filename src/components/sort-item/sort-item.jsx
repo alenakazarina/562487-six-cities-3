@@ -5,7 +5,12 @@ const SortItem = ({sortType, isActive, onSortTypeChange}) => (
   <li
     className={`places__option ${isActive ? `places__option--active` : ``}`}
     tabIndex="0"
-    onClick={() => onSortTypeChange(sortType)}
+    onClick={() => {
+      if (isActive) {
+        return;
+      }
+      onSortTypeChange(sortType);
+    }}
   >{sortType}</li>
 );
 

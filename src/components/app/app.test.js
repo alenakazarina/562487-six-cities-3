@@ -14,6 +14,7 @@ describe(`App`, () => {
     const store = mockStore({
       offers: cityOffers,
       cities: locations,
+      pageOffer: null,
       activeCity: city,
       activeOffer: null
     });
@@ -22,6 +23,8 @@ describe(`App`, () => {
           <App
             onTitleClick={mockFn}
             onTabClick={mockFn}
+            onCardMouseEnter={mockFn}
+            onCardMouseLeave={mockFn}
           />
         </Provider>,
         {createNodeMock: () => document.createElement(`div`)}
@@ -33,14 +36,17 @@ describe(`App`, () => {
     const store = mockStore({
       offers: cityOffers,
       cities: locations,
+      pageOffer: cityOffers[0],
       activeCity: city,
-      activeOffer: cityOffers[0]
+      activeOffer: null
     });
     const tree = renderer.create(
         <Provider store={store}>
           <App
             onTitleClick={mockFn}
             onTabClick={mockFn}
+            onCardMouseEnter={mockFn}
+            onCardMouseLeave={mockFn}
           />,
         </Provider>,
         {createNodeMock: () => document.createElement(`div`)}

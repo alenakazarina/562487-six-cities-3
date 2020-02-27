@@ -1,26 +1,37 @@
 import React from 'react';
-import PlacesList from '../places-list/places-list';
 import {arrayOf, func} from 'prop-types';
 import {offerPropTypes} from '../../types';
+import PlacesList from '../places-list/places-list';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
 
-const NearPlaces = ({offers, onTitleClick, onCardMouseOver}) => {
+const PlacesListWrapped = withActiveItem(PlacesList, `places-list`);
+
+const NearPlaces = (props) => {
+  const {
+    nearOffers,
+    onTitleClick,
+    onCardMouseEnter,
+    onCardMouseLeave
+  } = props;
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
-      <PlacesList
+      <PlacesListWrapped
         prefix={`near-places`}
-        offers={offers}
+        offers={nearOffers}
         onTitleClick={onTitleClick}
-        onCardMouseOver={onCardMouseOver}
+        onCardMouseEnter={onCardMouseEnter}
+        onCardMouseLeave={onCardMouseLeave}
       />
     </section>
   );
 };
 
 NearPlaces.propTypes = {
-  offers: arrayOf(offerPropTypes).isRequired,
+  nearOffers: arrayOf(offerPropTypes).isRequired,
   onTitleClick: func.isRequired,
-  onCardMouseOver: func.isRequired
+  onCardMouseEnter: func.isRequired,
+  onCardMouseLeave: func.isRequired
 };
 
 export default React.memo(NearPlaces);

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Features should render Features correctly 1`] = `
+exports[`Features should render Features with correct plural nouns 1`] = `
 <ul
   className="property__features"
 >
@@ -12,15 +12,36 @@ exports[`Features should render Features correctly 1`] = `
   <li
     className="property__feature property__feature--bedrooms"
   >
-    3
-     Bedrooms
+    3 Bedrooms
   </li>
   <li
     className="property__feature property__feature--adults"
   >
     Max 
-    6
-     adults
+    6 adults
+  </li>
+</ul>
+`;
+
+exports[`Features should render Features with correct singular nouns 1`] = `
+<ul
+  className="property__features"
+>
+  <li
+    className="property__feature property__feature--entire"
+  >
+    House
+  </li>
+  <li
+    className="property__feature property__feature--bedrooms"
+  >
+    1 Bedroom
+  </li>
+  <li
+    className="property__feature property__feature--adults"
+  >
+    Max 
+    1 adult
   </li>
 </ul>
 `;

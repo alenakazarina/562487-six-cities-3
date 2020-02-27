@@ -14,7 +14,7 @@ exports[`NearPlaces should render NearPlaces correctly 1`] = `
   >
     <article
       className="near-places__card place-card"
-      onMouseOver={[Function]}
+      onMouseEnter={[Function]}
     >
       
       <div
@@ -114,7 +114,7 @@ exports[`NearPlaces should render NearPlaces correctly 1`] = `
     </article>
     <article
       className="near-places__card place-card"
-      onMouseOver={[Function]}
+      onMouseEnter={[Function]}
     >
       
       <div

@@ -7,7 +7,12 @@ const LocationsListItem = ({city, isActive, onTabClick}) => {
     <li className="locations__item" key={city}>
       <a
         className={`locations__item-link tabs__item ${activeClass}`}
-        onClick={() => onTabClick(city)}
+        onClick={() => {
+          if (activeClass) {
+            return;
+          }
+          onTabClick(city);
+        }}
       >
         <span>{city}</span>
       </a>

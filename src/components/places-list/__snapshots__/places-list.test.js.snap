@@ -6,7 +6,7 @@ exports[`PlacesList should render cities PlacesList 1`] = `
 >
   <article
     className="cities__place-card place-card"
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
   >
     
     <div
@@ -106,7 +106,7 @@ exports[`PlacesList should render cities PlacesList 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
   >
     
     <div
@@ -213,7 +213,7 @@ exports[`PlacesList should render near places PlacesList 1`] = `
 >
   <article
     className="near-places__card place-card"
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
   >
     
     <div
@@ -313,7 +313,7 @@ exports[`PlacesList should render near places PlacesList 1`] = `
   </article>
   <article
     className="near-places__card place-card"
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
   >
     
     <div

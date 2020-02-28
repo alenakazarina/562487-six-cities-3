@@ -23,8 +23,7 @@ const Property = (props) => {
     activeOffer,
     nearOffers,
     onTitleClick,
-    onCardMouseEnter,
-    onCardMouseLeave
+    onCardHoverChange
   } = props;
 
   const {title, images, isFavorite, isPremium, rating, features,
@@ -65,8 +64,7 @@ const Property = (props) => {
         <NearPlaces
           nearOffers={nearOffers}
           onTitleClick={onTitleClick}
-          onCardMouseEnter={onCardMouseEnter}
-          onCardMouseLeave={onCardMouseLeave}
+          onCardHoverChange={onCardHoverChange}
         />
       </div>
     </main>
@@ -78,8 +76,7 @@ Property.propTypes = {
   activeOffer: offerPropTypes,
   nearOffers: arrayOf(offerPropTypes),
   onTitleClick: func.isRequired,
-  onCardMouseEnter: func.isRequired,
-  onCardMouseLeave: func.isRequired
+  onCardHoverChange: func.isRequired
 };
 
-export default Property;
+export default React.memo(Property);

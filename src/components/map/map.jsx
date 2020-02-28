@@ -2,7 +2,7 @@ import React, {PureComponent, createRef} from 'react';
 import {string, arrayOf} from 'prop-types';
 import {offerPropTypes} from '../../types';
 import leaflet from 'leaflet';
-import {LOCATIONS, LOCATIONS_ZOOM} from '../../mocks/const';
+import {Cities, MAP_ZOOM} from '../../mocks/const';
 
 const TileLayer = {
   urlTemplate: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
@@ -18,7 +18,7 @@ class Map extends PureComponent {
 
   componentDidMount() {
     this._map = leaflet.map(this._mapRef.current, {
-      zoom: LOCATIONS_ZOOM,
+      zoom: MAP_ZOOM,
       zoomControl: false,
       marker: true
     });
@@ -42,10 +42,8 @@ class Map extends PureComponent {
 
   _update() {
     const {offers, activeOffer} = this.props;
-    const {location} = LOCATIONS.find((place) => place.name === offers[0].city.name);
-    const cityCenter = [location.latitude, location.longitude];
-
-    this._map.setView(cityCenter, LOCATIONS_ZOOM);
+    const {cityCenter} = Cities[offers[0].city.name.toUpperCase()];
+    this._map.setView([cityCenter.latitude, cityCenter.longitude], MAP_ZOOM);
 
     offers.forEach((offer) => {
       const icon = activeOffer && offer.id === activeOffer.id ?

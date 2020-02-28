@@ -16,8 +16,7 @@ const Places = (props) => {
     onTitleClick,
     activeSortType,
     onSortTypeChange,
-    onCardMouseEnter,
-    onCardMouseLeave
+    onCardHoverChange
   } = props;
 
   return (
@@ -32,8 +31,7 @@ const Places = (props) => {
         prefix={`cities`}
         offers={offers}
         onTitleClick={onTitleClick}
-        onCardMouseEnter={onCardMouseEnter}
-        onCardMouseLeave={onCardMouseLeave}
+        onCardHoverChange={onCardHoverChange}
       />
     </section>
   );
@@ -44,8 +42,7 @@ Places.propTypes = {
   onTitleClick: func.isRequired,
   activeSortType: string.isRequired,
   onSortTypeChange: func.isRequired,
-  onCardMouseEnter: func.isRequired,
-  onCardMouseLeave: func.isRequired,
+  onCardHoverChange: func.isRequired
 };
 
 export default React.memo(Places);

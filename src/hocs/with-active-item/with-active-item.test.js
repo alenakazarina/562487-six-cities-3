@@ -25,10 +25,10 @@ describe(`withActiveItem HOC`, () => {
     expect(wrapper.html()).not.toBe(null);
   });
 
-  it(`should return null in other cases`, () => {
+  it(`should return Component in other cases`, () => {
     const wrapper = shallow(
         <MockComponentWrapped />
     );
-    expect(wrapper.html()).toBe(null);
+    expect(wrapper.html()).not.toBe(null);
   });
 });

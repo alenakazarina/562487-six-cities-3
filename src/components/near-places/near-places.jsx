@@ -10,8 +10,7 @@ const NearPlaces = (props) => {
   const {
     nearOffers,
     onTitleClick,
-    onCardMouseEnter,
-    onCardMouseLeave
+    onCardHoverChange
   } = props;
   return (
     <section className="near-places places">
@@ -20,8 +19,7 @@ const NearPlaces = (props) => {
         prefix={`near-places`}
         offers={nearOffers}
         onTitleClick={onTitleClick}
-        onCardMouseEnter={onCardMouseEnter}
-        onCardMouseLeave={onCardMouseLeave}
+        onCardHoverChange={onCardHoverChange}
       />
     </section>
   );
@@ -30,8 +28,7 @@ const NearPlaces = (props) => {
 NearPlaces.propTypes = {
   nearOffers: arrayOf(offerPropTypes).isRequired,
   onTitleClick: func.isRequired,
-  onCardMouseEnter: func.isRequired,
-  onCardMouseLeave: func.isRequired
+  onCardHoverChange: func.isRequired
 };
 
 export default React.memo(NearPlaces);

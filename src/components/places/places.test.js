@@ -14,8 +14,7 @@ describe(`Places`, () => {
           activeSortType={SortType.POPULAR}
           onTitleClick={mockFn}
           onSortTypeChange={mockFn}
-          onCardMouseEnter={mockFn}
-          onCardMouseLeave={mockFn}
+          onCardHoverChange={mockFn}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();

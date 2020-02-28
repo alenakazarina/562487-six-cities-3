@@ -11,10 +11,12 @@ exports[`NearPlaces should render NearPlaces correctly 1`] = `
   </h2>
   <div
     className="near-places__list places__list"
+    onMouseLeave={[Function]}
   >
     <article
       className="near-places__card place-card"
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       
       <div
@@ -115,6 +117,7 @@ exports[`NearPlaces should render NearPlaces correctly 1`] = `
     <article
       className="near-places__card place-card"
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       
       <div

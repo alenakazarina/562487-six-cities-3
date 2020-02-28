@@ -23,8 +23,7 @@ describe(`App`, () => {
           <App
             onTitleClick={mockFn}
             onTabClick={mockFn}
-            onCardMouseEnter={mockFn}
-            onCardMouseLeave={mockFn}
+            onCardHoverChange={mockFn}
           />
         </Provider>,
         {createNodeMock: () => document.createElement(`div`)}
@@ -45,8 +44,7 @@ describe(`App`, () => {
           <App
             onTitleClick={mockFn}
             onTabClick={mockFn}
-            onCardMouseEnter={mockFn}
-            onCardMouseLeave={mockFn}
+            onCardHoverChange={mockFn}
           />,
         </Provider>,
         {createNodeMock: () => document.createElement(`div`)}

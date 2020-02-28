@@ -1,4 +1,4 @@
-import {OffersData, UserData, LOCATIONS} from './const';
+import {OffersData, UserData, Cities} from './const';
 import {
   generateId,
   getImage,
@@ -31,7 +31,7 @@ const generateReviews = (count = 1) => {
   return new Array(count).fill(``).map(generateReview);
 };
 
-const generateOffer = (location) => {
+const generateOffer = (offerCity) => {
   return {
     id: generateId(),
     previewImage: getImage(OffersData.images),
@@ -50,14 +50,14 @@ const generateOffer = (location) => {
     host: generateUser(),
     description: OffersData.description,
     reviews: generateReviews(2),
-    city: location
+    city: offerCity
   };
 };
 
-const generateOffers = (count, location) => {
-  return new Array(count).fill(``).map(() => generateOffer(location));
+const generateOffers = (count, city) => {
+  return new Array(count).fill(``).map((item, i) => generateOffer({name: city.name, location: city.offersLocations[i]}));
 };
 
-export const offers = LOCATIONS
-  .map((location) => generateOffers(3, location))
+export const offers = Object.values(Cities)
+  .map((city) => generateOffers(city.offersLocations.length, city))
   .reduce((accOffers, cityOffers) => accOffers.concat(...cityOffers), []);

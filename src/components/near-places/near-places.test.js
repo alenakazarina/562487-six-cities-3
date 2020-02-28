@@ -11,8 +11,7 @@ describe(`NearPlaces`, () => {
         <NearPlaces
           nearOffers={cityOffers}
           onTitleClick={mockFn}
-          onCardMouseEnter={mockFn}
-          onCardMouseLeave={mockFn}
+          onCardHoverChange={mockFn}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();

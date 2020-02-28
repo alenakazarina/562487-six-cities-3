@@ -78,10 +78,12 @@ exports[`Places should render Places correctly 1`] = `
   </form>
   <div
     className="cities__places-list places__list tabs__content"
+    onMouseLeave={[Function]}
   >
     <article
       className="cities__place-card place-card"
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       
       <div
@@ -182,6 +184,7 @@ exports[`Places should render Places correctly 1`] = `
     <article
       className="cities__place-card place-card"
       onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
       
       <div

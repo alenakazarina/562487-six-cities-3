@@ -10,6 +10,7 @@ import Property from '../property/property';
 import LocationsList from '../locations-list/locations-list';
 import Cities from '../cities/cities';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import {getNearOffers} from '../../utils';
 
 const LocationsListWrapped = withActiveItem(LocationsList, `locations-list`);
 
@@ -22,21 +23,20 @@ class App extends PureComponent {
       activeCity,
       activeOffer,
       onTitleClick,
-      onCardMouseEnter,
-      onCardMouseLeave,
+      onCardHoverChange,
       onTabClick
     } = this.props;
 
     if (pageOffer) {
+      const nearOffers = getNearOffers(offers, pageOffer);
       return (
         <Page className="page--property">
           <Property
             pageOffer={pageOffer}
             activeOffer={activeOffer}
-            nearOffers={offers.slice(0, 3)}
+            nearOffers={nearOffers}
             onTitleClick={onTitleClick}
-            onCardMouseEnter={onCardMouseEnter}
-            onCardMouseLeave={onCardMouseLeave}
+            onCardHoverChange={onCardHoverChange}
           />
         </Page>
       );
@@ -55,8 +55,7 @@ class App extends PureComponent {
             activeCity={activeCity}
             activeOffer={activeOffer}
             onTitleClick={onTitleClick}
-            onCardMouseEnter={onCardMouseEnter}
-            onCardMouseLeave={onCardMouseLeave}
+            onCardHoverChange={onCardHoverChange}
           />
         </Main>
       </Page>
@@ -64,7 +63,8 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, activeOffer, onTitleClick, onCardMouseEnter, onCardMouseLeave} = this.props;
+    const {offers, activeOffer, onTitleClick, onCardHoverChange} = this.props;
+    const nearOffers = getNearOffers(offers, offers[0]);
     return (
       <BrowserRouter>
         <Switch>
@@ -76,10 +76,9 @@ class App extends PureComponent {
               <Property
                 pageOffer={offers[0]}
                 activeOffer={activeOffer}
-                nearOffers={offers.slice(0, 3)}
+                nearOffers={nearOffers}
                 onTitleClick={onTitleClick}
-                onCardMouseEnter={onCardMouseEnter}
-                onCardMouseLeave={onCardMouseLeave}
+                onCardHoverChange={onCardHoverChange}
               />
             </Page>
           </Route>
@@ -96,8 +95,7 @@ App.propTypes = {
   activeCity: string.isRequired,
   activeOffer: offerPropTypes,
   onTitleClick: func.isRequired,
-  onCardMouseEnter: func.isRequired,
-  onCardMouseLeave: func.isRequired,
+  onCardHoverChange: func.isRequired,
   onTabClick: func.isRequired
 };
 
@@ -112,11 +110,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onTitleClick(pageOffer) {
     dispatch(ActionCreator.setPageOffer(pageOffer));
+    dispatch(ActionCreator.setActiveOffer(null));
   },
-  onCardMouseEnter(activeOffer) {
-    dispatch(ActionCreator.setActiveOffer(activeOffer));
-  },
-  onCardMouseLeave(activeOffer) {
+  onCardHoverChange(activeOffer) {
     dispatch(ActionCreator.setActiveOffer(activeOffer));
   },
   onTabClick(activeCity) {

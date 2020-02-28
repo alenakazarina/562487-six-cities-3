@@ -3,10 +3,12 @@
 exports[`PlacesList should render cities PlacesList 1`] = `
 <div
   className="cities__places-list places__list tabs__content"
+  onMouseLeave={[Function]}
 >
   <article
     className="cities__place-card place-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     
     <div
@@ -107,6 +109,7 @@ exports[`PlacesList should render cities PlacesList 1`] = `
   <article
     className="cities__place-card place-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     
     <div
@@ -210,10 +213,12 @@ exports[`PlacesList should render cities PlacesList 1`] = `
 exports[`PlacesList should render near places PlacesList 1`] = `
 <div
   className="near-places__list places__list"
+  onMouseLeave={[Function]}
 >
   <article
     className="near-places__card place-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     
     <div
@@ -314,6 +319,7 @@ exports[`PlacesList should render near places PlacesList 1`] = `
   <article
     className="near-places__card place-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     
     <div

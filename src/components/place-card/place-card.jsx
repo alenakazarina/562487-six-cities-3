@@ -13,7 +13,8 @@ const PlaceCard = (props) => {
     prefix,
     offer,
     onTitleClick,
-    onCardMouseEnter
+    onMouseEnter,
+    onMouseLeave
   } = props;
 
   const {previewImage, title, isFavorite, isPremium, rating, type, price} = offer;
@@ -24,7 +25,8 @@ const PlaceCard = (props) => {
 
   return (
     <article className={className}
-      onMouseEnter={(evt) => onCardMouseEnter(evt.currentTarget, offer)}
+      onMouseEnter={() => onMouseEnter(offer)}
+      onMouseLeave={onMouseLeave}
     >
       {isPremium ? <PremiumMark prefix={PREFIX} /> : ``}
       <div className={`${prefix}__image-wrapper place-card__image-wrapper`}>
@@ -66,7 +68,8 @@ PlaceCard.propTypes = {
   prefix: string.isRequired,
   offer: offerPropTypes,
   onTitleClick: func.isRequired,
-  onCardMouseEnter: func.isRequired
+  onMouseEnter: func.isRequired,
+  onMouseLeave: func.isRequired
 };
 
 export default React.memo(PlaceCard);

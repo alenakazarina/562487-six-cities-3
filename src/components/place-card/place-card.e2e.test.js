@@ -17,7 +17,8 @@ describe(`PlaceCard`, () => {
           prefix={`cities`}
           offer={offer}
           onTitleClick={onTitleClick}
-          onCardMouseEnter={()=>{}}
+          onMouseEnter={()=>{}}
+          onMouseLeave={()=>{}}
         />
     );
     placeCard.find(`h2.place-card__name a`).simulate(`click`);
@@ -27,19 +28,22 @@ describe(`PlaceCard`, () => {
 
   it(`should card on mouseenter to call cb with card and offer`, () => {
     const offer = cityOffers[1];
-    const onCardMouseEnter = jest.fn();
+    const onMouseEnter = jest.fn();
+    const onMouseLeave = jest.fn();
     const placeCard = shallow(
         <PlaceCard
           prefix={`cities`}
           offer={offer}
           onTitleClick={()=>{}}
-          onCardMouseEnter={onCardMouseEnter}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         />
     );
     const card = placeCard.find(`article.place-card`);
-    card.simulate(`mouseenter`, {currentTarget: card});
-    expect(onCardMouseEnter).toHaveBeenCalledTimes(1);
-    expect(onCardMouseEnter.mock.calls[0][0]).toMatchObject(card);
-    expect(onCardMouseEnter.mock.calls[0][1]).toMatchObject(offer);
+    card.simulate(`mouseenter`);
+    expect(onMouseEnter).toHaveBeenCalledTimes(1);
+    expect(onMouseEnter.mock.calls[0][0]).toMatchObject(offer);
+    card.simulate(`mouseleave`);
+    expect(onMouseLeave).toHaveBeenCalledTimes(1);
   });
 });

@@ -14,8 +14,7 @@ describe(`Cities`, () => {
           activeCity={city}
           activeOffer={null}
           onTitleClick={mockFn}
-          onCardMouseEnter={mockFn}
-          onCardMouseLeave={mockFn}
+          onCardHoverChange={mockFn}
         />,
         {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();
@@ -29,8 +28,7 @@ describe(`Cities`, () => {
           activeCity={city}
           activeOffer={null}
           onTitleClick={mockFn}
-          onCardMouseEnter={mockFn}
-          onCardMouseLeave={mockFn}
+          onCardHoverChange={mockFn}
         />,
         {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();

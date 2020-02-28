@@ -1,6 +1,6 @@
 export const IMAGE_PATH = `./img/`;
 
-export const LOCATIONS_ZOOM = 12;
+export const MAP_ZOOM = 12;
 
 export const MONTHS = [
   `January`, `February`, `March`, `April`, `May`, `June`, `July`,
@@ -47,55 +47,125 @@ export const UserData = {
   comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
 };
 
-export const LOCATIONS = [
-  {
+export const Cities = {
+  PARIS: {
     name: `Paris`,
-    location: {
-      latitude: 48.856663,
-      longitude: 2.351556
-    }
-  }, {
+    cityCenter: {
+      latitude: 48.859335,
+      longitude: 2.350730
+    },
+    offersLocations: [{
+      latitude: 48.872344,
+      longitude: 2.360418
+    }, {
+      latitude: 48.866015,
+      longitude: 2.346708
+    }, {
+      latitude: 48.850586,
+      longitude: 2.327006
+    }, {
+      latitude: 48.855066,
+      longitude: 2.316033
+    }]
+  },
+  COLOGNE: {
     name: `Cologne`,
-    location: {
-      latitude: 50.930779,
-      longitude: 6.938399
-    }
-  }, {
+    cityCenter: {
+      latitude: 50.939485,
+      longitude: 6.948775
+    },
+    offersLocations: [{
+      latitude: 50.937764,
+      longitude: 6.961390
+    }, {
+      latitude: 50.945324,
+      longitude: 6.960608
+    }, {
+      latitude: 50.933751,
+      longitude: 6.936701
+    }, {
+      latitude: 50.931175,
+      longitude: 6.948593
+    }]
+  },
+  BRUSSELS: {
     name: `Brussels`,
-    location: {
-      latitude: 50.851309,
-      longitude: 4.351718
-    }
-  }, {
+    cityCenter: {
+      latitude: 50.855889,
+      longitude: 4.351608
+    },
+    offersLocations: [{
+      latitude: 50.854885,
+      longitude: 4.345541
+    }, {
+      latitude: 50.858440,
+      longitude: 4.329629
+    }, {
+      latitude: 50.835941,
+      longitude: 4.346313
+    }, {
+      latitude: 50.834979,
+      longitude: 4.351570
+    }]
+  },
+  AMSTERDAM: {
     name: `Amsterdam`,
-    location: {
-      latitude: 52.38333,
-      longitude: 4.9
-    }
-  }, {
+    cityCenter: {
+      latitude: 52.371512,
+      longitude: 4.893750
+    },
+    offersLocations: [{
+      latitude: 52.370955,
+      longitude: 4.873096
+    }, {
+      latitude: 52.379553,
+      longitude: 4.873096
+    }, {
+      latitude: 52.390955,
+      longitude: 4.909309
+    }, {
+      latitude: 52.360955,
+      longitude: 4.909309
+    }]
+  },
+  HAMBURG: {
     name: `Hamburg`,
-    location: {
-      latitude: 53.552645,
-      longitude: 9.966287
-    }
-  }, {
+    cityCenter: {
+      latitude: 53.556238,
+      longitude: 9.985139
+    },
+    offersLocations: [{
+      latitude: 53.553348,
+      longitude: 9.971704
+    }, {
+      latitude: 53.552588,
+      longitude: 10.019478
+    }, {
+      latitude: 53.561941,
+      longitude: 10.018891
+    }, {
+      latitude: 53.548758,
+      longitude: 9.978013
+    }]
+  },
+  DUSSELDORF: {
     name: `Dusseldorf`,
-    location: {
-      latitude: 51.230569,
-      longitude: 6.787428
-    }
-  }];
-
-export const offersLocations = [{
-  latitude: 52.3909553943508,
-  longitude: 4.85309666406198
-}, {
-  latitude: 52.369553943508,
-  longitude: 4.85309666406198
-}, {
-  latitude: 52.3909553943508,
-  longitude: 4.929309666406198
-}, {
-  latitude: 52.3809553943508,
-  longitude: 4.939309666406198
-}];
+    cityCenter: {
+      latitude: 51.225322,
+      longitude: 6.774754
+    },
+    offersLocations: [{
+      latitude: 51.219590,
+      longitude: 6.774384
+    }, {
+      latitude: 51.232822,
+      longitude: 6.780301
+    }, {
+      latitude: 51.220024,
+      longitude: 6.792541
+    }, {
+      latitude: 51.215356,
+      longitude: 6.781649
+    }]
+  }
+};

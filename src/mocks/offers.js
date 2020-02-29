@@ -58,6 +58,6 @@ const generateOffers = (count, city) => {
   return new Array(count).fill(``).map((item, i) => generateOffer({name: city.name, location: city.offersLocations[i]}));
 };
 
-export const offers = Object.values(Cities)
+export const getOffers = () => Object.values(Cities)
   .map((city) => generateOffers(city.offersLocations.length, city))
   .reduce((accOffers, cityOffers) => accOffers.concat(...cityOffers), []);

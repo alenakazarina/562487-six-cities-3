@@ -11,6 +11,7 @@ import LocationsList from '../locations-list/locations-list';
 import Cities from '../cities/cities';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {getNearOffers} from '../../utils';
+import Favorites from '../favorites/favorites';
 
 const LocationsListWrapped = withActiveItem(LocationsList, `locations-list`);
 
@@ -82,6 +83,9 @@ class App extends PureComponent {
               />
             </Page>
           </Route>
+          <Route exact path="/favorites">
+            <Favorites favorites={this.props.favorites} />
+          </Route>
         </Switch>
       </BrowserRouter>
     );
@@ -94,6 +98,7 @@ App.propTypes = {
   pageOffer: offerPropTypes,
   activeCity: string.isRequired,
   activeOffer: offerPropTypes,
+  favorites: arrayOf(offerPropTypes).isRequired,
   onTitleClick: func.isRequired,
   onCardHoverChange: func.isRequired,
   onTabClick: func.isRequired
@@ -105,6 +110,7 @@ const mapStateToProps = (state) => ({
   pageOffer: state.pageOffer,
   activeCity: state.activeCity,
   activeOffer: state.activeOffer,
+  favorites: state.favorites
 });
 
 const mapDispatchToProps = (dispatch) => ({

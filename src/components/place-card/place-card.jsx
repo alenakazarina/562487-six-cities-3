@@ -21,19 +21,20 @@ const PlaceCard = (props) => {
 
   const className = (prefix === `cities`) ?
     `cities__place-card place-card`
-    : `near-places__card place-card`;
+    : `${prefix}__card place-card`;
 
   return (
     <article className={className}
       onMouseEnter={() => onMouseEnter(offer)}
       onMouseLeave={onMouseLeave}
     >
-      {isPremium ? <PremiumMark prefix={PREFIX} /> : ``}
+      {isPremium && prefix !== `favorites` ? <PremiumMark prefix={PREFIX} /> : ``}
       <div className={`${prefix}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image"
             src={previewImage}
-            width="260" height="200"
+            width={prefix === `favorites` ? 150 : 260}
+            height={prefix === `favorites` ? 110 : 200}
             alt="Place image" />
         </a>
       </div>

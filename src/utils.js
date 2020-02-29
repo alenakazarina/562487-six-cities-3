@@ -15,6 +15,10 @@ export const getNearOffers = (offers, pageOffer) => {
   return offers.filter((offer) => offer.city.name === pageOffer.city.name && offer.id !== pageOffer.id);
 };
 
+export const getFavorites = (offers) => {
+  return offers.filter((offer) => offer.isFavorite);
+};
+
 export const formatPluralNouns = (count, noun) => {
   return count === 1 ? `${count} ${noun}` : `${count} ${noun}s`;
 };

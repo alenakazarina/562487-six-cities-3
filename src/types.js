@@ -1,20 +1,28 @@
-import {shape, number, string, bool, arrayOf, instanceOf, oneOfType, element, node} from 'prop-types';
+import {instanceOf, shape, number, string, bool, arrayOf, oneOfType, element, node} from 'prop-types';
 
 export const childrenPropTypes = oneOfType([element, node]);
 
+export const appUserPropTypes = shape({
+  id: number.isRequired,
+  email: string.isRequired,
+  name: string.isRequired,
+  isPro: bool.isRequired,
+  avatarUrl: string.isRequired
+}).isRequired;
+
 export const userPropTypes = shape({
-  id: string.isRequired,
+  id: number.isRequired,
   name: string.isRequired,
   isPro: bool.isRequired,
   avatarUrl: string.isRequired
 }).isRequired;
 
 export const reviewPropTypes = shape({
-  id: string.isRequired,
+  id: number.isRequired,
   user: userPropTypes,
   rating: number.isRequired,
   comment: string.isRequired,
-  date: instanceOf(Date)
+  date: instanceOf(Date).isRequired
 });
 
 export const cityPropTypes = shape({
@@ -25,25 +33,20 @@ export const cityPropTypes = shape({
   }).isRequired
 }).isRequired;
 
-export const featuresPropTypes = shape({
-  type: string.isRequired,
-  bedrooms: number.isRequired,
-  maxAdults: number.isRequired
-});
-
 export const offerPropTypes = shape({
-  id: string.isRequired,
+  id: number.isRequired,
   previewImage: string.isRequired,
   title: string.isRequired,
   images: arrayOf(string).isRequired,
   isFavorite: bool.isRequired,
   isPremium: bool.isRequired,
   rating: number.isRequired,
-  features: featuresPropTypes,
+  type: string.isRequired,
+  bedrooms: number.isRequired,
+  maxAdults: number.isRequired,
   price: number.isRequired,
   amenities: arrayOf(string).isRequired,
   host: userPropTypes,
   description: string.isRequired,
-  reviews: arrayOf(reviewPropTypes).isRequired,
   city: cityPropTypes
 });

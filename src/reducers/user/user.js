@@ -1,7 +1,7 @@
 import {extend} from '../../utils';
 import User from '../../models/user';
 
-const DEFAULT_USER = {
+export const DEFAULT_USER = {
   id: -1,
   email: ``,
   name: ``,
@@ -69,9 +69,9 @@ const reducer = (state = initialState, action) => {
       return extend(state, {authStatus: action.payload});
     case ActionType.SET_USER:
       return extend(state, {user: action.payload});
+    default:
+      return state;
   }
-
-  return state;
 };
 
 export {reducer, Operation, ActionType, ActionCreator};

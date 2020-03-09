@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Map from './map';
-import {cityOffers} from '../../mocks/tests';
+import {cityOffers} from '../../mocks/const';
 
 const prefixes = [`cities`, `property`];
 

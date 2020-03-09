@@ -1,10 +1,18 @@
 import React from 'react';
-import {string, arrayOf} from 'prop-types';
+import {string, arrayOf, func} from 'prop-types';
 import {offerPropTypes} from '../../types';
 import PlaceCard from '../place-card/place-card';
 import LocationsListItem from '../locations-list-item/locations-list-item';
 
-const FavoritesListItem = ({city, offers}) => {
+const FavoritesListItem = (props) => {
+  const {
+    city,
+    offers,
+    onTitleClick,
+    onFavoriteClick,
+    onTabClick
+  } = props;
+
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
@@ -12,7 +20,7 @@ const FavoritesListItem = ({city, offers}) => {
           nodeType="div"
           city={city}
           isActive={false}
-          onTabClick={()=>{}}
+          onTabClick={() => onTabClick(city)}
         />
       </div>
       <div className="favorites__places">
@@ -21,9 +29,10 @@ const FavoritesListItem = ({city, offers}) => {
             key={offer.id}
             prefix={`favorites`}
             offer={offer}
-            onTitleClick={()=>{}}
+            onTitleClick={onTitleClick}
             onMouseEnter={()=>{}}
             onMouseLeave={()=>{}}
+            onFavoriteClick={onFavoriteClick}
           />
         ))}
       </div>
@@ -33,7 +42,10 @@ const FavoritesListItem = ({city, offers}) => {
 
 FavoritesListItem.propTypes = {
   city: string.isRequired,
-  offers: arrayOf(offerPropTypes).isRequired
+  offers: arrayOf(offerPropTypes).isRequired,
+  onTitleClick: func.isRequired,
+  onFavoriteClick: func.isRequired,
+  onTabClick: func.isRequired
 };
 
 export default React.memo(FavoritesListItem);

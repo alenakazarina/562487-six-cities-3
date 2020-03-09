@@ -1,11 +1,12 @@
 import React from 'react';
 import {reviewPropTypes} from '../../types';
-import {MONTHS} from '../../mocks/const';
+import {MONTHS} from '../../const';
 import User from '../user/user';
 import Rating from '../rating/rating';
 
 const ReviewsItem = ({review}) => {
   const {id, user, comment, date, rating} = review;
+
   return (
     <li className="reviews__item" key={id}>
       <User prefix={`reviews`} user={user} />

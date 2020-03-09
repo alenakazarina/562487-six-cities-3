@@ -18,4 +18,4 @@ Price.propTypes = {
   price: PropTypes.number.isRequired
 };
 
-export default Price;
+export default React.memo(Price);

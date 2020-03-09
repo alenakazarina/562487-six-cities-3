@@ -1,32 +1,33 @@
 import React from 'react';
-import Page from '../page/page';
+import {bool, func} from 'prop-types';
 import Footer from '../footer/footer';
 import FavoritesList from '../favorites-list/favorites-list';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
-import {arrayOf} from 'prop-types';
-import {offerPropTypes} from '../../types';
 
-const Favorites = ({favorites}) => {
-  const isEmpty = favorites.length === 0;
+const Favorites = (props) => {
+  const {isEmpty, renderHeader} = props;
   const pageClassName = isEmpty ? `page--favorites-empty` : `page--favorites`;
   const mainClassName = isEmpty ? `page__main--favorites-empty` : ``;
 
   return (
-    <Page className={pageClassName}>
+    <div className={pageClassName}>
+      {renderHeader()}
       <main className={`page__main page__main--favorites ${mainClassName}`}>
         <div className="page__favorites-container container">
           {isEmpty ?
             <FavoritesEmpty /> :
-            <FavoritesList favorites={favorites} />}
+            <FavoritesList />
+          }
         </div>
       </main>
       <Footer/>
-    </Page>
+    </div>
   );
 };
 
 Favorites.propTypes = {
-  favorites: arrayOf(offerPropTypes).isRequired
+  isEmpty: bool.isRequired,
+  renderHeader: func.isRequired
 };
 
-export default Favorites;
+export default React.memo(Favorites);

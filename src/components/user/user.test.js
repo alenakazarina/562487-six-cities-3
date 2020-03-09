@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import User from './user';
-import {users} from '../../mocks/tests';
+import {users} from '../../mocks/const';
 
 const prefixes = [`property__host-`, `reviews__`];
 

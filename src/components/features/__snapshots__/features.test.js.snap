@@ -7,18 +7,18 @@ exports[`Features should render Features with correct plural nouns 1`] = `
   <li
     className="property__feature property__feature--entire"
   >
-    Apartment
+    hotel
   </li>
   <li
     className="property__feature property__feature--bedrooms"
   >
-    3 Bedrooms
+    2 Bedrooms
   </li>
   <li
     className="property__feature property__feature--adults"
   >
     Max 
-    6 adults
+    3 adults
   </li>
 </ul>
 `;
@@ -30,7 +30,7 @@ exports[`Features should render Features with correct singular nouns 1`] = `
   <li
     className="property__feature property__feature--entire"
   >
-    House
+    hotel
   </li>
   <li
     className="property__feature property__feature--bedrooms"

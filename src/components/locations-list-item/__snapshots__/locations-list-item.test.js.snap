@@ -1,26 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LocationsListItem should render LocationsListItem 1`] = `
-<li
+exports[`LocationsListItem should render LocationsListItem as div 1`] = `
+<div
   className="locations__item"
 >
   <a
-    className="locations__item-link tabs__item tabs__item--active"
+    className="locations__item-link tabs__item "
+    href="/"
     onClick={[Function]}
   >
     <span>
       Amsterdam
     </span>
   </a>
-</li>
+</div>
 `;
 
-exports[`LocationsListItem should render LocationsListItem with active class 1`] = `
+exports[`LocationsListItem should render LocationsListItem as listItem with active class 1`] = `
 <li
   className="locations__item"
 >
   <a
-    className="locations__item-link tabs__item "
+    className="locations__item-link tabs__item tabs__item--active"
     onClick={[Function]}
   >
     <span>

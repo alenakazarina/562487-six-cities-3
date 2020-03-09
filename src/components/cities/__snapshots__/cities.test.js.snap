@@ -53,9 +53,9 @@ exports[`Cities should render Cities with no empty offers 1`] = `
       <b
         className="places__found"
       >
-        2 places
+        3 places
          to stay in 
-        Amsterdam
+        Paris
       </b>
       <form
         action="#"
@@ -126,7 +126,13 @@ exports[`Cities should render Cities with no empty offers 1`] = `
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          
+          <div
+            className="place-card__mark"
+          >
+            <span>
+              Premium
+            </span>
+          </div>
           <div
             className="cities__image-wrapper place-card__image-wrapper"
           >
@@ -136,9 +142,9 @@ exports[`Cities should render Cities with no empty offers 1`] = `
               <img
                 alt="Place image"
                 className="place-card__image"
-                height="200"
-                src="image"
-                width="260"
+                height={200}
+                src="image1"
+                width={260}
               />
             </a>
           </div>
@@ -155,7 +161,7 @@ exports[`Cities should render Cities with no empty offers 1`] = `
                   className="place-card__price-value"
                 >
                   €
-                  200
+                  400
                 </b>
                 <span
                   className="place-card__price-text"
@@ -169,7 +175,8 @@ exports[`Cities should render Cities with no empty offers 1`] = `
                 </span>
               </div>
               <button
-                className="place-card__bookmark-button button place-card__bookmark-button--active"
+                className="cities__bookmark-button button place-card__bookmark-button--active"
+                onClick={[Function]}
                 type="button"
               >
                 <svg
@@ -197,7 +204,7 @@ exports[`Cities should render Cities with no empty offers 1`] = `
                 <span
                   style={
                     Object {
-                      "width": "60%",
+                      "width": "100%",
                     }
                   }
                 />
@@ -212,14 +219,17 @@ exports[`Cities should render Cities with no empty offers 1`] = `
               className="place-card__name"
             >
               <a
+                href="/offer/1"
                 onClick={[Function]}
               >
-                title
+                Amazing and Extremely Central Flat
               </a>
             </h2>
             <p
               className="place-card__type"
-            />
+            >
+              Apartment
+            </p>
           </div>
         </article>
         <article
@@ -237,9 +247,9 @@ exports[`Cities should render Cities with no empty offers 1`] = `
               <img
                 alt="Place image"
                 className="place-card__image"
-                height="200"
-                src="image"
-                width="260"
+                height={200}
+                src="image3"
+                width={260}
               />
             </a>
           </div>
@@ -270,7 +280,8 @@ exports[`Cities should render Cities with no empty offers 1`] = `
                 </span>
               </div>
               <button
-                className="place-card__bookmark-button button place-card__bookmark-button--active"
+                className="cities__bookmark-button button place-card__bookmark-button--active"
+                onClick={[Function]}
                 type="button"
               >
                 <svg
@@ -313,14 +324,128 @@ exports[`Cities should render Cities with no empty offers 1`] = `
               className="place-card__name"
             >
               <a
+                href="/offer/2"
                 onClick={[Function]}
               >
-                title
+                The house among olive
               </a>
             </h2>
             <p
               className="place-card__type"
-            />
+            >
+              House
+            </p>
+          </div>
+        </article>
+        <article
+          className="cities__place-card place-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="place-card__mark"
+          >
+            <span>
+              Premium
+            </span>
+          </div>
+          <div
+            className="cities__image-wrapper place-card__image-wrapper"
+          >
+            <a
+              href="#"
+            >
+              <img
+                alt="Place image"
+                className="place-card__image"
+                height={200}
+                src="image3"
+                width={260}
+              />
+            </a>
+          </div>
+          <div
+            className="place-card__info"
+          >
+            <div
+              className="place-card__price-wrapper"
+            >
+              <div
+                className="place-card__price"
+              >
+                <b
+                  className="place-card__price-value"
+                >
+                  €
+                  600
+                </b>
+                <span
+                  className="place-card__price-text"
+                  style={
+                    Object {
+                      "marginLeft": "3px",
+                    }
+                  }
+                >
+                  / night
+                </span>
+              </div>
+              <button
+                className="cities__bookmark-button button place-card__bookmark-button--active"
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  className="place-card__bookmark-icon"
+                  height={19}
+                  width={18}
+                >
+                  <use
+                    xlinkHref="#icon-bookmark"
+                  />
+                </svg>
+                <span
+                  className="visually-hidden"
+                >
+                  To bookmarks
+                </span>
+              </button>
+            </div>
+            <div
+              className="place-card__rating rating"
+            >
+              <div
+                className="place-card__stars rating__stars"
+              >
+                <span
+                  style={
+                    Object {
+                      "width": "60%",
+                    }
+                  }
+                />
+                <span
+                  className="visually-hidden"
+                >
+                  Rating
+                </span>
+              </div>
+            </div>
+            <h2
+              className="place-card__name"
+            >
+              <a
+                href="/offer/3"
+                onClick={[Function]}
+              >
+                Amazing and Extremely Central Flat
+              </a>
+            </h2>
+            <p
+              className="place-card__type"
+            >
+              Private room
+            </p>
           </div>
         </article>
       </div>

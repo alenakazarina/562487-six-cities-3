@@ -16,17 +16,17 @@ exports[`PropertyHost should render PropertyHost correctly 1`] = `
       className="property__avatar-wrapper user__avatar-wrapper property__avatar-wrapper--pro"
     >
       <img
-        alt="James avatar"
+        alt="Alena avatar"
         className="property__avatar user__avatar"
         height={74}
-        src="avatar"
+        src="..//user1_avatar"
         width={74}
       />
     </div>
     <span
       className="property__user-name"
     >
-      James
+      Alena
     </span>
   </div>
   <div>

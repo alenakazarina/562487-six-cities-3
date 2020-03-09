@@ -16,4 +16,4 @@ PropertyInside.propTypes = {
   amenities: arrayOf(string).isRequired,
 };
 
-export default PropertyInside;
+export default React.memo(PropertyInside);

@@ -1,129 +1,100 @@
-import React, {PureComponent} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import {arrayOf, string, func} from 'prop-types';
+import React from 'react';
+import {BrowserRouter, Switch, Route, Redirect, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {arrayOf, string, bool, func} from 'prop-types';
 import {offerPropTypes} from '../../types';
-import {connect} from "react-redux";
-import {ActionCreator} from '../../reducers/reducer';
-import Page from '../page/page';
-import Main from '../main/main';
-import Property from '../property/property';
-import LocationsList from '../locations-list/locations-list';
-import Cities from '../cities/cities';
-import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import {getNearOffers} from '../../utils';
+import {getOffers} from '../../reducers/offers/selectors';
+import {AuthStatus} from '../../reducers/user/user';
+import {getAuthStatus} from '../../reducers/user/selectors';
+import {Operation as OfferOperation, ActionCreator as OfferActionCreator} from '../../reducers/offer/offer';
+import {getFavorites} from '../../reducers/favorites/selectors';
+import Login from '../login/login';
 import Favorites from '../favorites/favorites';
+import Property from '../property/property';
+import Main from '../main/main';
+import PrivateRoute from '../private-route/private-route';
+import withHeader from '../../hocs/with-header/with-header';
+import {AppRoute} from '../../const';
 
-const LocationsListWrapped = withActiveItem(LocationsList, `locations-list`);
+const MainWrapped = withHeader(Main);
+const PropertyWrapped = withHeader(Property);
+const FavoritesWrapped = withHeader(Favorites);
+const LoginWrapped = withRouter(withHeader(Login));
 
-class App extends PureComponent {
-  _renderApp() {
-    const {
-      offers,
-      cities,
-      pageOffer,
-      activeCity,
-      activeOffer,
-      onTitleClick,
-      onCardHoverChange,
-      onTabClick
-    } = this.props;
+const App = (props) => {
+  const {
+    initialOffers,
+    authStatus,
+    areFavoritesEmpty,
+    onOfferPageLoad
+  } = props;
 
-    if (pageOffer) {
-      const nearOffers = getNearOffers(offers, pageOffer);
-      return (
-        <Page className="page--property">
-          <Property
-            pageOffer={pageOffer}
-            activeOffer={activeOffer}
-            nearOffers={nearOffers}
-            onTitleClick={onTitleClick}
-            onCardHoverChange={onCardHoverChange}
-          />
-        </Page>
-      );
-    }
-
-    return (
-      <Page className="page--gray page--main">
-        <Main isEmpty={offers.length === 0}>
-          <LocationsListWrapped
-            cities={cities}
-            activeCity={activeCity}
-            onTabClick={onTabClick}
-          />
-          <Cities
-            offers={offers}
-            activeCity={activeCity}
-            activeOffer={activeOffer}
-            onTitleClick={onTitleClick}
-            onCardHoverChange={onCardHoverChange}
-          />
-        </Main>
-      </Page>
-    );
+  if (initialOffers.length === 0) {
+    return ``;
   }
 
-  render() {
-    const {offers, activeOffer, onTitleClick, onCardHoverChange} = this.props;
-    const nearOffers = getNearOffers(offers, offers[0]);
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-offer">
-            <Page className="page--property">
-              <Property
-                pageOffer={offers[0]}
-                activeOffer={activeOffer}
-                nearOffers={nearOffers}
-                onTitleClick={onTitleClick}
-                onCardHoverChange={onCardHoverChange}
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route
+          exact
+          path={AppRoute.ROOT}
+          render={() => (
+            <MainWrapped />
+          )}
+        />
+        <Route
+          exact
+          path={AppRoute.LOGIN}
+          render={() => (
+            authStatus === AuthStatus.NO_AUTH ?
+              <LoginWrapped /> :
+              <Redirect to={AppRoute.ROOT} />
+          )}
+        />
+        <Route
+          exact
+          path={AppRoute.OFFER}
+          render={(routeProps) => {
+            const id = parseInt(routeProps.match.params.id, 10);
+            return (
+              <PropertyWrapped
+                id={id}
+                onOfferPageLoad={onOfferPageLoad}
               />
-            </Page>
-          </Route>
-          <Route exact path="/favorites">
-            <Favorites favorites={this.props.favorites} />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+            );
+          }}
+        />
+        <PrivateRoute
+          exact
+          path={AppRoute.FAVORITES}
+          render={() => (
+            <FavoritesWrapped isEmpty={areFavoritesEmpty} />
+          )}
+        />
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 App.propTypes = {
-  offers: arrayOf(offerPropTypes).isRequired,
-  cities: arrayOf(string).isRequired,
-  pageOffer: offerPropTypes,
-  activeCity: string.isRequired,
-  activeOffer: offerPropTypes,
-  favorites: arrayOf(offerPropTypes).isRequired,
-  onTitleClick: func.isRequired,
-  onCardHoverChange: func.isRequired,
-  onTabClick: func.isRequired
+  authStatus: string.isRequired,
+  initialOffers: arrayOf(offerPropTypes).isRequired,
+  areFavoritesEmpty: bool.isRequired,
+  onOfferPageLoad: func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  cities: state.cities,
-  pageOffer: state.pageOffer,
-  activeCity: state.activeCity,
-  activeOffer: state.activeOffer,
-  favorites: state.favorites
+  authStatus: getAuthStatus(state),
+  initialOffers: getOffers(state),
+  areFavoritesEmpty: getFavorites(state).length === 0
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onTitleClick(pageOffer) {
-    dispatch(ActionCreator.setPageOffer(pageOffer));
-    dispatch(ActionCreator.setActiveOffer(null));
-  },
-  onCardHoverChange(activeOffer) {
-    dispatch(ActionCreator.setActiveOffer(activeOffer));
-  },
-  onTabClick(activeCity) {
-    dispatch(ActionCreator.setActiveCity(activeCity));
-    dispatch(ActionCreator.getOffers(activeCity));
+  onOfferPageLoad(pageOffer) {
+    dispatch(OfferOperation.loadNearOffers(pageOffer));
+    dispatch(OfferOperation.loadComments(pageOffer));
+    dispatch(OfferActionCreator.setPageOffer(pageOffer));
   }
 });
 

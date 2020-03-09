@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ReviewsItem from './reviews-item';
-import {reviews} from '../../mocks/tests';
+import {reviews} from '../../mocks/const';
 
 describe(`ReviewsItem`, () => {
   it(`should render ReviewsItem correctly`, () => {

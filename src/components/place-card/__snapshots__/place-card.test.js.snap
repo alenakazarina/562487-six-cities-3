@@ -6,7 +6,13 @@ exports[`PlaceCard should render cities PlaceCard 1`] = `
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
-  
+  <div
+    className="place-card__mark"
+  >
+    <span>
+      Premium
+    </span>
+  </div>
   <div
     className="cities__image-wrapper place-card__image-wrapper"
   >
@@ -16,9 +22,9 @@ exports[`PlaceCard should render cities PlaceCard 1`] = `
       <img
         alt="Place image"
         className="place-card__image"
-        height="200"
-        src="image"
-        width="260"
+        height={200}
+        src="image1"
+        width={260}
       />
     </a>
   </div>
@@ -35,7 +41,7 @@ exports[`PlaceCard should render cities PlaceCard 1`] = `
           className="place-card__price-value"
         >
           €
-          200
+          400
         </b>
         <span
           className="place-card__price-text"
@@ -49,7 +55,8 @@ exports[`PlaceCard should render cities PlaceCard 1`] = `
         </span>
       </div>
       <button
-        className="place-card__bookmark-button button place-card__bookmark-button--active"
+        className="cities__bookmark-button button place-card__bookmark-button--active"
+        onClick={[Function]}
         type="button"
       >
         <svg
@@ -77,7 +84,7 @@ exports[`PlaceCard should render cities PlaceCard 1`] = `
         <span
           style={
             Object {
-              "width": "60%",
+              "width": "100%",
             }
           }
         />
@@ -92,14 +99,17 @@ exports[`PlaceCard should render cities PlaceCard 1`] = `
       className="place-card__name"
     >
       <a
+        href="/offer/1"
         onClick={[Function]}
       >
-        title
+        Amazing and Extremely Central Flat
       </a>
     </h2>
     <p
       className="place-card__type"
-    />
+    >
+      Apartment
+    </p>
   </div>
 </article>
 `;
@@ -120,9 +130,9 @@ exports[`PlaceCard should render near places PlaceCard 1`] = `
       <img
         alt="Place image"
         className="place-card__image"
-        height="200"
-        src="image"
-        width="260"
+        height={200}
+        src="image3"
+        width={260}
       />
     </a>
   </div>
@@ -153,7 +163,8 @@ exports[`PlaceCard should render near places PlaceCard 1`] = `
         </span>
       </div>
       <button
-        className="place-card__bookmark-button button place-card__bookmark-button--active"
+        className="near-places__bookmark-button button place-card__bookmark-button--active"
+        onClick={[Function]}
         type="button"
       >
         <svg
@@ -196,14 +207,17 @@ exports[`PlaceCard should render near places PlaceCard 1`] = `
       className="place-card__name"
     >
       <a
+        href="/offer/2"
         onClick={[Function]}
       >
-        title
+        The house among olive
       </a>
     </h2>
     <p
       className="place-card__type"
-    />
+    >
+      House
+    </p>
   </div>
 </article>
 `;

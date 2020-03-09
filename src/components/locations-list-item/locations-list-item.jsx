@@ -1,5 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {string, bool, func} from 'prop-types';
+import {AppRoute} from '../../const';
 
 const LocationsListItem = ({nodeType, city, isActive, onTabClick}) => {
   const activeClass = isActive ? `tabs__item--active` : ``;
@@ -19,7 +21,7 @@ const LocationsListItem = ({nodeType, city, isActive, onTabClick}) => {
       </li>
     ) : (
       <div className="locations__item" key={city}>
-        <a className={`locations__item-link tabs__item ${activeClass}`}
+        <Link to={AppRoute.ROOT} className={`locations__item-link tabs__item ${activeClass}`}
           onClick={() => {
             if (activeClass) {
               return;
@@ -28,7 +30,7 @@ const LocationsListItem = ({nodeType, city, isActive, onTabClick}) => {
           }}
         >
           <span>{city}</span>
-        </a>
+        </Link>
       </div>
     )
 

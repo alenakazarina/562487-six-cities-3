@@ -11,4 +11,4 @@ PropertyDescription.propTypes = {
   description: string.isRequired
 };
 
-export default PropertyDescription;
+export default React.memo(PropertyDescription);

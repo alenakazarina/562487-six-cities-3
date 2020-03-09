@@ -11,20 +11,20 @@ exports[`Reviews should render Reviews correctly 1`] = `
       className="reviews__user user"
     >
       <div
-        className="reviews__avatar-wrapper user__avatar-wrapper "
+        className="reviews__avatar-wrapper user__avatar-wrapper reviews__avatar-wrapper--pro"
       >
         <img
-          alt="Bob avatar"
+          alt="Alena avatar"
           className="reviews__avatar user__avatar"
           height={54}
-          src="avatar"
+          src="/user1_avatar"
           width={54}
         />
       </div>
       <span
         className="reviews__user-name"
       >
-        Bob
+        Alena
       </span>
     </div>
     <div
@@ -53,13 +53,13 @@ exports[`Reviews should render Reviews correctly 1`] = `
       <p
         className="reviews__text"
       >
-        comment
+        Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country.
       </p>
       <time
         className="reviews__time"
-        dateTime="2019-04-24"
+        dateTime="2020-03-03"
       >
-        April 2019
+        March 2020
       </time>
     </div>
   </li>
@@ -70,20 +70,20 @@ exports[`Reviews should render Reviews correctly 1`] = `
       className="reviews__user user"
     >
       <div
-        className="reviews__avatar-wrapper user__avatar-wrapper "
+        className="reviews__avatar-wrapper user__avatar-wrapper reviews__avatar-wrapper--pro"
       >
         <img
-          alt="Jane avatar"
+          alt="Nick avatar"
           className="reviews__avatar user__avatar"
           height={54}
-          src="avatar"
+          src="/user2_avatar"
           width={54}
         />
       </div>
       <span
         className="reviews__user-name"
       >
-        Jane
+        Nick
       </span>
     </div>
     <div
@@ -112,13 +112,13 @@ exports[`Reviews should render Reviews correctly 1`] = `
       <p
         className="reviews__text"
       >
-        comment
+        In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.
       </p>
       <time
         className="reviews__time"
-        dateTime="2019-04-24"
+        dateTime="2020-03-02"
       >
-        April 2019
+        March 2020
       </time>
     </div>
   </li>

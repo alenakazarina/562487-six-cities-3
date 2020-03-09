@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import PropertyHost from './property-host';
-import {users} from '../../mocks/tests';
+import {users} from '../../mocks/const';
 
 const childrensContent = <div>Childrens content</div>;
 

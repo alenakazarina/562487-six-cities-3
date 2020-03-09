@@ -1,10 +1,12 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {string, func} from 'prop-types';
+import {offerPropTypes} from '../../types';
 import PremiumMark from '../premium-mark/premium-mark';
 import Rating from '../rating/rating';
 import Price from '../price/price';
 import BookmarkButton from '../bookmark-button/bookmark-button';
-import {offerPropTypes} from '../../types';
+import {OfferType} from '../../const';
 
 const PREFIX = `place-card`;
 
@@ -17,7 +19,7 @@ const PlaceCard = (props) => {
     onMouseLeave
   } = props;
 
-  const {previewImage, title, isFavorite, isPremium, rating, type, price} = offer;
+  const {previewImage, title, isPremium, rating, type, price} = offer;
 
   const className = (prefix === `cities`) ?
     `cities__place-card place-card`
@@ -45,8 +47,8 @@ const PlaceCard = (props) => {
             price={price}
           />
           <BookmarkButton
-            prefix={PREFIX}
-            isFavorite={isFavorite}
+            id={offer.id}
+            prefix={prefix}
             width={18}
             height={19}
           />
@@ -57,9 +59,11 @@ const PlaceCard = (props) => {
           isValue={false}
         />
         <h2 className="place-card__name">
-          <a onClick={() => onTitleClick(offer)}>{title}</a>
+          <Link to={`/offer/${offer.id}`} onClick={() => onTitleClick(offer)}>
+            {title}
+          </Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{OfferType[type]}</p>
       </div>
     </article>
   );

@@ -24,20 +24,20 @@ exports[`Reviews should render Reviews correctly 1`] = `
         className="reviews__user user"
       >
         <div
-          className="reviews__avatar-wrapper user__avatar-wrapper "
+          className="reviews__avatar-wrapper user__avatar-wrapper reviews__avatar-wrapper--pro"
         >
           <img
-            alt="Bob avatar"
+            alt="Alena avatar"
             className="reviews__avatar user__avatar"
             height={54}
-            src="avatar"
+            src="/user1_avatar"
             width={54}
           />
         </div>
         <span
           className="reviews__user-name"
         >
-          Bob
+          Alena
         </span>
       </div>
       <div
@@ -66,13 +66,13 @@ exports[`Reviews should render Reviews correctly 1`] = `
         <p
           className="reviews__text"
         >
-          comment
+          Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country.
         </p>
         <time
           className="reviews__time"
-          dateTime="2019-04-24"
+          dateTime="2020-03-03"
         >
-          April 2019
+          March 2020
         </time>
       </div>
     </li>
@@ -83,20 +83,20 @@ exports[`Reviews should render Reviews correctly 1`] = `
         className="reviews__user user"
       >
         <div
-          className="reviews__avatar-wrapper user__avatar-wrapper "
+          className="reviews__avatar-wrapper user__avatar-wrapper reviews__avatar-wrapper--pro"
         >
           <img
-            alt="Jane avatar"
+            alt="Nick avatar"
             className="reviews__avatar user__avatar"
             height={54}
-            src="avatar"
+            src="/user2_avatar"
             width={54}
           />
         </div>
         <span
           className="reviews__user-name"
         >
-          Jane
+          Nick
         </span>
       </div>
       <div
@@ -125,13 +125,13 @@ exports[`Reviews should render Reviews correctly 1`] = `
         <p
           className="reviews__text"
         >
-          comment
+          In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.
         </p>
         <time
           className="reviews__time"
-          dateTime="2019-04-24"
+          dateTime="2020-03-02"
         >
-          April 2019
+          March 2020
         </time>
       </div>
     </li>
@@ -140,6 +140,7 @@ exports[`Reviews should render Reviews correctly 1`] = `
     action="#"
     className="reviews__form form"
     method="post"
+    onSubmit={[Function]}
   >
     <label
       className="reviews__label form__label"
@@ -151,11 +152,13 @@ exports[`Reviews should render Reviews correctly 1`] = `
       className="reviews__rating-form form__rating"
     >
       <input
+        checked={false}
         className="form__rating-input visually-hidden"
         id="5-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
-        value="5"
+        value={5}
       />
       <label
         className="reviews__rating-label form__rating-label"
@@ -173,11 +176,13 @@ exports[`Reviews should render Reviews correctly 1`] = `
         </svg>
       </label>
       <input
+        checked={false}
         className="form__rating-input visually-hidden"
         id="4-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
-        value="4"
+        value={4}
       />
       <label
         className="reviews__rating-label form__rating-label"
@@ -195,11 +200,13 @@ exports[`Reviews should render Reviews correctly 1`] = `
         </svg>
       </label>
       <input
+        checked={false}
         className="form__rating-input visually-hidden"
         id="3-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
-        value="3"
+        value={3}
       />
       <label
         className="reviews__rating-label form__rating-label"
@@ -217,11 +224,13 @@ exports[`Reviews should render Reviews correctly 1`] = `
         </svg>
       </label>
       <input
+        checked={false}
         className="form__rating-input visually-hidden"
         id="2-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
-        value="2"
+        value={2}
       />
       <label
         className="reviews__rating-label form__rating-label"
@@ -239,15 +248,17 @@ exports[`Reviews should render Reviews correctly 1`] = `
         </svg>
       </label>
       <input
+        checked={false}
         className="form__rating-input visually-hidden"
-        id="1-star"
+        id="1-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
-        value="1"
+        value={1}
       />
       <label
         className="reviews__rating-label form__rating-label"
-        htmlFor="1-star"
+        htmlFor="1-stars"
         title="terribly"
       >
         <svg
@@ -265,7 +276,9 @@ exports[`Reviews should render Reviews correctly 1`] = `
       className="reviews__textarea form__textarea"
       id="review"
       name="review"
+      onChange={[Function]}
       placeholder="Tell how was your stay, what you like and what can be improved"
+      value=""
     />
     <div
       className="reviews__button-wrapper"
@@ -289,7 +302,7 @@ exports[`Reviews should render Reviews correctly 1`] = `
       </p>
       <button
         className="reviews__submit form__submit button"
-        disabled=""
+        disabled={true}
         type="submit"
       >
         Submit

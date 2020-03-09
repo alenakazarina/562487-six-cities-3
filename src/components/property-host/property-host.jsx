@@ -15,4 +15,4 @@ PropertyHost.propTypes = {
   children: childrenPropTypes
 };
 
-export default PropertyHost;
+export default React.memo(PropertyHost);

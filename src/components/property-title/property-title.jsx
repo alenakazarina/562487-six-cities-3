@@ -14,4 +14,4 @@ PropertyTitle.propTypes = {
   children: childrenPropTypes
 };
 
-export default PropertyTitle;
+export default React.memo(PropertyTitle);

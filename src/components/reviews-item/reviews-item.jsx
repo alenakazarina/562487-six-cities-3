@@ -6,6 +6,8 @@ import Rating from '../rating/rating';
 
 const ReviewsItem = ({review}) => {
   const {id, user, comment, date, rating} = review;
+  const dateTime = date.toISOString();
+  const reviewDate = `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
 
   return (
     <li className="reviews__item" key={id}>
@@ -13,9 +15,7 @@ const ReviewsItem = ({review}) => {
       <div className="reviews__info">
         <Rating prefix={`reviews`} rating={rating} />
         <p className="reviews__text">{comment}</p>
-        <time className="reviews__time" dateTime={date.toISOString().slice(0, 10)}>
-          {`${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
-        </time>
+        <time className="reviews__time" dateTime={dateTime}>{reviewDate}</time>
       </div>
     </li>
   );

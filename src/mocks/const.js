@@ -53,18 +53,23 @@ export const users = [
 
 export const appUsers = users.map((user) => Object.assign({}, user, {email: `user@gmail.com`}));
 
+const dates = [
+  new Date(`2020.03.04 14:00`),
+  new Date(`2020.03.03 10:00`)
+];
+
 export const reviews = [{
   id: 1,
   user: users[0],
   rating: 4,
   comment: sentences[0],
-  date: new Date(`2020.03.04`)
+  date: dates[0]
 }, {
   id: 2,
   user: users[1],
   rating: 5,
   comment: sentences[1],
-  date: new Date(`2020.03.03`)
+  date: dates[1]
 }];
 
 export const cityOffers = [{
@@ -148,7 +153,7 @@ export const apiMockOffers = [{
 
 export const apiMockReviews = [{
   'comment': sentences[1],
-  'date': new Date(`2020.03.03`).toISOString(),
+  'date': dates[1].toISOString(),
   'id': 1,
   'rating': 3.5,
   'user': {

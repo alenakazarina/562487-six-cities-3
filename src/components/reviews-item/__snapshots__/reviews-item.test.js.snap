@@ -54,7 +54,7 @@ exports[`ReviewsItem should render ReviewsItem correctly 1`] = `
     </p>
     <time
       className="reviews__time"
-      dateTime="2020-03-03"
+      dateTime="2020-03-04T11:00:00.000Z"
     >
       March 2020
     </time>

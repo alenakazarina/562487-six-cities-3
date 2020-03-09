@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {string} from 'prop-types';
 
 const PremiumMark = ({prefix}) => (
   <div className={`${prefix}__mark`}>
@@ -8,7 +8,7 @@ const PremiumMark = ({prefix}) => (
 );
 
 PremiumMark.propTypes = {
-  prefix: PropTypes.string.isRequired
+  prefix: string.isRequired
 };
 
-export default PremiumMark;
+export default React.memo(PremiumMark);

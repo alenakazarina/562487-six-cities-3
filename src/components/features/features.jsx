@@ -1,9 +1,8 @@
 import React from 'react';
-import {featuresPropTypes} from '../../types';
+import {string, number} from 'prop-types';
 import {formatPluralNouns} from '../../utils';
 
-const Features = ({features}) => {
-  const {type, bedrooms, maxAdults} = features;
+const Features = ({type, bedrooms, maxAdults}) => {
   return (
     <ul className="property__features">
       <li className="property__feature property__feature--entire">
@@ -20,7 +19,9 @@ const Features = ({features}) => {
 };
 
 Features.propTypes = {
-  features: featuresPropTypes
+  type: string.isRequired,
+  bedrooms: number.isRequired,
+  maxAdults: number.isRequired
 };
 
-export default Features;
+export default React.memo(Features);

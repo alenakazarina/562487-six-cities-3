@@ -1,6 +1,11 @@
-import React from 'react';
-import {arrayOf, func} from 'prop-types';
+import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
+import {arrayOf, func, number} from 'prop-types';
 import {offerPropTypes} from '../../types';
+import {getOffers} from '../../reducers/offers/selectors';
+import {getPageOffer, getNearOffers} from '../../reducers/offer/selectors';
+import {ActionCreator as OffersActionCreator} from '../../reducers/offers/offers';
+import {Operation as FavoritesOperation} from '../../reducers/favorites/favorites';
 import Gallery from '../gallery/gallery';
 import PremiumMark from '../premium-mark/premium-mark';
 import PropertyTitle from '../property-title/property-title';
@@ -16,67 +21,97 @@ import Map from '../map/map';
 import NearPlaces from '../near-places/near-places';
 
 const PREFIX = `property`;
+const NEAR_OFFERS_ON_MAP_COUNT = 3;
 
-const Property = (props) => {
-  const {
-    pageOffer,
-    activeOffer,
-    nearOffers,
-    onTitleClick,
-    onCardHoverChange
-  } = props;
+class Property extends PureComponent {
+  componentDidMount() {
+    const {id} = this.props;
+    const pageOffer = this.props.initialOffers.find((offer) => offer.id === id);
+    this.props.onOfferPageLoad(pageOffer);
+  }
 
-  const {title, images, isFavorite, isPremium, rating, features,
-    price, amenities, host, description, reviews} = pageOffer;
+  render() {
+    const {
+      pageOffer,
+      renderHeader,
+      nearOffers
+    } = this.props;
 
-  return (
-    <main className="page__main page__main--property">
-      <section className="property">
-        <Gallery images={images} />
-        <div className="property__container container">
-          <div className="property__wrapper">
-            {isPremium ? <PremiumMark prefix={PREFIX} /> : ``}
-            <PropertyTitle title={title}>
-              <BookmarkButton
-                prefix={PREFIX}
-                isFavorite={isFavorite}
-                width={31}
-                height={33}
-              />
-            </PropertyTitle>
-            <Rating prefix={PREFIX} rating={rating} isValue />
-            <Features features={features} />
-            <Price prefix={PREFIX} price={price} />
-            <PropertyInside amenities={amenities} />
-            <PropertyHost host={host}>
-              <PropertyDescription description={description} />
-            </PropertyHost>
-            <Reviews reviews={reviews} />
+    const isLoading = nearOffers.length === 0;
+
+    if (isLoading) {
+      return ``;
+    }
+
+    const {title, images, isFavorite, isPremium, rating, type, bedrooms, maxAdults, price, amenities, host, description} = pageOffer;
+
+    const nearOffersOnMap = isLoading === false && nearOffers.slice(0, NEAR_OFFERS_ON_MAP_COUNT);
+
+    return (
+      <div className="page page--property">
+        {renderHeader()}
+        <main className="page__main page__main--property">
+          <section className="property">
+            <Gallery images={images} />
+            <div className="property__container container">
+              <div className="property__wrapper">
+                {isPremium ? <PremiumMark prefix={PREFIX} /> : ``}
+                <PropertyTitle title={title}>
+                  <BookmarkButton
+                    id={pageOffer.id}
+                    prefix={PREFIX}
+                    isFavorite={isFavorite}
+                    width={31}
+                    height={33}
+                  />
+                </PropertyTitle>
+                <Rating prefix={PREFIX} rating={rating} isValue />
+                <Features type={type} bedrooms={bedrooms} maxAdults={maxAdults} />
+                <Price prefix={PREFIX} price={price} />
+                <PropertyInside amenities={amenities} />
+                <PropertyHost host={host}>
+                  <PropertyDescription description={description} />
+                </PropertyHost>
+                <Reviews />
+              </div>
+            </div>
+            <Map
+              prefix={PREFIX}
+              offers={[...nearOffersOnMap, pageOffer]}
+              activeOffer={pageOffer}
+            />
+          </section>
+          <div className="container">
+            <NearPlaces />
           </div>
-        </div>
-        <Map
-          prefix={PREFIX}
-          offers={nearOffers}
-          activeOffer={activeOffer}
-        />
-      </section>
-      <div className="container">
-        <NearPlaces
-          nearOffers={nearOffers}
-          onTitleClick={onTitleClick}
-          onCardHoverChange={onCardHoverChange}
-        />
+        </main>
       </div>
-    </main>
-  );
-};
+    );
+  }
+}
 
 Property.propTypes = {
+  id: number.isRequired,
   pageOffer: offerPropTypes,
-  activeOffer: offerPropTypes,
+  initialOffers: arrayOf(offerPropTypes),
+  renderHeader: func.isRequired,
   nearOffers: arrayOf(offerPropTypes),
-  onTitleClick: func.isRequired,
-  onCardHoverChange: func.isRequired
+  onFavoriteClick: func.isRequired,
+  onOfferPageLoad: func.isRequired
 };
 
-export default React.memo(Property);
+const mapStateToProps = (state) => ({
+  initialOffers: getOffers(state),
+  pageOffer: getPageOffer(state),
+  nearOffers: getNearOffers(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFavoriteClick(id, isFavorite) {
+    dispatch(FavoritesOperation.updateFavorites(id, isFavorite));
+    dispatch(OffersActionCreator.toggleFavorite(id));
+  }
+});
+
+export {Property};
+export default connect(mapStateToProps, mapDispatchToProps)(Property);

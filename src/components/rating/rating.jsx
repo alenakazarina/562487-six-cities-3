@@ -21,4 +21,4 @@ Rating.propTypes = {
   isValue: bool
 };
 
-export default Rating;
+export default React.memo(Rating);

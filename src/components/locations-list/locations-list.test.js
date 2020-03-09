@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import LocationsList from './locations-list';
-import {cities} from '../../mocks/tests';
+import {cities} from '../../mocks/const';
 
 const activeCity = `Brussels`;
 

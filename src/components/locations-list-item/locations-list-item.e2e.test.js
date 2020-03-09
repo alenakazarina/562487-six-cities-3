@@ -14,6 +14,7 @@ describe(`LocationsListItem`, () => {
     const onTabClick = jest.fn();
     const locationsListItem = shallow(
         <LocationsListItem
+          nodeType="li"
           city={city}
           isActive={false}
           onTabClick={onTabClick}
@@ -28,6 +29,7 @@ describe(`LocationsListItem`, () => {
     const onTabClick = jest.fn();
     const locationsListItem = shallow(
         <LocationsListItem
+          nodeType="li"
           city={city}
           isActive={true}
           onTabClick={onTabClick}

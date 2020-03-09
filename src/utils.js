@@ -1,3 +1,5 @@
+import {MONTHS} from './const';
+
 export const extend = (state, updates) => {
   return Object.assign({}, state, updates);
 };
@@ -11,11 +13,21 @@ export const getOffersByCity = (offers, city) => {
   return offers.filter((offer) => offer.city.name === city);
 };
 
-export const getNearOffers = (offers, pageOffer) => {
-  return offers.filter((offer) => offer.city.name === pageOffer.city.name && offer.id !== pageOffer.id);
-};
-
 export const formatPluralNouns = (count, noun) => {
   return count === 1 ? `${count} ${noun}` : `${count} ${noun}s`;
 };
 
+const withLeadingZero = (value) => parseInt(value, 10) > 9 ? value : `0${value}`;
+
+export const formatDatetime = (date) => {
+  const year = date.getFullYear();
+  const month = withLeadingZero(date.getMonth() + 1);
+  const day = withLeadingZero(date.getDate());
+  const hours = withLeadingZero(date.getHours());
+  const minutes = withLeadingZero(date.getMinutes());
+  return `${year}:${month}:${day}T${hours}:${minutes}`;
+};
+
+export const formatMonthYear = (date) => {
+  return `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+};

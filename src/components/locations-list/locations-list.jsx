@@ -10,6 +10,7 @@ const LocationsList = ({cities, activeCity, onTabClick}) => {
           {cities.map((city) => (
             <LocationsListItem
               key={city}
+              nodeType="li"
               city={city}
               isActive={city === activeCity}
               onTabClick={onTabClick}

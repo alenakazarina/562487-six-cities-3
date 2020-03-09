@@ -6,12 +6,13 @@ const User = ({prefix, user}) => {
   const {name, isPro, avatarUrl} = user;
   const proClass = isPro ? `${prefix}__avatar-wrapper--pro` : ``;
   const isHost = prefix === `property` ? `host-` : ``;
+  const avatar = isHost ? `../${avatarUrl}` : avatarUrl;
   const size = prefix === `reviews` ? 54 : 74;
   return (
     <div className={`${prefix}__${isHost}user user`}>
       <div className={`${prefix}__avatar-wrapper user__avatar-wrapper ${proClass}`}>
         <img className={`${prefix}__avatar user__avatar`}
-          src={avatarUrl}
+          src={avatar}
           width={size}
           height={size}
           alt={`${name} avatar`}/>
@@ -28,4 +29,4 @@ User.propTypes = {
   user: userPropTypes
 };
 
-export default User;
+export default React.memo(User);

@@ -3,7 +3,7 @@ import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import withSort from './with-sort';
 import {SortType} from '../../const';
-import {cityOffers} from '../../mocks/tests';
+import {cityOffers} from '../../mocks/const';
 
 configure({adapter: new Adapter()});
 

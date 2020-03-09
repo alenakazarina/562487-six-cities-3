@@ -1,24 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import createAPI from './api';
 import App from './components/app/app';
-import {reducer} from './reducers/reducer';
-import {offers} from './mocks/offers';
-import {getUniqueCities, getOffersByCity} from './utils';
+import reducer from './reducers/reducer';
+import {Operation as OffersOperation} from './reducers/offers/offers';
+import {Operation as UserOperation, ActionCreator, AuthStatus} from './reducers/user/user';
+
+const onUnauthorized = () => {
+  store.dispatch(ActionCreator.requireAuthorization(AuthStatus.NO_AUTH));
+};
+
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
-    {
-      initialOffers: offers,
-      offers: getOffersByCity(offers, offers[0].city.name),
-      cities: getUniqueCities(offers),
-      activeCity: offers[0].city.name,
-      activeOffer: null,
-      pageOffer: null
-    },
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    compose(
+        applyMiddleware(thunk.withExtraArgument(api)),
+        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+    )
 );
+
+store.dispatch(OffersOperation.loadOffers());
+store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>

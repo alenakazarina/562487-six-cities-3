@@ -2,7 +2,6 @@ import React, {PureComponent, createRef} from 'react';
 import {string, arrayOf} from 'prop-types';
 import {offerPropTypes} from '../../types';
 import leaflet from 'leaflet';
-import {Cities, MAP_ZOOM} from '../../mocks/const';
 
 const TileLayer = {
   urlTemplate: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
@@ -17,8 +16,9 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
+    const mapZoom = this.props.offers[0].city.location.zoom;
     this._map = leaflet.map(this._mapRef.current, {
-      zoom: MAP_ZOOM,
+      zoom: mapZoom,
       zoomControl: false,
       marker: true
     });
@@ -42,28 +42,30 @@ class Map extends PureComponent {
 
   _update() {
     const {offers, activeOffer} = this.props;
-    const {cityCenter} = Cities[offers[0].city.name.toUpperCase()];
-    this._map.setView([cityCenter.latitude, cityCenter.longitude], MAP_ZOOM);
+    const {city} = offers[0];
+    const zoom = this.props.offers[0].city.location.zoom;
+    this._map.setView([city.location.latitude, city.location.longitude], zoom);
 
     offers.forEach((offer) => {
       const icon = activeOffer && offer.id === activeOffer.id ?
         leaflet.icon({
-          iconUrl: `img/pin-active.svg`,
+          iconUrl: `../img/pin-active.svg`,
           iconSize: [27, 39]
         }) :
         leaflet.icon({
-          iconUrl: `img/pin.svg`,
+          iconUrl: `../img/pin.svg`,
           iconSize: [27, 39]
         });
 
       leaflet
-        .marker([offer.city.location.latitude, offer.city.location.longitude], {icon})
+        .marker([offer.location.latitude, offer.location.longitude], {icon})
         .addTo(this._map);
     });
   }
 
   render() {
     const {prefix} = this.props;
+
     return (
       <section ref={this._mapRef} className={`${prefix}__map map`} />
     );

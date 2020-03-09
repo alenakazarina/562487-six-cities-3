@@ -5,7 +5,9 @@ import ReviewsItem from '../reviews-item/reviews-item';
 
 const ReviewsList = ({reviews}) => (
   <ul className="reviews__list">
-    {reviews.map((review) => <ReviewsItem key={review.id} review={review} />)}
+    {reviews.map((review) =>
+      <ReviewsItem key={review.id} review={review} />
+    )}
   </ul>
 );
 
@@ -13,4 +15,4 @@ ReviewsList.propTypes = {
   reviews: arrayOf(reviewPropTypes)
 };
 
-export default ReviewsList;
+export default React.memo(ReviewsList);

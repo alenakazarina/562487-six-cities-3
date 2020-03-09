@@ -1,13 +1,13 @@
 import React from 'react';
 import {reviewPropTypes} from '../../types';
-import {MONTHS} from '../../const';
+import {formatDatetime, formatMonthYear} from '../../utils';
 import User from '../user/user';
 import Rating from '../rating/rating';
 
 const ReviewsItem = ({review}) => {
   const {id, user, comment, date, rating} = review;
-  const dateTime = date.toISOString();
-  const reviewDate = `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+  const dateTime = formatDatetime(date);
+  const reviewDate = formatMonthYear(date);
 
   return (
     <li className="reviews__item" key={id}>

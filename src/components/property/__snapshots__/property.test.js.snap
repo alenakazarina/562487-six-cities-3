@@ -338,7 +338,7 @@ exports[`Property should render Property correctly 1`] = `
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2020-03-04T11:00:00.000Z"
+                    dateTime="2020:03:04T14:00"
                   >
                     March 2020
                   </time>
@@ -397,7 +397,7 @@ exports[`Property should render Property correctly 1`] = `
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2020-03-03T07:00:00.000Z"
+                    dateTime="2020:03:03T10:00"
                   >
                     March 2020
                   </time>

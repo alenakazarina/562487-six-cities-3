@@ -1,6 +1,6 @@
 import {getSortedOffers} from './with-sort';
 import {SortType} from '../../const';
-import {cityOffers} from '../../mocks/tests';
+import {cityOffers} from '../../mocks/const';
 
 describe(`getSortedOffers`, () => {
   it(`should return initial offers sorted by Popular sort type`, () => {
@@ -12,7 +12,7 @@ describe(`getSortedOffers`, () => {
   });
 
   it(`should return offers sorted by Price: high to low sort type`, () => {
-    expect(getSortedOffers(cityOffers, SortType.PRICE_TO_LOW)).toEqual(cityOffers.reverse());
+    expect(getSortedOffers(cityOffers, SortType.PRICE_TO_LOW)).toEqual(cityOffers.slice().reverse());
   });
 
   it(`should return offers sorted by Top rated first sort type`, () => {

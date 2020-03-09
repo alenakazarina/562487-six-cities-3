@@ -11,8 +11,9 @@ export const getSortedOffers = (offers, activeSortType) => {
       return offers.slice().sort((firstOffer, secondOffer) => firstOffer.price - secondOffer.price);
     case SortType.TOP_RATED:
       return offers.slice().sort((firstOffer, secondOffer) => secondOffer.rating - firstOffer.rating);
+    default:
+      return offers;
   }
-  return offers;
 };
 
 const withSort = (Component) => {

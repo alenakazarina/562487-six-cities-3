@@ -4,6 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {storeWithAuth} from '../../mocks/tests';
 import Property from './property';
+import {cityOffers, appUsers, reviews} from '../../mocks/const';
 
 const mockFn = () => {};
 
@@ -13,8 +14,13 @@ describe(`Property`, () => {
         <Provider store={storeWithAuth}>
           <BrowserRouter>
             <Property
-              id={1}
-              renderHeader={mockFn}
+              isAuth
+              user={appUsers[0]}
+              errorStatus={0}
+              activeOffer={cityOffers[0]}
+              nearOffers={cityOffers.slice(1)}
+              reviews={reviews}
+              onReviewSubmit={mockFn}
               onOfferPageLoad={mockFn}
             />
           </BrowserRouter>

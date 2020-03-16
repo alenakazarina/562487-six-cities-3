@@ -4,19 +4,15 @@ import {offerPropTypes} from '../../types';
 import Sort from '../sort/sort';
 import PlacesList from '../places-list/places-list';
 import withToggle from '../../hocs/with-toggle/with-toggle';
-import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {formatPluralNouns} from '../../utils';
 
-const PlacesListWrapped = withActiveItem(PlacesList, `places-list`);
 const SortWithToggle = withToggle(Sort);
 
 const Places = (props) => {
   const {
     offers,
-    onTitleClick,
     activeSortType,
-    onSortTypeChange,
-    onCardHoverChange
+    onSortTypeChange
   } = props;
 
   return (
@@ -27,11 +23,9 @@ const Places = (props) => {
         activeSortType={activeSortType}
         onSortTypeChange={onSortTypeChange}
       />
-      <PlacesListWrapped
+      <PlacesList
         prefix={`cities`}
         offers={offers}
-        onTitleClick={onTitleClick}
-        onCardHoverChange={onCardHoverChange}
       />
     </section>
   );
@@ -39,10 +33,8 @@ const Places = (props) => {
 
 Places.propTypes = {
   offers: arrayOf(offerPropTypes).isRequired,
-  onTitleClick: func.isRequired,
   activeSortType: string.isRequired,
-  onSortTypeChange: func.isRequired,
-  onCardHoverChange: func.isRequired
+  onSortTypeChange: func.isRequired
 };
 
 export default React.memo(Places);

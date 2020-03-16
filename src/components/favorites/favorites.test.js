@@ -3,9 +3,8 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import {storeWithAuth} from '../../mocks/tests';
+import {appUsers} from '../../mocks/const';
 import Favorites from './favorites';
-
-const mockFn = () => {};
 
 describe(`Favorites`, () => {
   it(`should render Favorites with no empty favorites offers`, () => {
@@ -13,8 +12,9 @@ describe(`Favorites`, () => {
         <Provider store={storeWithAuth}>
           <BrowserRouter>
             <Favorites
+              isAuth
+              user={appUsers[0]}
               isEmpty={false}
-              renderHeader={mockFn}
             />
           </BrowserRouter>
         </Provider>
@@ -27,8 +27,9 @@ describe(`Favorites`, () => {
         <Provider store={storeWithAuth}>
           <BrowserRouter>
             <Favorites
-              isEmpty={true}
-              renderHeader={mockFn}
+              isAuth
+              user={appUsers[0]}
+              isEmpty
             />
           </BrowserRouter>
         </Provider>

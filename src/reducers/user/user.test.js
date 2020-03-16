@@ -1,4 +1,10 @@
-import {reducer, ActionCreator, ActionType, AuthStatus, DEFAULT_USER} from './user';
+import MockAdapter from 'axios-mock-adapter';
+import {createAPI} from '../../api';
+import {Operation, reducer, ActionCreator, ActionType, AuthStatus, DEFAULT_USER} from './user';
+import {apiMockAppUser} from '../../mocks/const';
+import User from '../../models/user';
+
+const api = createAPI(() => {});
 
 describe(`User reducer works correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -86,5 +92,55 @@ describe(`Action creators work correctly`, () => {
       type: ActionType.REQUIRE_AUTHORIZATION,
       payload: AuthStatus.AUTH
     });
+  });
+});
+
+describe(`Operation work correctly`, () => {
+  it(`Should make a correct API call to /login - check auth success`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const authChecker = Operation.checkAuth();
+    const adaptedUser = User.parseUser(apiMockAppUser);
+    apiMock
+      .onGet(`/login`)
+      .reply(200, apiMockAppUser);
+
+    return authChecker(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.REQUIRE_AUTHORIZATION,
+          payload: AuthStatus.AUTH
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_USER,
+          payload: adaptedUser
+        });
+      });
+  });
+  it(`Should make a correct API call to /login - login success`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const loginer = Operation.login({
+      login: `alena@gmail.com`,
+      password: `6_cities`
+    });
+    const adaptedUser = User.parseUser(apiMockAppUser);
+    apiMock
+      .onPost(`/login`)
+      .reply(200, apiMockAppUser);
+
+    return loginer(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.REQUIRE_AUTHORIZATION,
+          payload: AuthStatus.AUTH
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_USER,
+          payload: adaptedUser
+        });
+      });
   });
 });

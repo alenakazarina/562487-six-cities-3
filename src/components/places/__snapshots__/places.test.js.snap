@@ -78,7 +78,6 @@ exports[`Places should render Places correctly 1`] = `
   </form>
   <div
     className="cities__places-list places__list tabs__content"
-    onMouseLeave={[Function]}
   >
     <article
       className="cities__place-card place-card"
@@ -95,9 +94,7 @@ exports[`Places should render Places correctly 1`] = `
       <div
         className="cities__image-wrapper place-card__image-wrapper"
       >
-        <a
-          href="#"
-        >
+        <a>
           <img
             alt="Place image"
             className="place-card__image"
@@ -200,9 +197,7 @@ exports[`Places should render Places correctly 1`] = `
       <div
         className="cities__image-wrapper place-card__image-wrapper"
       >
-        <a
-          href="#"
-        >
+        <a>
           <img
             alt="Place image"
             className="place-card__image"
@@ -311,9 +306,7 @@ exports[`Places should render Places correctly 1`] = `
       <div
         className="cities__image-wrapper place-card__image-wrapper"
       >
-        <a
-          href="#"
-        >
+        <a>
           <img
             alt="Place image"
             className="place-card__image"

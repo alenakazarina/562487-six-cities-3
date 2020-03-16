@@ -1,8 +1,13 @@
 import React from 'react';
-import {arrayOf, string, func} from 'prop-types';
+import {arrayOf, string} from 'prop-types';
 import LocationsListItem from '../locations-list-item/locations-list-item';
 
-const LocationsList = ({cities, activeCity, onTabClick}) => {
+const LocationsList = (props) => {
+  const {
+    cities,
+    activeCity
+  } = props;
+
   return (
     <div className="tabs">
       <section className="locations container">
@@ -13,7 +18,6 @@ const LocationsList = ({cities, activeCity, onTabClick}) => {
               nodeType="li"
               city={city}
               isActive={city === activeCity}
-              onTabClick={onTabClick}
             />
           ))}
         </ul>
@@ -24,8 +28,7 @@ const LocationsList = ({cities, activeCity, onTabClick}) => {
 
 LocationsList.propTypes = {
   cities: arrayOf(string).isRequired,
-  activeCity: string.isRequired,
-  onTabClick: func.isRequired
+  activeCity: string.isRequired
 };
 
 export default React.memo(LocationsList);

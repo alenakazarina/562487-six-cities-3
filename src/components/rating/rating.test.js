@@ -21,6 +21,7 @@ describe(`Rating`, () => {
         <Rating
           prefix={prefixes[1]}
           rating={ratings[1]}
+          isValue={false}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();

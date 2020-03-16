@@ -17,9 +17,7 @@ describe(`PlaceCard`, () => {
             <PlaceCard
               prefix={prefixes[0]}
               offer={cityOffers[0]}
-              onTitleClick={mockFn}
-              onMouseEnter={mockFn}
-              onMouseLeave={mockFn}
+              setActiveOffer={mockFn}
             />
           </BrowserRouter>
         </Provider>
@@ -34,9 +32,7 @@ describe(`PlaceCard`, () => {
             <PlaceCard
               prefix={prefixes[1]}
               offer={cityOffers[1]}
-              onTitleClick={mockFn}
-              onMouseEnter={mockFn}
-              onMouseLeave={mockFn}
+              setActiveOffer={mockFn}
             />
           </BrowserRouter>
         </Provider>

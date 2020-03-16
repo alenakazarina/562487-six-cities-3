@@ -17,6 +17,25 @@ describe(`FavoritesListItem`, () => {
             <FavoritesListItem
               city={city}
               offers={cityOffers}
+              isActive={false}
+              onTitleClick={mockFn}
+              onFavoriteClick={mockFn}
+              onTabClick={mockFn}
+            />
+          </BrowserRouter>
+        </Provider>
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`should render FavoritesListItem with active location tab`, () => {
+    const tree = renderer.create(
+        <Provider store={storeWithAuth}>
+          <BrowserRouter>
+            <FavoritesListItem
+              city={city}
+              offers={cityOffers}
+              isActive
               onTitleClick={mockFn}
               onFavoriteClick={mockFn}
               onTabClick={mockFn}

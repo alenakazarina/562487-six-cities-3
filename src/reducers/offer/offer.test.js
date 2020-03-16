@@ -6,11 +6,12 @@ import Offer from '../../models/offer';
 import Comment from '../../models/comment';
 
 const api = createAPI(() => {});
+const activeOfferId = 1;
+const apiMock = new MockAdapter(api);
 
 describe(`Offer reducer works correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
-      pageOffer: null,
       activeOffer: null,
       nearOffers: [],
       comments: []
@@ -19,34 +20,22 @@ describe(`Offer reducer works correctly`, () => {
 
   it(`Reducer should load near offers`, () => {
     expect(reducer({
-      pageOffer: null,
-      activeOffer: null,
-      nearOffers: [],
-      comments: []
+      nearOffers: []
     }, {
       type: ActionType.LOAD_NEAR_OFFERS,
       payload: cityOffers
     })).toEqual({
-      pageOffer: null,
-      activeOffer: null,
-      nearOffers: cityOffers,
-      comments: []
+      nearOffers: cityOffers
     });
   });
 
   it(`Reducer should load comments`, () => {
     expect(reducer({
-      pageOffer: null,
-      activeOffer: null,
-      nearOffers: [],
       comments: []
     }, {
       type: ActionType.LOAD_COMMENTS,
       payload: reviews
     })).toEqual({
-      pageOffer: null,
-      activeOffer: null,
-      nearOffers: [],
       comments: reviews
     });
   });
@@ -54,66 +43,46 @@ describe(`Offer reducer works correctly`, () => {
   it(`Reducer should update comments`, () => {
     const prevReviews = reviews.slice(0, 1);
     expect(reducer({
-      pageOffer: null,
-      activeOffer: null,
-      nearOffers: [],
       comments: prevReviews
     }, {
       type: ActionType.UPDATE_COMMENTS,
       payload: reviews
     })).toEqual({
-      pageOffer: null,
-      activeOffer: null,
-      nearOffers: [],
       comments: reviews
-    });
-  });
-
-  it(`Reducer should set page offer`, () => {
-    expect(reducer({
-      pageOffer: null,
-      activeOffer: null,
-      nearOffers: [],
-      comments: []
-    }, {
-      type: ActionType.SET_PAGE_OFFER,
-      payload: cityOffers[0]
-    })).toEqual({
-      pageOffer: cityOffers[0],
-      activeOffer: null,
-      nearOffers: [],
-      comments: []
     });
   });
 
   it(`Reducer should set active offer`, () => {
     expect(reducer({
-      pageOffer: null,
-      activeOffer: null,
-      nearOffers: [],
-      comments: []
+      activeOffer: null
     }, {
       type: ActionType.SET_ACTIVE_OFFER,
       payload: cityOffers[0]
     })).toEqual({
-      pageOffer: null,
-      activeOffer: cityOffers[0],
-      nearOffers: [],
-      comments: []
+      activeOffer: cityOffers[0]
+    });
+  });
+
+  it(`Reducer should reset active offer`, () => {
+    expect(reducer({
+      activeOffer: cityOffers[0]
+    }, {
+      type: ActionType.SET_ACTIVE_OFFER,
+      payload: null
+    })).toEqual({
+      activeOffer: null
     });
   });
 });
 
 describe(`Operation work correctly`, () => {
   it(`Should make a correct API call to /hotels/:id/nearby`, () => {
-    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const pageOfferId = 1;
-    const nearOffersLoader = Operation.loadNearOffers({id: pageOfferId});
+    const nearOffersLoader = Operation.loadNearOffers(activeOfferId);
     const adaptedApiMockOffers = Offer.parseOffers(apiMockOffers);
 
     apiMock
-      .onGet(`/hotels/${pageOfferId}/nearby`)
+      .onGet(`/hotels/${activeOfferId}/nearby`)
       .reply(200, apiMockOffers);
 
     return nearOffersLoader(dispatch, () => {}, api)
@@ -127,14 +96,12 @@ describe(`Operation work correctly`, () => {
   });
 
   it(`Should make a correct API call to /comments/:id`, () => {
-    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const pageOfferId = 1;
-    const commentsLoader = Operation.loadComments({id: pageOfferId});
+    const commentsLoader = Operation.loadComments(activeOfferId);
     const adaptedApiMockReviews = Comment.parseComments(apiMockReviews);
 
     apiMock
-      .onGet(`/comments/${pageOfferId}`)
+      .onGet(`/comments/${activeOfferId}`)
       .reply(200, apiMockReviews);
 
     return commentsLoader(dispatch, () => {}, api)
@@ -142,6 +109,28 @@ describe(`Operation work correctly`, () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_COMMENTS,
+          payload: adaptedApiMockReviews
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /comments/:id - add comment case`, () => {
+    const dispatch = jest.fn();
+    const commentsUpdater = Operation.updateComments(activeOfferId, {
+      rating: 4,
+      text: `Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country.`
+    });
+    const adaptedApiMockReviews = Comment.parseComments(apiMockReviews);
+
+    apiMock
+      .onPost(`/comments/${activeOfferId}`)
+      .reply(200, apiMockReviews);
+
+    return commentsUpdater(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.UPDATE_COMMENTS,
           payload: adaptedApiMockReviews
         });
       });

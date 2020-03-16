@@ -6,7 +6,6 @@ import {storeWithAuth} from '../../mocks/tests';
 import Cities from './cities';
 import {cityOffers} from '../../mocks/const';
 
-const mockFn = () => {};
 const city = `Brussels`;
 
 describe(`Cities`, () => {
@@ -18,8 +17,6 @@ describe(`Cities`, () => {
               offers={cityOffers}
               activeCity={city}
               activeOffer={null}
-              onTitleClick={mockFn}
-              onCardHoverChange={mockFn}
             />
           </BrowserRouter>
         </Provider>,
@@ -30,13 +27,15 @@ describe(`Cities`, () => {
 
   it(`should render Cities with empty offers`, () => {
     const tree = renderer.create(
-        <Cities
-          offers={[]}
-          activeCity={city}
-          activeOffer={null}
-          onTitleClick={mockFn}
-          onCardHoverChange={mockFn}
-        />,
+        <Provider store={storeWithAuth}>
+          <BrowserRouter>
+            <Cities
+              offers={[]}
+              activeCity={city}
+              activeOffer={null}
+            />
+          </BrowserRouter>
+        </Provider>,
         {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();
     expect(tree).toMatchSnapshot();

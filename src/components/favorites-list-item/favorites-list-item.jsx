@@ -1,5 +1,5 @@
 import React from 'react';
-import {string, arrayOf, func} from 'prop-types';
+import {string, arrayOf, bool} from 'prop-types';
 import {offerPropTypes} from '../../types';
 import PlaceCard from '../place-card/place-card';
 import LocationsListItem from '../locations-list-item/locations-list-item';
@@ -8,9 +8,7 @@ const FavoritesListItem = (props) => {
   const {
     city,
     offers,
-    onTitleClick,
-    onFavoriteClick,
-    onTabClick
+    isActive
   } = props;
 
   return (
@@ -19,8 +17,7 @@ const FavoritesListItem = (props) => {
         <LocationsListItem
           nodeType="div"
           city={city}
-          isActive={false}
-          onTabClick={() => onTabClick(city)}
+          isActive={isActive}
         />
       </div>
       <div className="favorites__places">
@@ -29,10 +26,6 @@ const FavoritesListItem = (props) => {
             key={offer.id}
             prefix={`favorites`}
             offer={offer}
-            onTitleClick={onTitleClick}
-            onMouseEnter={()=>{}}
-            onMouseLeave={()=>{}}
-            onFavoriteClick={onFavoriteClick}
           />
         ))}
       </div>
@@ -41,11 +34,9 @@ const FavoritesListItem = (props) => {
 };
 
 FavoritesListItem.propTypes = {
+  isActive: bool.isRequired,
   city: string.isRequired,
-  offers: arrayOf(offerPropTypes).isRequired,
-  onTitleClick: func.isRequired,
-  onFavoriteClick: func.isRequired,
-  onTabClick: func.isRequired
+  offers: arrayOf(offerPropTypes).isRequired
 };
 
 export default React.memo(FavoritesListItem);

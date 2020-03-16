@@ -1,42 +1,41 @@
-import React, {PureComponent} from 'react';
-import {connect} from 'react-redux';
+import React from 'react';
+import {arrayOf, bool, func, number} from 'prop-types';
+import {reviewPropTypes, offerPropTypes} from '../../types';
 import ReviewsList from '../reviews-list/reviews-list';
 import ReviewsForm from '../reviews-form/reviews-form';
-import {arrayOf, bool} from 'prop-types';
-import {reviewPropTypes} from '../../types';
-import {getCommentsToShow} from '../../reducers/offer/selectors';
-import {getAuthStatus} from '../../reducers/user/selectors';
-import {AuthStatus} from '../../reducers/user/user';
 import withRating from '../../hocs/with-rating/with-rating';
 
 const ReviewsFormWrapped = withRating(ReviewsForm);
 
-class Reviews extends PureComponent {
-  render() {
-    const {
-      isAuth,
-      reviews
-    } = this.props;
+const Reviews = (props) => {
+  const {
+    isAuth,
+    activeOffer,
+    reviews,
+    errorStatus,
+    onReviewSubmit
+  } = props;
 
-    return (
-      <section className="property__reviews reviews">
-        <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-        <ReviewsList reviews={reviews} />
-        {isAuth && <ReviewsFormWrapped />}
-      </section>
-    );
-  }
-}
+  return (
+    <section className="property__reviews reviews">
+      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
+      {reviews.length ? <ReviewsList reviews={reviews} /> : ``}
+      {isAuth ? <ReviewsFormWrapped
+        reviewsCount={reviews.length}
+        activeOffer={activeOffer}
+        errorStatus={errorStatus}
+        onReviewSubmit={onReviewSubmit}
+      /> : ``}
+    </section>
+  );
+};
 
 Reviews.propTypes = {
   isAuth: bool.isRequired,
-  reviews: arrayOf(reviewPropTypes)
+  activeOffer: offerPropTypes,
+  reviews: arrayOf(reviewPropTypes),
+  errorStatus: number.isRequired,
+  onReviewSubmit: func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  isAuth: getAuthStatus(state) === AuthStatus.AUTH,
-  reviews: getCommentsToShow(state)
-});
-
-export {Reviews};
-export default connect(mapStateToProps)(Reviews);
+export default React.memo(Reviews);

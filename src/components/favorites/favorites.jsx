@@ -1,18 +1,23 @@
 import React from 'react';
-import {bool, func} from 'prop-types';
+import {connect} from 'react-redux';
+import {bool} from 'prop-types';
+import {appUserPropTypes} from '../../types';
+import Header from '../../components/header/header';
 import Footer from '../footer/footer';
 import FavoritesList from '../favorites-list/favorites-list';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
+import {getFavorites} from '../../reducers/favorites/selectors';
 
 const Favorites = (props) => {
-  const {isEmpty, renderHeader} = props;
-  const pageClassName = isEmpty ? `page--favorites-empty` : `page--favorites`;
-  const mainClassName = isEmpty ? `page__main--favorites-empty` : ``;
+  const {isAuth, user, isEmpty} = props;
 
   return (
-    <div className={pageClassName}>
-      {renderHeader()}
-      <main className={`page__main page__main--favorites ${mainClassName}`}>
+    <div className={`page page--favorites ${isEmpty ? `page--favorites-empty` : ``}`}>
+      <Header
+        isAuth={isAuth}
+        user={user}
+      />
+      <main className={`page__main page__main--favorites ${isEmpty ? `page__main--favorites-empty` : ``}`}>
         <div className="page__favorites-container container">
           {isEmpty ?
             <FavoritesEmpty /> :
@@ -26,8 +31,14 @@ const Favorites = (props) => {
 };
 
 Favorites.propTypes = {
-  isEmpty: bool.isRequired,
-  renderHeader: func.isRequired
+  isAuth: bool.isRequired,
+  user: appUserPropTypes,
+  isEmpty: bool.isRequired
 };
 
-export default React.memo(Favorites);
+const mapStateToProps = (state) => ({
+  isEmpty: getFavorites(state).length === 0
+});
+
+export {Favorites};
+export default connect(mapStateToProps)(Favorites);

@@ -46,9 +46,6 @@ const Operation = {
     return api.get(`/login`)
       .then((response) => {
         onUserOperationSuccess(response, dispatch);
-      })
-      .catch((err) => {
-        throw err;
       });
   },
 

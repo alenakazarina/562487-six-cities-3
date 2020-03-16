@@ -1,31 +1,35 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route, Redirect, withRouter} from 'react-router-dom';
+import {BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {arrayOf, string, bool, func} from 'prop-types';
-import {offerPropTypes} from '../../types';
-import {getOffers} from '../../reducers/offers/selectors';
+import {arrayOf, bool, number, func} from 'prop-types';
+import {offerPropTypes, appUserPropTypes} from '../../types';
 import {AuthStatus} from '../../reducers/user/user';
-import {getAuthStatus} from '../../reducers/user/selectors';
-import {Operation as OfferOperation, ActionCreator as OfferActionCreator} from '../../reducers/offer/offer';
-import {getFavorites} from '../../reducers/favorites/selectors';
+import {getOffers} from '../../reducers/offers/selectors';
+import {getAuthStatus, getUser} from '../../reducers/user/selectors';
+import {getErrorStatus} from '../../reducers/errors/selectors';
+import {ActionCreator as ErrorActionCreator} from '../../reducers/errors/errors';
+import {Operation as OfferOperation} from '../../reducers/offer/offer';
+import Main from '../main/main';
 import Login from '../login/login';
 import Favorites from '../favorites/favorites';
 import Property from '../property/property';
-import Main from '../main/main';
 import PrivateRoute from '../private-route/private-route';
-import withHeader from '../../hocs/with-header/with-header';
+import NotFound from '../not-found/not-found';
 import {AppRoute} from '../../const';
+import withMessage from '../../hocs/with-message/with-message';
 
-const MainWrapped = withHeader(Main);
-const PropertyWrapped = withHeader(Property);
-const FavoritesWrapped = withHeader(Favorites);
-const LoginWrapped = withRouter(withHeader(Login));
+const LoginWrapped = withMessage(Login);
+const MainWrapped = withMessage(Main);
+const PropertyWrapped = withMessage(Property);
+const FavoritesWrapped = withMessage(Favorites);
 
 const App = (props) => {
   const {
     initialOffers,
-    authStatus,
-    areFavoritesEmpty,
+    isAuth,
+    user,
+    errorStatus,
+    resetError,
     onOfferPageLoad
   } = props;
 
@@ -40,16 +44,26 @@ const App = (props) => {
           exact
           path={AppRoute.ROOT}
           render={() => (
-            <MainWrapped />
+            <MainWrapped
+              isAuth={isAuth}
+              user={user}
+              errorStatus={errorStatus}
+              resetError={resetError}
+            />
           )}
         />
         <Route
           exact
           path={AppRoute.LOGIN}
           render={() => (
-            authStatus === AuthStatus.NO_AUTH ?
-              <LoginWrapped /> :
-              <Redirect to={AppRoute.ROOT} />
+            isAuth ?
+              <Redirect to={AppRoute.ROOT} /> :
+              <LoginWrapped
+                isAuth={isAuth}
+                user={user}
+                errorStatus={errorStatus}
+                resetError={resetError}
+              />
           )}
         />
         <Route
@@ -57,9 +71,15 @@ const App = (props) => {
           path={AppRoute.OFFER}
           render={(routeProps) => {
             const id = parseInt(routeProps.match.params.id, 10);
+            const initialActiveOffer = initialOffers.find((offer) => offer.id === id);
+
             return (
               <PropertyWrapped
-                id={id}
+                isAuth={isAuth}
+                user={user}
+                errorStatus={errorStatus}
+                activeOffer={initialActiveOffer}
+                resetError={resetError}
                 onOfferPageLoad={onOfferPageLoad}
               />
             );
@@ -69,8 +89,23 @@ const App = (props) => {
           exact
           path={AppRoute.FAVORITES}
           render={() => (
-            <FavoritesWrapped isEmpty={areFavoritesEmpty} />
+            <FavoritesWrapped
+              isAuth={isAuth}
+              user={user}
+              errorStatus={errorStatus}
+              resetError={resetError}
+            />
           )}
+        />
+        <Route
+          render={() => {
+            return (
+              <NotFound
+                isAuth={isAuth}
+                user={user}
+              />
+            );
+          }}
         />
       </Switch>
     </BrowserRouter>
@@ -78,24 +113,28 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  authStatus: string.isRequired,
+  isAuth: bool.isRequired,
+  user: appUserPropTypes,
   initialOffers: arrayOf(offerPropTypes).isRequired,
-  areFavoritesEmpty: bool.isRequired,
+  errorStatus: number.isRequired,
+  resetError: func.isRequired,
   onOfferPageLoad: func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  authStatus: getAuthStatus(state),
+  isAuth: getAuthStatus(state) === AuthStatus.AUTH,
+  user: getUser(state),
   initialOffers: getOffers(state),
-  areFavoritesEmpty: getFavorites(state).length === 0
+  errorStatus: getErrorStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onOfferPageLoad(pageOffer) {
-    dispatch(OfferOperation.loadNearOffers(pageOffer));
-    dispatch(OfferOperation.loadComments(pageOffer));
-    dispatch(OfferActionCreator.setPageOffer(pageOffer));
-  }
+  resetError() {
+    dispatch(ErrorActionCreator.resetError());
+  },
+  onOfferPageLoad(offer) {
+    dispatch(OfferOperation.loadOfferPage(offer));
+  },
 });
 
 export {App};

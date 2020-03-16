@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
-import LocationsListItem from './locations-list-item';
+import {LocationsListItem} from './locations-list-item';
 
 const city = `Amsterdam`;
 const mockFn = () => {};
@@ -13,7 +13,7 @@ describe(`LocationsListItem`, () => {
           nodeType="li"
           city={city}
           isActive={true}
-          onTabClick={mockFn}
+          setActiveCity={mockFn}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();
@@ -26,7 +26,7 @@ describe(`LocationsListItem`, () => {
             nodeType="div"
             city={city}
             isActive={false}
-            onTabClick={mockFn}
+            setActiveCity={mockFn}
           />
         </BrowserRouter>
     ).toJSON();

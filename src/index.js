@@ -8,12 +8,18 @@ import App from './components/app/app';
 import reducer from './reducers/reducer';
 import {Operation as OffersOperation} from './reducers/offers/offers';
 import {Operation as UserOperation, ActionCreator, AuthStatus} from './reducers/user/user';
+import {ActionCreator as ErrorActionCreator} from './reducers/errors/errors';
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireAuthorization(AuthStatus.NO_AUTH));
 };
 
-const api = createAPI(onUnauthorized);
+const onRequestError = (response) => {
+  const status = response.status;
+  store.dispatch(ErrorActionCreator.setErrorStatus(status));
+};
+
+const api = createAPI({onUnauthorized, onRequestError});
 
 const store = createStore(
     reducer,

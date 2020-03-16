@@ -53,6 +53,14 @@ export const users = [
 
 export const appUsers = users.map((user) => Object.assign({}, user, {email: `user@gmail.com`}));
 
+export const defaultUser = {
+  id: -1,
+  email: ``,
+  name: ``,
+  isPro: false,
+  avatarUrl: ``
+};
+
 const dates = [
   new Date(`2020.03.04 14:00`),
   new Date(`2020.03.03 10:00`)
@@ -163,3 +171,11 @@ export const apiMockReviews = [{
     'name': `Alena`
   }
 }];
+
+export const apiMockAppUser = {
+  'id': 1,
+  'email': `alena@gmail.com`,
+  'name': `Alena`,
+  'avatar_url': `userAvatar`,
+  'is_pro': true
+};

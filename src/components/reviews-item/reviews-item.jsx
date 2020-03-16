@@ -13,7 +13,12 @@ const ReviewsItem = ({review}) => {
     <li className="reviews__item" key={id}>
       <User prefix={`reviews`} user={user} />
       <div className="reviews__info">
-        <Rating prefix={`reviews`} rating={rating} />
+        <Rating
+          prefix={`reviews`}
+          rating={rating}
+          reviews={[]}
+          isValue={false}
+        />
         <p className="reviews__text">{comment}</p>
         <time className="reviews__time" dateTime={dateTime}>{reviewDate}</time>
       </div>

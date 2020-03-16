@@ -1,11 +1,10 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {arrayOf, func, number} from 'prop-types';
-import {offerPropTypes} from '../../types';
-import {getOffers} from '../../reducers/offers/selectors';
-import {getPageOffer, getNearOffers} from '../../reducers/offer/selectors';
-import {ActionCreator as OffersActionCreator} from '../../reducers/offers/offers';
-import {Operation as FavoritesOperation} from '../../reducers/favorites/favorites';
+import {arrayOf, bool, func, number} from 'prop-types';
+import {offerPropTypes, reviewPropTypes, appUserPropTypes} from '../../types';
+import {Operation as OfferOperation} from '../../reducers/offer/offer';
+import {getNearOffersToShow, getCommentsToShow} from '../../reducers/offer/selectors';
+import Header from '../../components/header/header';
 import Gallery from '../gallery/gallery';
 import PremiumMark from '../premium-mark/premium-mark';
 import PropertyTitle from '../property-title/property-title';
@@ -20,96 +19,115 @@ import Reviews from '../reviews/reviews';
 import Map from '../map/map';
 import NearPlaces from '../near-places/near-places';
 
-const PREFIX = `property`;
-const NEAR_OFFERS_ON_MAP_COUNT = 3;
-
 class Property extends PureComponent {
+  constructor(props) {
+    super(props);
+    this._prefix = `property`;
+  }
+
   componentDidMount() {
-    const {id} = this.props;
-    const pageOffer = this.props.initialOffers.find((offer) => offer.id === id);
-    this.props.onOfferPageLoad(pageOffer);
+    this.props.onOfferPageLoad(this.props.activeOffer);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.activeOffer.id !== prevProps.activeOffer.id) {
+      this.props.onOfferPageLoad(this.props.activeOffer);
+    }
   }
 
   render() {
     const {
-      pageOffer,
-      renderHeader,
-      nearOffers
+      isAuth,
+      user,
+      errorStatus,
+      activeOffer,
+      nearOffers,
+      reviews,
+      onReviewSubmit
     } = this.props;
 
-    const isLoading = nearOffers.length === 0;
-
-    if (isLoading) {
+    if (!activeOffer) {
       return ``;
     }
 
-    const {title, images, isFavorite, isPremium, rating, type, bedrooms, maxAdults, price, amenities, host, description} = pageOffer;
-
-    const nearOffersOnMap = isLoading === false && nearOffers.slice(0, NEAR_OFFERS_ON_MAP_COUNT);
+    const {id, title, images, isPremium, rating, type, bedrooms, maxAdults, price, amenities, host, description} = activeOffer;
 
     return (
-      <div className="page page--property">
-        {renderHeader()}
-        <main className="page__main page__main--property">
-          <section className="property">
-            <Gallery images={images} />
-            <div className="property__container container">
-              <div className="property__wrapper">
-                {isPremium ? <PremiumMark prefix={PREFIX} /> : ``}
-                <PropertyTitle title={title}>
-                  <BookmarkButton
-                    id={pageOffer.id}
-                    prefix={PREFIX}
-                    isFavorite={isFavorite}
-                    width={31}
-                    height={33}
+      <>
+        <div className="page page--property">
+          <Header
+            isAuth={isAuth}
+            user={user}
+          />
+          <main className="page__main page__main--property">
+            <section className="property">
+              <Gallery images={images} />
+              <div className="property__container container">
+                <div className="property__wrapper">
+                  {isPremium ? <PremiumMark prefix={this._prefix} /> : ``}
+                  <PropertyTitle title={title}>
+                    <BookmarkButton
+                      id={id}
+                      prefix={this._prefix}
+                      width={31}
+                      height={33}
+                    />
+                  </PropertyTitle>
+                  <Rating
+                    prefix={this._prefix}
+                    rating={rating}
+                    isValue
                   />
-                </PropertyTitle>
-                <Rating prefix={PREFIX} rating={rating} isValue />
-                <Features type={type} bedrooms={bedrooms} maxAdults={maxAdults} />
-                <Price prefix={PREFIX} price={price} />
-                <PropertyInside amenities={amenities} />
-                <PropertyHost host={host}>
-                  <PropertyDescription description={description} />
-                </PropertyHost>
-                <Reviews />
+                  <Features type={type} bedrooms={bedrooms} maxAdults={maxAdults} />
+                  <Price prefix={this._prefix} price={price} />
+                  <PropertyInside amenities={amenities} />
+                  <PropertyHost host={host}>
+                    <PropertyDescription description={description} />
+                  </PropertyHost>
+                  <Reviews
+                    isAuth={isAuth}
+                    activeOffer={activeOffer}
+                    reviews={reviews}
+                    onReviewSubmit={onReviewSubmit}
+                    errorStatus={errorStatus}
+                  />
+                </div>
               </div>
+              {nearOffers.length ? <Map
+                prefix={this._prefix}
+                offers={[...nearOffers, activeOffer]}
+                activeOffer={activeOffer}
+              /> : ``}
+            </section>
+            <div className="container">
+              <NearPlaces nearOffers={nearOffers} />
             </div>
-            <Map
-              prefix={PREFIX}
-              offers={[...nearOffersOnMap, pageOffer]}
-              activeOffer={pageOffer}
-            />
-          </section>
-          <div className="container">
-            <NearPlaces />
-          </div>
-        </main>
-      </div>
+          </main>
+        </div>
+      </>
     );
   }
 }
 
 Property.propTypes = {
-  id: number.isRequired,
-  pageOffer: offerPropTypes,
-  initialOffers: arrayOf(offerPropTypes),
-  renderHeader: func.isRequired,
+  isAuth: bool.isRequired,
+  user: appUserPropTypes,
+  errorStatus: number.isRequired,
+  activeOffer: offerPropTypes,
   nearOffers: arrayOf(offerPropTypes),
-  onFavoriteClick: func.isRequired,
+  reviews: arrayOf(reviewPropTypes),
+  onReviewSubmit: func.isRequired,
   onOfferPageLoad: func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  initialOffers: getOffers(state),
-  pageOffer: getPageOffer(state),
-  nearOffers: getNearOffers(state)
+  nearOffers: getNearOffersToShow(state),
+  reviews: getCommentsToShow(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFavoriteClick(id, isFavorite) {
-    dispatch(FavoritesOperation.updateFavorites(id, isFavorite));
-    dispatch(OffersActionCreator.toggleFavorite(id));
+  onReviewSubmit(id, comment) {
+    dispatch(OfferOperation.updateComments(id, comment));
   }
 });
 

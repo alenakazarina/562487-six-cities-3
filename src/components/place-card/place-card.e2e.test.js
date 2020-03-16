@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {storeWithAuth} from '../../mocks/tests';
-import PlaceCard from './place-card';
+import {PlaceCard} from './place-card';
 import {cityOffers} from '../../mocks/const';
 
 configure({
@@ -12,52 +12,28 @@ configure({
 });
 
 const prefixes = [`cities`, `near-places`];
-const mockFn = () => {};
 
 describe(`PlaceCard`, () => {
-  it(`should card title be pressed`, () => {
-    const offer = cityOffers[0];
-    const onTitleClick = jest.fn();
-    const placeCard = mount(
-        <Provider store={storeWithAuth}>
-          <BrowserRouter>
-            <PlaceCard
-              prefix={prefixes[0]}
-              offer={cityOffers[0]}
-              onTitleClick={onTitleClick}
-              onMouseEnter={mockFn}
-              onMouseLeave={mockFn}
-            />
-          </BrowserRouter>
-        </Provider>
-    );
-    placeCard.find(`h2.place-card__name a`).simulate(`click`);
-    expect(onTitleClick).toHaveBeenCalledTimes(1);
-    expect(onTitleClick.mock.calls[0][0]).toMatchObject(offer);
-  });
-
-  it(`should card on mouseenter to call cb with card and offer`, () => {
+  it(`should card on hover to call cb with offer on mouseenter and null on mouseleave`, () => {
     const cardOffer = cityOffers[0];
-    const onMouseEnter = jest.fn();
-    const onMouseLeave = jest.fn();
+    const setActiveOffer = jest.fn();
     const placeCard = mount(
         <Provider store={storeWithAuth}>
           <BrowserRouter>
             <PlaceCard
               prefix={prefixes[0]}
               offer={cardOffer}
-              onTitleClick={mockFn}
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
+              setActiveOffer={setActiveOffer}
             />
           </BrowserRouter>
         </Provider>
     );
     const card = placeCard.find(`article.place-card`);
     card.simulate(`mouseenter`);
-    expect(onMouseEnter).toHaveBeenCalledTimes(1);
-    expect(onMouseEnter.mock.calls[0][0]).toMatchObject(cardOffer);
+    expect(setActiveOffer).toHaveBeenCalledTimes(1);
+    expect(setActiveOffer.mock.calls[0][0]).toMatchObject(cardOffer);
     card.simulate(`mouseleave`);
-    expect(onMouseLeave).toHaveBeenCalledTimes(1);
+    expect(setActiveOffer).toHaveBeenCalledTimes(2);
+    expect(setActiveOffer.mock.calls[1][0]).toBe(null);
   });
 });

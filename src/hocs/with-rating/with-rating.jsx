@@ -1,9 +1,10 @@
 import React, {PureComponent} from 'react';
+import {func, number} from 'prop-types';
+import {offerPropTypes} from '../../types';
 
 const INITIAL_STATE = {
   ratingValue: 0,
-  comment: ``,
-  isDisabled: true
+  comment: ``
 };
 
 const withRating = (Component) => {
@@ -11,61 +12,58 @@ const withRating = (Component) => {
     constructor(props) {
       super(props);
       this.state = INITIAL_STATE;
-      this._handleRatingChange = this._handleRatingChange.bind(this);
-      this._handleTextChange = this._handleTextChange.bind(this);
-      this._resetFormInputs = this._resetFormInputs.bind(this);
+      this._handleChange = this._handleChange.bind(this);
+      this._handleSubmit = this._handleSubmit.bind(this);
     }
 
-    componentDidUpdate() {
-      this._checkDisabledState();
-    }
-
-    _handleRatingChange(evt) {
-      this.setState({
-        ratingValue: parseInt(evt.currentTarget.value, 10)
-      });
-    }
-
-    _handleTextChange(evt) {
-      this.setState({
-        comment: evt.currentTarget.value
-      });
-    }
-
-    _resetFormInputs() {
-      this.setState(INITIAL_STATE);
-    }
-
-    _checkDisabledState() {
-      const {ratingValue, comment, isDisabled} = this.state;
-      if (ratingValue !== 0 && comment.length >= 50 && comment.length <= 300) {
-        this.setState({
-          isDisabled: false
-        });
-        return;
+    componentDidUpdate(prevProps) {
+      if (prevProps.reviewsCount < this.props.reviewsCount) {
+        this.setState(INITIAL_STATE);
       }
-      if (isDisabled === false) {
-        this.setState({
-          isDisabled: true
-        });
+    }
+
+    _handleChange({currentTarget}) {
+      switch (currentTarget.name) {
+        case `rating`:
+          this.setState({
+            ratingValue: parseInt(currentTarget.value, 10)
+          });
+          return;
+        case `review`:
+          this.setState({
+            comment: currentTarget.value
+          });
       }
+    }
+
+    _handleSubmit() {
+      const {ratingValue, comment} = this.state;
+      const {activeOffer, onReviewSubmit} = this.props;
+      onReviewSubmit(activeOffer.id, {
+        rating: ratingValue,
+        text: comment
+      });
     }
 
     render() {
-      const {ratingValue, comment, isDisabled} = this.state;
+      const {ratingValue, comment} = this.state;
       return (
         <Component
           {...this.props}
           ratingValue={ratingValue}
           comment={comment}
-          isDisabled={isDisabled}
-          onRatingChange={this._handleRatingChange}
-          onTextChange={this._handleTextChange}
-          resetFormInputs={this._resetFormInputs}
+          onChange={this._handleChange}
+          onSubmit={this._handleSubmit}
         />
       );
     }
   }
+
+  WithRating.propTypes = {
+    activeOffer: offerPropTypes,
+    onReviewSubmit: func.isRequired,
+    reviewsCount: number.isRequired
+  };
 
   return WithRating;
 };

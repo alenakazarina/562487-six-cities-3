@@ -22,13 +22,15 @@ export const storeWithAuth = mockStore({
     activeCity: `Paris`
   },
   OFFER: {
-    pageOffer: cityOffers[1],
-    activeOffer: cityOffers[2],
+    activeOffer: cityOffers[1],
     nearOffers: cityOffers.slice(0, 2),
     comments: reviews
   },
   FAVORITES: {
     favorites: cityOffers
+  },
+  ERRORS: {
+    errorStatus: 0
   }
 });
 
@@ -42,13 +44,15 @@ export const storeWithNoAuth = mockStore({
     activeCity: `Paris`
   },
   OFFER: {
-    pageOffer: null,
     activeOffer: null,
     nearOffers: [],
     comments: []
   },
   FAVORITES: {
     favorites: []
+  },
+  ERRORS: {
+    errorStatus: 0
   }
 });
 
@@ -62,12 +66,14 @@ export const storeWithNoOffers = mockStore({
     activeCity: `Paris`
   },
   OFFER: {
-    pageOffer: null,
     activeOffer: null,
     nearOffers: [],
     comments: []
   },
   FAVORITES: {
     favorites: []
+  },
+  ERRORS: {
+    errorStatus: 0
   }
 });

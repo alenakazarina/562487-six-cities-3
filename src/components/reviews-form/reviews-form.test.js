@@ -13,12 +13,13 @@ describe(`ReviewForm`, () => {
           <ReviewsForm
             comment={``}
             ratingValue={0}
-            isDisabled
-            onRatingChange={mockFn}
-            onTextChange={mockFn}
-            resetFormInputs={mockFn}
+            errorStatus={0}
+            reviewsCount={1}
+            onChange={mockFn}
+            onSubmit={mockFn}
           />
-        </Provider>
+        </Provider>,
+        {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

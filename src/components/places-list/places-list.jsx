@@ -1,17 +1,12 @@
 import React from 'react';
-import {string, arrayOf, func} from 'prop-types';
-import PlaceCard from '../place-card/place-card';
+import {string, arrayOf} from 'prop-types';
 import {offerPropTypes} from '../../types';
-import withHover from '../../hocs/with-hover/with-hover';
-
-const PlaceCardWithHover = withHover(PlaceCard);
+import PlaceCard from '../place-card/place-card';
 
 const PlacesList = (props) => {
   const {
     prefix,
-    offers,
-    onTitleClick,
-    onCardHoverChange
+    offers
   } = props;
 
   const className = (prefix === `cities`) ?
@@ -19,17 +14,12 @@ const PlacesList = (props) => {
     : `near-places__list places__list`;
 
   return (
-    <div
-      className={className}
-      onMouseLeave={() => onCardHoverChange(null)}
-    >
+    <div className={className}>
       {offers.map((offer) => (
-        <PlaceCardWithHover
+        <PlaceCard
           key={offer.id}
           prefix={prefix}
           offer={offer}
-          onTitleClick={onTitleClick}
-          onCardHoverChange={onCardHoverChange}
         />
       ))}
     </div>
@@ -38,9 +28,7 @@ const PlacesList = (props) => {
 
 PlacesList.propTypes = {
   prefix: string.isRequired,
-  offers: arrayOf(offerPropTypes).isRequired,
-  onTitleClick: func.isRequired,
-  onCardHoverChange: func.isRequired
+  offers: arrayOf(offerPropTypes).isRequired
 };
 
 export default React.memo(PlacesList);

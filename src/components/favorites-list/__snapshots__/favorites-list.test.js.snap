@@ -22,7 +22,7 @@ exports[`FavoritesList should render FavoritesList correctly 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item "
+            className="locations__item-link tabs__item tabs__item--active"
             href="/"
             onClick={[Function]}
           >
@@ -44,9 +44,7 @@ exports[`FavoritesList should render FavoritesList correctly 1`] = `
           <div
             className="favorites__image-wrapper place-card__image-wrapper"
           >
-            <a
-              href="#"
-            >
+            <a>
               <img
                 alt="Place image"
                 className="place-card__image"
@@ -174,9 +172,7 @@ exports[`FavoritesList should render FavoritesList correctly 1`] = `
           <div
             className="favorites__image-wrapper place-card__image-wrapper"
           >
-            <a
-              href="#"
-            >
+            <a>
               <img
                 alt="Place image"
                 className="place-card__image"
@@ -279,9 +275,7 @@ exports[`FavoritesList should render FavoritesList correctly 1`] = `
           <div
             className="favorites__image-wrapper place-card__image-wrapper"
           >
-            <a
-              href="#"
-            >
+            <a>
               <img
                 alt="Place image"
                 className="place-card__image"

@@ -8,9 +8,7 @@ const initialState = {
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
-  SET_ACTIVE_CITY: `SET_ACTIVE_CITY`,
-  UPDATE_OFFERS: `UPDATE_OFFERS`,
-  TOGGLE_FAVORITE: `TOGGLE_FAVORITE`
+  SET_ACTIVE_CITY: `SET_ACTIVE_CITY`
 };
 
 const ActionCreator = {
@@ -22,15 +20,6 @@ const ActionCreator = {
   setActiveCity: (city) => ({
     type: ActionType.SET_ACTIVE_CITY,
     payload: city
-  }),
-
-  updateOffers: () => ({
-    type: ActionType.UPDATE_OFFERS
-  }),
-
-  toggleFavorite: (id) => ({
-    type: ActionType.TOGGLE_FAVORITE,
-    payload: id
   })
 };
 
@@ -51,17 +40,6 @@ const reducer = (state = initialState, action) => {
       return extend(state, {offers: action.payload});
     case ActionType.SET_ACTIVE_CITY:
       return extend(state, {activeCity: action.payload});
-    case ActionType.UPDATE_OFFERS:
-      return extend(state, {offers: state.offers});
-    case ActionType.TOGGLE_FAVORITE:
-      const updatedOffer = state.offers.find((offer) => offer.id === action.payload);
-      return extend(state, {
-        offers: state.offers.map((offer) => {
-          if (offer.id === updatedOffer.id) {
-            offer.isFavorite = !updatedOffer.isFavorite;
-          }
-          return offer;
-        })});
     default:
       return state;
   }

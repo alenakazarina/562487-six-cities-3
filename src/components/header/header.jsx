@@ -1,17 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {bool, object} from 'prop-types';
+import {bool} from 'prop-types';
 import {appUserPropTypes} from '../../types';
 import {BASE_URL, AppRoute} from '../../const';
-import {getUser, getAuthStatus} from '../../reducers/user/selectors';
-import {AuthStatus} from '../../reducers/user/user';
 
 const Header = (props) => {
   const {
     isAuth,
-    user,
-    location
+    user
   } = props;
 
   return (
@@ -28,12 +24,7 @@ const Header = (props) => {
               <li className="header__nav-item user">
                 {isAuth ?
                   <Link className="header__nav-link header__nav-link--profile"
-                    to={{
-                      pathname: AppRoute.FAVORITES,
-                      state: {
-                        from: location.pathname
-                      }
-                    }}
+                    to={AppRoute.FAVORITES}
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper"
                       style={{backgroundImage: `url(${BASE_URL}${user.avatarUrl})`}}
@@ -56,14 +47,7 @@ const Header = (props) => {
 
 Header.propTypes = {
   isAuth: bool.isRequired,
-  user: appUserPropTypes,
-  location: object.isRequired
+  user: appUserPropTypes
 };
 
-const mapStateToProps = (state) => ({
-  isAuth: getAuthStatus(state) === AuthStatus.AUTH,
-  user: getUser(state)
-});
-
-export {Header};
-export default connect(mapStateToProps)(Header);
+export default React.memo(Header);

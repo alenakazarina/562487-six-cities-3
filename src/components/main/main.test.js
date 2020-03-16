@@ -3,16 +3,18 @@ import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {storeWithAuth, storeWithNoOffers} from '../../mocks/tests';
+import {appUsers, defaultUser} from '../../mocks/const';
 import Main from './main';
-
-const mockFn = () => {};
 
 describe(`Main`, () => {
   it(`should render Main correctly with no empty offers`, () => {
     const tree = renderer.create(
         <Provider store={storeWithAuth}>
           <BrowserRouter>
-            <Main renderHeader={mockFn} />
+            <Main
+              isAuth
+              user={appUsers[0]}
+            />
           </BrowserRouter>
         </Provider>,
         {createNodeMock: () => document.createElement(`div`)}
@@ -24,7 +26,10 @@ describe(`Main`, () => {
     const tree = renderer.create(
         <Provider store={storeWithNoOffers}>
           <BrowserRouter>
-            <Main renderHeader={mockFn} />
+            <Main
+              isAuth={false}
+              user={defaultUser}
+            />
           </BrowserRouter>
         </Provider>,
         {createNodeMock: () => document.createElement(`div`)}

@@ -7,7 +7,8 @@ const initialState = {
 
 const ActionType = {
   LOAD_FAVORITES: `LOAD_FAVORITES`,
-  UPDATE_FAVORITES: `UPDATE_FAVORITES`
+  ADD_FAVORITE: `ADD_FAVORITE`,
+  REMOVE_FAVORITE: `REMOVE_FAVORITE`
 };
 
 const ActionCreator = {
@@ -15,8 +16,12 @@ const ActionCreator = {
     type: ActionType.LOAD_FAVORITES,
     payload: offers
   }),
-  updateFavorites: (offer) => ({
-    type: ActionType.UPDATE_FAVORITES,
+  addFavorite: (offer) => ({
+    type: ActionType.ADD_FAVORITE,
+    payload: offer
+  }),
+  removeFavorite: (offer) => ({
+    type: ActionType.REMOVE_FAVORITE,
     payload: offer
   })
 };
@@ -30,33 +35,39 @@ const Operation = {
       });
   },
 
-  updateFavorites: (id, isFavorite) => (dispatch, getState, api) => {
-    const status = isFavorite ? 1 : 0;
+  addFavorite: (id) => (dispatch, getState, api) => {
+    const status = 1;
     return api.post(`/favorite/${id}/${status}`, {
       'hotel_id': id,
       'status': status
     })
       .then((response) => {
-        const updatedOffer = Offer.parseOffer(response.data);
-        dispatch(ActionCreator.updateFavorites(updatedOffer));
+        const offer = Offer.parseOffer(response.data);
+        dispatch(ActionCreator.addFavorite(offer));
       });
   },
+
+  removeFavorite: (id) => (dispatch, getState, api) => {
+    const status = 0;
+    return api.post(`/favorite/${id}/${status}`, {
+      'hotel_id': id,
+      'status': status
+    })
+      .then((response) => {
+        const offer = Offer.parseOffer(response.data);
+        dispatch(ActionCreator.removeFavorite(offer));
+      });
+  }
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_FAVORITES:
       return extend(state, {favorites: action.payload});
-
-    case ActionType.UPDATE_FAVORITES:
-      const {id, isFavorite} = action.payload;
-
-      if (isFavorite) {
-        return extend(state, {favorites: [...state.favorites, action.payload]});
-      }
-
-      return extend(state, {favorites: state.favorites.filter((offer) => offer.id !== id)});
-
+    case ActionType.ADD_FAVORITE:
+      return extend(state, {favorites: [action.payload, ...state.favorites]});
+    case ActionType.REMOVE_FAVORITE:
+      return extend(state, {favorites: state.favorites.filter((offer) => offer.id !== action.payload.id)});
     default:
       return state;
   }

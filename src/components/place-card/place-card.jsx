@@ -4,11 +4,16 @@ import {Link} from 'react-router-dom';
 import {string, func} from 'prop-types';
 import {offerPropTypes} from '../../types';
 import {ActionCreator as OfferActionCreator} from '../../reducers/offer/offer';
+import {Operation as FavoritesOperation} from '../../reducers/favorites/favorites';
 import PremiumMark from '../premium-mark/premium-mark';
 import Rating from '../rating/rating';
 import Price from '../price/price';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import {OfferType} from '../../const';
+
+import withDisabled from '../../hocs/with-disabled/with-disabled';
+
+const BookmarkButtonWrapped = withDisabled(BookmarkButton);
 
 class PlaceCard extends Component {
   constructor(props) {
@@ -23,7 +28,6 @@ class PlaceCard extends Component {
 
   _handleActiveChange({type}) {
     const {prefix, offer, setActiveOffer} = this.props;
-
     if (prefix === `cities`) {
       switch (type) {
         case `mouseenter`:
@@ -39,7 +43,8 @@ class PlaceCard extends Component {
   render() {
     const {
       prefix,
-      offer
+      offer,
+      onFavoriteClick
     } = this.props;
 
     const {previewImage, title, isPremium, rating, type, price} = offer;
@@ -69,11 +74,12 @@ class PlaceCard extends Component {
               prefix={this._prefix}
               price={price}
             />
-            <BookmarkButton
+            <BookmarkButtonWrapped
               id={offer.id}
               prefix={prefix}
               width={18}
               height={19}
+              onFavoriteClick={onFavoriteClick}
             />
           </div>
           <Rating
@@ -94,7 +100,8 @@ class PlaceCard extends Component {
 PlaceCard.propTypes = {
   prefix: string.isRequired,
   offer: offerPropTypes,
-  setActiveOffer: func.isRequired
+  setActiveOffer: func.isRequired,
+  onFavoriteClick: func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -103,6 +110,13 @@ const mapDispatchToProps = (dispatch) => ({
       dispatch(OfferActionCreator.setActiveOffer(offer));
     } else {
       dispatch(OfferActionCreator.resetActiveOffer(offer));
+    }
+  },
+  onFavoriteClick(id, status) {
+    if (status) {
+      dispatch(FavoritesOperation.addFavorite(id));
+    } else {
+      dispatch(FavoritesOperation.removeFavorite(id));
     }
   }
 });

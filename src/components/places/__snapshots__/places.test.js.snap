@@ -132,6 +132,7 @@ exports[`Places should render Places correctly 1`] = `
           </div>
           <button
             className="cities__bookmark-button button place-card__bookmark-button--active"
+            disabled={false}
             onClick={[Function]}
             type="button"
           >
@@ -234,7 +235,8 @@ exports[`Places should render Places correctly 1`] = `
             </span>
           </div>
           <button
-            className="cities__bookmark-button button place-card__bookmark-button--active"
+            className="cities__bookmark-button button "
+            disabled={false}
             onClick={[Function]}
             type="button"
           >
@@ -343,7 +345,8 @@ exports[`Places should render Places correctly 1`] = `
             </span>
           </div>
           <button
-            className="cities__bookmark-button button place-card__bookmark-button--active"
+            className="cities__bookmark-button button "
+            disabled={false}
             onClick={[Function]}
             type="button"
           >

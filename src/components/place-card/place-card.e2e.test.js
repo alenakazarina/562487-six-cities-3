@@ -10,7 +10,7 @@ import {cityOffers} from '../../mocks/const';
 configure({
   adapter: new Adapter(),
 });
-
+const mockFn = () => {};
 const prefixes = [`cities`, `near-places`];
 
 describe(`PlaceCard`, () => {
@@ -24,6 +24,7 @@ describe(`PlaceCard`, () => {
               prefix={prefixes[0]}
               offer={cardOffer}
               setActiveOffer={setActiveOffer}
+              onFavoriteClick={mockFn}
             />
           </BrowserRouter>
         </Provider>

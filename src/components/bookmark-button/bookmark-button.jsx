@@ -1,27 +1,28 @@
-import React, {PureComponent, createRef} from 'react';
+import React, {PureComponent} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bool, func, number, string} from 'prop-types';
 import {getAuthStatus} from '../../reducers/user/selectors';
+import {getErrorStatus} from '../../reducers/errors/selectors';
+import {checkFavorite} from '../../reducers/favorites/selectors';
 import {AuthStatus} from '../../reducers/user/user';
-import {getFavorites} from '../../reducers/favorites/selectors';
 import {AppRoute} from '../../const';
-import {Operation as FavoritesOperation} from '../../reducers/favorites/favorites';
 
 class BookmarkButton extends PureComponent {
   constructor(props) {
     super(props);
-    this._buttonRef = createRef();
     this._handleFavorite = this._handleFavorite.bind(this);
   }
 
-  componentDidUpdate() {
-    this._buttonRef.current.disabled = false;
+  componentDidUpdate({errorStatus, isFavorite}) {
+    if (errorStatus || isFavorite !== this.props.isFavorite) {
+      this.props.setDisabled(false);
+    }
   }
 
   _handleFavorite() {
     const {id, isFavorite, onFavoriteClick} = this.props;
-    this._buttonRef.current.disabled = true;
+    this.props.setDisabled(true);
     const status = isFavorite ? false : true;
     onFavoriteClick(id, status);
   }
@@ -32,14 +33,15 @@ class BookmarkButton extends PureComponent {
       isFavorite,
       prefix,
       width,
-      height
+      height,
+      isDisabled
     } = this.props;
 
     const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
 
     return isAuth ? (
       <button
-        ref={this._buttonRef}
+        disabled={isDisabled}
         className={`${prefix}__bookmark-button button ${favoriteClass}`}
         type="button"
         onClick={this._handleFavorite}
@@ -73,23 +75,17 @@ BookmarkButton.propTypes = {
   id: number.isRequired,
   width: number.isRequired,
   height: number.isRequired,
+  errorStatus: number.isRequired,
+  isDisabled: bool.isRequired,
+  setDisabled: func.isRequired,
   onFavoriteClick: func.isRequired
 };
 
 const mapStateToProps = (state, props) => ({
   isAuth: getAuthStatus(state) === AuthStatus.AUTH,
-  isFavorite: getFavorites(state).findIndex((offer) => offer.id === props.id) !== -1
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onFavoriteClick(id, status) {
-    if (status) {
-      dispatch(FavoritesOperation.addFavorite(id));
-    } else {
-      dispatch(FavoritesOperation.removeFavorite(id));
-    }
-  }
+  isFavorite: checkFavorite(state, props.id),
+  errorStatus: getErrorStatus(state)
 });
 
 export {BookmarkButton};
-export default connect(mapStateToProps, mapDispatchToProps)(BookmarkButton);
+export default connect(mapStateToProps)(BookmarkButton);

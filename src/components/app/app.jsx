@@ -1,12 +1,13 @@
 import React from 'react';
 import {BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {arrayOf, bool, number, func} from 'prop-types';
+import {arrayOf, bool, number, func, string} from 'prop-types';
 import {offerPropTypes, appUserPropTypes} from '../../types';
-import {AuthStatus} from '../../reducers/user/user';
 import {getOffers} from '../../reducers/offers/selectors';
 import {getAuthStatus, getUser} from '../../reducers/user/selectors';
 import {getErrorStatus} from '../../reducers/errors/selectors';
+import {getActiveCity} from '../../reducers/offers/selectors';
+import {Operation as UserOperation, AuthStatus} from '../../reducers/user/user';
 import {ActionCreator as ErrorActionCreator} from '../../reducers/errors/errors';
 import {Operation as OfferOperation} from '../../reducers/offer/offer';
 import Main from '../main/main';
@@ -29,7 +30,9 @@ const App = (props) => {
     isAuth,
     user,
     errorStatus,
+    activeCity,
     resetError,
+    login,
     onOfferPageLoad
   } = props;
 
@@ -61,8 +64,10 @@ const App = (props) => {
               <LoginWrapped
                 isAuth={isAuth}
                 user={user}
+                activeCity={activeCity}
                 errorStatus={errorStatus}
                 resetError={resetError}
+                login={login}
               />
           )}
         />
@@ -116,8 +121,10 @@ App.propTypes = {
   isAuth: bool.isRequired,
   user: appUserPropTypes,
   initialOffers: arrayOf(offerPropTypes).isRequired,
+  activeCity: string.isRequired,
   errorStatus: number.isRequired,
   resetError: func.isRequired,
+  login: func.isRequired,
   onOfferPageLoad: func.isRequired
 };
 
@@ -125,7 +132,8 @@ const mapStateToProps = (state) => ({
   isAuth: getAuthStatus(state) === AuthStatus.AUTH,
   user: getUser(state),
   initialOffers: getOffers(state),
-  errorStatus: getErrorStatus(state)
+  errorStatus: getErrorStatus(state),
+  activeCity: getActiveCity(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -135,6 +143,9 @@ const mapDispatchToProps = (dispatch) => ({
   onOfferPageLoad(offer) {
     dispatch(OfferOperation.loadOfferPage(offer));
   },
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  }
 });
 
 export {App};

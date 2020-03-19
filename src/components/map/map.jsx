@@ -13,8 +13,8 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const {offers} = this.props;
-    this._location = offers[0].city.location;
+    const {offers, activeOffer} = this.props;
+    this._location = activeOffer ? activeOffer.city.location : offers[0].city.location;
     this._zoom = this._location.zoom;
 
 
@@ -76,7 +76,8 @@ class Map extends PureComponent {
   }
 
   _setMapView() {
-    this._location = this.props.offers[0].city.location;
+    const {offers, activeOffer} = this.props;
+    this._location = activeOffer ? activeOffer.city.location : offers[0].city.location;
     this._zoom = this._location.zoom;
     this._map.setView([this._location.latitude, this._location.longitude], this._zoom);
   }

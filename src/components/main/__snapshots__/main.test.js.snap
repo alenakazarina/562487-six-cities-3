@@ -359,6 +359,7 @@ exports[`Main should render Main correctly with no empty offers 1`] = `
                   </div>
                   <button
                     className="cities__bookmark-button button place-card__bookmark-button--active"
+                    disabled={false}
                     onClick={[Function]}
                     type="button"
                   >

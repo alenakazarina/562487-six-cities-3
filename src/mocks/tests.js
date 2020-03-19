@@ -27,7 +27,7 @@ export const storeWithAuth = mockStore({
     comments: reviews
   },
   FAVORITES: {
-    favorites: cityOffers
+    favorites: cityOffers.filter((offer) => offer.isFavorite)
   },
   ERRORS: {
     errorStatus: 0

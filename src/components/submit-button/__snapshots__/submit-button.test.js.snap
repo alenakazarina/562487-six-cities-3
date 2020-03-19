@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SubmitButton should render login SubmitButton 1`] = `
+<button
+  className="login__submit form__submit button"
+  disabled={false}
+  type="submit"
+>
+  Sign in
+</button>
+`;
+
+exports[`SubmitButton should render login SubmitButton disabled 1`] = `
+<button
+  className="login__submit form__submit button"
+  disabled={true}
+  type="submit"
+>
+  Sign in
+</button>
+`;
+
+exports[`SubmitButton should render reviews SubmitButton 1`] = `
+<button
+  className="reviews__submit form__submit button"
+  disabled={false}
+  type="submit"
+>
+  Submit
+</button>
+`;
+
+exports[`SubmitButton should render reviews SubmitButton disabled 1`] = `
+<button
+  className="reviews__submit form__submit button"
+  disabled={true}
+  type="submit"
+>
+  Submit
+</button>
+`;

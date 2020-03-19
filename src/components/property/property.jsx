@@ -2,8 +2,9 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {arrayOf, bool, func, number} from 'prop-types';
 import {offerPropTypes, reviewPropTypes, appUserPropTypes} from '../../types';
+import {getNearOffersToShow, getCommentsToShow, getCommentsLength} from '../../reducers/offer/selectors';
 import {Operation as OfferOperation} from '../../reducers/offer/offer';
-import {getNearOffersToShow, getCommentsToShow} from '../../reducers/offer/selectors';
+import {Operation as FavoritesOperation} from '../../reducers/favorites/favorites';
 import Header from '../../components/header/header';
 import Gallery from '../gallery/gallery';
 import PremiumMark from '../premium-mark/premium-mark';
@@ -18,6 +19,9 @@ import PropertyDescription from '../property-description/property-description';
 import Reviews from '../reviews/reviews';
 import Map from '../map/map';
 import NearPlaces from '../near-places/near-places';
+import withDisabled from '../../hocs/with-disabled/with-disabled';
+
+const BookmarkButtonWrapped = withDisabled(BookmarkButton);
 
 class Property extends PureComponent {
   constructor(props) {
@@ -29,8 +33,8 @@ class Property extends PureComponent {
     this.props.onOfferPageLoad(this.props.activeOffer);
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.activeOffer.id !== prevProps.activeOffer.id) {
+  componentDidUpdate({activeOffer}) {
+    if (!activeOffer || activeOffer !== this.props.activeOffer) {
       this.props.onOfferPageLoad(this.props.activeOffer);
     }
   }
@@ -43,7 +47,9 @@ class Property extends PureComponent {
       activeOffer,
       nearOffers,
       reviews,
-      onReviewSubmit
+      reviewsCount,
+      onReviewSubmit,
+      onFavoriteClick
     } = this.props;
 
     if (!activeOffer) {
@@ -66,11 +72,12 @@ class Property extends PureComponent {
                 <div className="property__wrapper">
                   {isPremium ? <PremiumMark prefix={this._prefix} /> : ``}
                   <PropertyTitle title={title}>
-                    <BookmarkButton
+                    <BookmarkButtonWrapped
                       id={id}
                       prefix={this._prefix}
                       width={31}
                       height={33}
+                      onFavoriteClick={onFavoriteClick}
                     />
                   </PropertyTitle>
                   <Rating
@@ -88,6 +95,7 @@ class Property extends PureComponent {
                     isAuth={isAuth}
                     activeOffer={activeOffer}
                     reviews={reviews}
+                    reviewsCount={reviewsCount}
                     onReviewSubmit={onReviewSubmit}
                     errorStatus={errorStatus}
                   />
@@ -116,18 +124,28 @@ Property.propTypes = {
   activeOffer: offerPropTypes,
   nearOffers: arrayOf(offerPropTypes),
   reviews: arrayOf(reviewPropTypes),
+  reviewsCount: number.isRequired,
   onReviewSubmit: func.isRequired,
-  onOfferPageLoad: func.isRequired
+  onOfferPageLoad: func.isRequired,
+  onFavoriteClick: func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   nearOffers: getNearOffersToShow(state),
-  reviews: getCommentsToShow(state)
+  reviews: getCommentsToShow(state),
+  reviewsCount: getCommentsLength(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onReviewSubmit(id, comment) {
     dispatch(OfferOperation.updateComments(id, comment));
+  },
+  onFavoriteClick(id, status) {
+    if (status) {
+      dispatch(FavoritesOperation.addFavorite(id));
+    } else {
+      dispatch(FavoritesOperation.removeFavorite(id));
+    }
   }
 });
 

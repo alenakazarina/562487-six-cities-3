@@ -4,25 +4,27 @@ import {reviewPropTypes, offerPropTypes} from '../../types';
 import ReviewsList from '../reviews-list/reviews-list';
 import ReviewsForm from '../reviews-form/reviews-form';
 import withRating from '../../hocs/with-rating/with-rating';
+import withDisabled from '../../hocs/with-disabled/with-disabled';
 
-const ReviewsFormWrapped = withRating(ReviewsForm);
+const ReviewsFormWrapped = withDisabled(withRating(ReviewsForm));
 
 const Reviews = (props) => {
   const {
     isAuth,
     activeOffer,
-    reviews,
     errorStatus,
+    reviews,
+    reviewsCount,
     onReviewSubmit
   } = props;
 
   return (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-      {reviews.length ? <ReviewsList reviews={reviews} /> : ``}
+      {reviewsCount ? <ReviewsList reviews={reviews} /> : ``}
       {isAuth ? <ReviewsFormWrapped
-        reviewsCount={reviews.length}
-        activeOffer={activeOffer}
+        reviewsCount={reviewsCount}
+        offerId={activeOffer.id}
         errorStatus={errorStatus}
         onReviewSubmit={onReviewSubmit}
       /> : ``}
@@ -33,8 +35,9 @@ const Reviews = (props) => {
 Reviews.propTypes = {
   isAuth: bool.isRequired,
   activeOffer: offerPropTypes,
-  reviews: arrayOf(reviewPropTypes),
   errorStatus: number.isRequired,
+  reviews: arrayOf(reviewPropTypes),
+  reviewsCount: number.isRequired,
   onReviewSubmit: func.isRequired
 };
 

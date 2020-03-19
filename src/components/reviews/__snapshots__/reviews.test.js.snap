@@ -143,6 +143,7 @@ exports[`Reviews should render Reviews with Form 1`] = `
     onSubmit={[Function]}
   >
     <fieldset
+      disabled={false}
       style={
         Object {
           "border": "none",
@@ -311,6 +312,7 @@ exports[`Reviews should render Reviews with Form 1`] = `
       </p>
       <button
         className="reviews__submit form__submit button"
+        disabled={true}
         type="submit"
       >
         Submit
@@ -342,6 +344,7 @@ exports[`Reviews should render Reviews with empty reviews 1`] = `
     onSubmit={[Function]}
   >
     <fieldset
+      disabled={false}
       style={
         Object {
           "border": "none",
@@ -510,6 +513,7 @@ exports[`Reviews should render Reviews with empty reviews 1`] = `
       </p>
       <button
         className="reviews__submit form__submit button"
+        disabled={true}
         type="submit"
       >
         Submit

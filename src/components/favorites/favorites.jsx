@@ -2,11 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bool} from 'prop-types';
 import {appUserPropTypes} from '../../types';
+import {getFavorites} from '../../reducers/favorites/selectors';
 import Header from '../../components/header/header';
 import Footer from '../footer/footer';
 import FavoritesList from '../favorites-list/favorites-list';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
-import {getFavorites} from '../../reducers/favorites/selectors';
 
 const Favorites = (props) => {
   const {isAuth, user, isEmpty} = props;

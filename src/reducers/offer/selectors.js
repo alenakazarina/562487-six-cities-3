@@ -24,6 +24,11 @@ export const getCommentsToShow = createSelector(
     (comments) => comments.slice(0, MAX_COMMENTS_COUNT_TO_SHOW)
 );
 
+export const getCommentsLength = createSelector(
+    getComments,
+    (comments) => comments.length
+);
+
 export const getRatingToShow = createSelector(
     getComments,
     (comments) => comments.length ? comments.reduce((ratingValue, currentComment) => ratingValue + currentComment.rating, 0) : 0,

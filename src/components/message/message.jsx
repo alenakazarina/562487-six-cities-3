@@ -22,7 +22,7 @@ const styles = {
     right: `5px`,
     zIndex: 10,
     padding: `10px`,
-    backgroundSize: `10px`,
+    backgroundSize: `18px`,
     backgroundImage: `url(./img/close.svg)`,
     backgroundPosition: `center`,
     backgroundRepeat: `no-repeat`,
@@ -66,7 +66,7 @@ class Message extends PureComponent {
         <div className="message__header"
           style={styles.header}
         >
-          <b>Error status code: {status}</b>
+          <b>{status}. That’s an error.</b>
         </div>
         <div className="message__body">
           <p>Something went wrong :(</p>

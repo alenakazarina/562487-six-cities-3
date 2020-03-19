@@ -1,50 +1,53 @@
-import React, {PureComponent, createRef} from 'react';
-import {number, string, func} from 'prop-types';
+import React, {PureComponent} from 'react';
+import {number, string, func, bool} from 'prop-types';
 import RatingInput from '../rating-input/rating-input';
+import SubmitButton from '../submit-button/submit-button';
 import {RATINGS} from '../../const';
 
 class ReviewsForm extends PureComponent {
   constructor(props) {
     super(props);
-    this._submitButtonRef = createRef();
-    this._fieldsetRef = createRef();
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this._submitButtonRef.current.disabled = true;
-  }
-
-  componentDidUpdate(prevProps) {
-    this._checkSubmitDisabled();
-
-    if (this.props.errorStatus || prevProps.reviewsCount !== this.props.reviewsCount) {
-      this._fieldsetRef.current.disabled = false;
+  componentDidUpdate({errorStatus, reviewsCount}) {
+    if (errorStatus || reviewsCount !== this.props.reviewsCount) {
+      this.props.setDisabled(false);
     }
-  }
-
-  _handleSubmit(evt) {
-    evt.preventDefault();
-    this._submitButtonRef.current.disabled = true;
-    this._fieldsetRef.current.disabled = true;
-    this.props.onSubmit();
   }
 
   _checkSubmitDisabled() {
     const {ratingValue, comment} = this.props;
-    if (ratingValue === 0 || comment.length <= 50 || comment.length >= 300) {
-      this._submitButtonRef.current.disabled = true;
-    } else {
-      this._submitButtonRef.current.disabled = false;
-    }
+    return (ratingValue === 0 || comment.length <= 50 || comment.length >= 300) ? true : false;
+  }
+
+  _handleSubmit(evt) {
+    evt.preventDefault();
+    const {
+      ratingValue,
+      comment,
+      offerId,
+      setDisabled,
+      onReviewSubmit
+    } = this.props;
+
+    setDisabled(true);
+
+    onReviewSubmit(offerId, {
+      rating: ratingValue,
+      text: comment
+    });
   }
 
   render() {
     const {
       ratingValue,
       comment,
+      isDisabled,
       onChange
     } = this.props;
+
+    const isSubmitDisabled = isDisabled ? true : this._checkSubmitDisabled();
 
     return (
       <form className="reviews__form form"
@@ -53,7 +56,7 @@ class ReviewsForm extends PureComponent {
         onSubmit={this._handleSubmit}
       >
         <fieldset
-          ref={this._fieldsetRef}
+          disabled={isDisabled}
           style={{border: `none`, padding: `0`}}
         >
           <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -80,11 +83,10 @@ class ReviewsForm extends PureComponent {
           <p className="reviews__help">
             To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
           </p>
-          <button
-            ref={this._submitButtonRef}
-            className="reviews__submit form__submit button"
-            type="submit"
-          >Submit</button>
+          <SubmitButton
+            prefix="reviews"
+            isDisabled={isSubmitDisabled}
+          />
         </div>
       </form>
     );
@@ -96,8 +98,11 @@ ReviewsForm.propTypes = {
   comment: string.isRequired,
   errorStatus: number.isRequired,
   reviewsCount: number.isRequired,
+  offerId: number.isRequired,
+  isDisabled: bool.isRequired,
+  setDisabled: func.isRequired,
   onChange: func.isRequired,
-  onSubmit: func.isRequired
+  onReviewSubmit: func.isRequired
 };
 
 export default ReviewsForm;

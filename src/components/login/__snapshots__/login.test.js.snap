@@ -79,44 +79,59 @@ exports[`Login should render Login Page correctly 1`] = `
           method="post"
           onSubmit={[Function]}
         >
-          <div
-            className="login__input-wrapper form__input-wrapper"
+          <fieldset
+            disabled={false}
+            style={
+              Object {
+                "border": "none",
+                "padding": "0",
+              }
+            }
           >
-            <label
-              className="visually-hidden"
+            <div
+              className="login__input-wrapper form__input-wrapper"
             >
-              E-mail
-            </label>
-            <input
-              className="login__input form__input"
-              name="email"
-              placeholder="Email"
-              required={true}
-              type="email"
-            />
-          </div>
-          <div
-            className="login__input-wrapper form__input-wrapper"
-          >
-            <label
-              className="visually-hidden"
+              <label
+                className="visually-hidden"
+              >
+                Email
+              </label>
+              <input
+                className="login__input form__input"
+                name="email"
+                onChange={[Function]}
+                placeholder="Email"
+                required={true}
+                type="email"
+                value=""
+              />
+            </div>
+            <div
+              className="login__input-wrapper form__input-wrapper"
             >
-              Password
-            </label>
-            <input
-              className="login__input form__input"
-              name="password"
-              placeholder="Password"
-              required={true}
-              type="password"
-            />
-          </div>
-          <button
-            className="login__submit form__submit button"
-            type="submit"
-          >
-            Sign in
-          </button>
+              <label
+                className="visually-hidden"
+              >
+                Password
+              </label>
+              <input
+                className="login__input form__input"
+                name="password"
+                onChange={[Function]}
+                placeholder="Password"
+                required={true}
+                type="password"
+                value=""
+              />
+            </div>
+            <button
+              className="login__submit form__submit button"
+              disabled={false}
+              type="submit"
+            >
+              Sign in
+            </button>
+          </fieldset>
         </form>
       </section>
       <section

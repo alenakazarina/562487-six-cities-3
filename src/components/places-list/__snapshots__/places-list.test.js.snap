@@ -57,6 +57,7 @@ exports[`PlacesList should render cities PlacesList 1`] = `
         </div>
         <button
           className="cities__bookmark-button button place-card__bookmark-button--active"
+          disabled={false}
           onClick={[Function]}
           type="button"
         >
@@ -159,7 +160,8 @@ exports[`PlacesList should render cities PlacesList 1`] = `
           </span>
         </div>
         <button
-          className="cities__bookmark-button button place-card__bookmark-button--active"
+          className="cities__bookmark-button button "
+          disabled={false}
           onClick={[Function]}
           type="button"
         >
@@ -268,7 +270,8 @@ exports[`PlacesList should render cities PlacesList 1`] = `
           </span>
         </div>
         <button
-          className="cities__bookmark-button button place-card__bookmark-button--active"
+          className="cities__bookmark-button button "
+          disabled={false}
           onClick={[Function]}
           type="button"
         >
@@ -385,6 +388,7 @@ exports[`PlacesList should render near places PlacesList 1`] = `
         </div>
         <button
           className="near-places__bookmark-button button place-card__bookmark-button--active"
+          disabled={false}
           onClick={[Function]}
           type="button"
         >
@@ -487,7 +491,8 @@ exports[`PlacesList should render near places PlacesList 1`] = `
           </span>
         </div>
         <button
-          className="near-places__bookmark-button button place-card__bookmark-button--active"
+          className="near-places__bookmark-button button "
+          disabled={false}
           onClick={[Function]}
           type="button"
         >
@@ -596,7 +601,8 @@ exports[`PlacesList should render near places PlacesList 1`] = `
           </span>
         </div>
         <button
-          className="near-places__bookmark-button button place-card__bookmark-button--active"
+          className="near-places__bookmark-button button "
+          disabled={false}
           onClick={[Function]}
           type="button"
         >

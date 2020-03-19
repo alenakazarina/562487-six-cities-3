@@ -31,3 +31,5 @@ export const formatDatetime = (date) => {
 export const formatMonthYear = (date) => {
   return `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
 };
+
+export const capitalizeFirstLetter = (name) => `${name.slice(0, 1).toUpperCase()}${name.slice(1)}`;

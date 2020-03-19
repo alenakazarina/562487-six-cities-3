@@ -4,6 +4,8 @@ import {Provider} from 'react-redux';
 import {storeWithAuth} from '../../mocks/tests';
 import BookmarkButton from './bookmark-button';
 
+const mockFn = () => {};
+
 describe(`BookmarkButton`, () => {
   it(`should render property's BookmarkButton active`, () => {
     const tree = renderer.create(
@@ -11,9 +13,11 @@ describe(`BookmarkButton`, () => {
           <BookmarkButton
             id={1}
             prefix={`property`}
-            isFavorite={true}
             width={31}
             height={33}
+            isDisabled={false}
+            setDisabled={mockFn}
+            onFavoriteClick={mockFn}
           />
         </Provider>
     ).toJSON();
@@ -26,9 +30,11 @@ describe(`BookmarkButton`, () => {
           <BookmarkButton
             id={2}
             prefix={`place-card`}
-            isFavorite={false}
             width={18}
             height={19}
+            isDisabled={false}
+            setDisabled={mockFn}
+            onFavoriteClick={mockFn}
           />
         </Provider>
     ).toJSON();

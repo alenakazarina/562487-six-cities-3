@@ -18,6 +18,7 @@ describe(`PlaceCard`, () => {
               prefix={prefixes[0]}
               offer={cityOffers[0]}
               setActiveOffer={mockFn}
+              onFavoriteClick={mockFn}
             />
           </BrowserRouter>
         </Provider>
@@ -33,6 +34,7 @@ describe(`PlaceCard`, () => {
               prefix={prefixes[1]}
               offer={cityOffers[1]}
               setActiveOffer={mockFn}
+              onFavoriteClick={mockFn}
             />
           </BrowserRouter>
         </Provider>

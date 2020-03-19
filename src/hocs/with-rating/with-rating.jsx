@@ -1,8 +1,7 @@
 import React, {PureComponent} from 'react';
-import {func, number} from 'prop-types';
-import {offerPropTypes} from '../../types';
+import {number} from 'prop-types';
 
-const INITIAL_STATE = {
+const INITIAL_FORM_STATE = {
   ratingValue: 0,
   comment: ``
 };
@@ -11,14 +10,13 @@ const withRating = (Component) => {
   class WithRating extends PureComponent {
     constructor(props) {
       super(props);
-      this.state = INITIAL_STATE;
+      this.state = INITIAL_FORM_STATE;
       this._handleChange = this._handleChange.bind(this);
-      this._handleSubmit = this._handleSubmit.bind(this);
     }
 
-    componentDidUpdate(prevProps) {
-      if (prevProps.reviewsCount < this.props.reviewsCount) {
-        this.setState(INITIAL_STATE);
+    componentDidUpdate({reviewsCount}) {
+      if (reviewsCount < this.props.reviewsCount) {
+        this.setState(INITIAL_FORM_STATE);
       }
     }
 
@@ -28,25 +26,21 @@ const withRating = (Component) => {
           this.setState({
             ratingValue: parseInt(currentTarget.value, 10)
           });
-          return;
+          break;
         case `review`:
           this.setState({
             comment: currentTarget.value
           });
+          break;
       }
     }
 
-    _handleSubmit() {
-      const {ratingValue, comment} = this.state;
-      const {activeOffer, onReviewSubmit} = this.props;
-      onReviewSubmit(activeOffer.id, {
-        rating: ratingValue,
-        text: comment
-      });
-    }
-
     render() {
-      const {ratingValue, comment} = this.state;
+      const {
+        ratingValue,
+        comment
+      } = this.state;
+
       return (
         <Component
           {...this.props}
@@ -60,8 +54,6 @@ const withRating = (Component) => {
   }
 
   WithRating.propTypes = {
-    activeOffer: offerPropTypes,
-    onReviewSubmit: func.isRequired,
     reviewsCount: number.isRequired
   };
 

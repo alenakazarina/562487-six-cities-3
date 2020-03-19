@@ -17,7 +17,7 @@ describe(`withMessage HOC`, () => {
         />
     );
     expect(wrapper.exists(`.message`)).toBe(true);
-    expect(wrapper.find(`.message__header`).text()).toBe(`Error status code: 404`);
+    expect(wrapper.find(`.message__header`).text()).toBe(`404. That’s an error.`);
   });
 
   it(`should render wrapped component without error message`, () => {

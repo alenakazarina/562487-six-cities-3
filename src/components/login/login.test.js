@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import {storeWithNoAuth} from '../../mocks/tests';
 import {defaultUser} from '../../mocks/const';
-import {Login} from './login';
+import Login from './login';
 
 const city = `Paris`;
 const mockFn = () => {};

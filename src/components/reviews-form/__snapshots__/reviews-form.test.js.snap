@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ReviewForm should render ReviewForm correctly 1`] = `
+exports[`ReviewForm should render ReviewForm with initial state 1`] = `
 <form
   action="#"
   className="reviews__form form"
@@ -8,6 +8,7 @@ exports[`ReviewForm should render ReviewForm correctly 1`] = `
   onSubmit={[Function]}
 >
   <fieldset
+    disabled={false}
     style={
       Object {
         "border": "none",
@@ -176,6 +177,7 @@ exports[`ReviewForm should render ReviewForm correctly 1`] = `
     </p>
     <button
       className="reviews__submit form__submit button"
+      disabled={true}
       type="submit"
     >
       Submit

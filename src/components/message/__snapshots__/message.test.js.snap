@@ -26,8 +26,8 @@ exports[`Message should render Message correctly 1`] = `
     }
   >
     <b>
-      Error status code: 
       400
+      . That’s an error.
     </b>
   </div>
   <div
@@ -48,7 +48,7 @@ exports[`Message should render Message correctly 1`] = `
         "backgroundImage": "url(./img/close.svg)",
         "backgroundPosition": "center",
         "backgroundRepeat": "no-repeat",
-        "backgroundSize": "10px",
+        "backgroundSize": "18px",
         "color": "#ffffff",
         "fontWeight": "bold",
         "padding": "10px",

@@ -2,7 +2,8 @@
 
 exports[`BookmarkButton should render place card's BookmarkButton 1`] = `
 <button
-  className="place-card__bookmark-button button place-card__bookmark-button--active"
+  className="place-card__bookmark-button button "
+  disabled={false}
   onClick={[Function]}
   type="button"
 >
@@ -26,6 +27,7 @@ exports[`BookmarkButton should render place card's BookmarkButton 1`] = `
 exports[`BookmarkButton should render property's BookmarkButton active 1`] = `
 <button
   className="property__bookmark-button button place-card__bookmark-button--active"
+  disabled={false}
   onClick={[Function]}
   type="button"
 >

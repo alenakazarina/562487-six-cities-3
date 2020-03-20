@@ -2,12 +2,12 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import NoPlaces from './no-places';
 
-const city = `Amsterdam`;
+const CITY = `Amsterdam`;
 
 describe(`NoPlaces`, () => {
   it(`should render NoPlaces correctly`, () => {
     const tree = renderer.create(
-        <NoPlaces city={city} />
+        <NoPlaces city={CITY} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

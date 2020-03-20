@@ -1,8 +1,8 @@
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api';
 import {reducer, ActionType, Operation} from './offers';
-import {cityOffers, apiMockOffers} from '../../mocks/const';
-import Offer from '../../models/offer';
+import {CITY_OFFERS, API_MOCK_OFFERS} from '../../mocks/const';
+import Offer from '../../models/offer/offer';
 
 const api = createAPI(() => {});
 
@@ -19,9 +19,9 @@ describe(`Offers reducer works correctly`, () => {
       offers: []
     }, {
       type: ActionType.LOAD_OFFERS,
-      payload: cityOffers
+      payload: CITY_OFFERS
     })).toEqual({
-      offers: cityOffers
+      offers: CITY_OFFERS
     });
   });
 
@@ -40,23 +40,23 @@ describe(`Offers reducer works correctly`, () => {
 
   it(`Reducer should update offers`, () => {
     expect(reducer({
-      offers: cityOffers
+      offers: CITY_OFFERS
     }, {
       type: ActionType.UPDATE_OFFERS
     })).toEqual({
-      offers: cityOffers
+      offers: CITY_OFFERS
     });
   });
 
   it(`Reducer should toggle favorite status `, () => {
-    const updatedOffers = cityOffers.map((offer, i) => {
+    const updatedOffers = CITY_OFFERS.map((offer, i) => {
       if (i === 0) {
         offer.isFavorite = !offer.isFavorite;
       }
       return offer;
     });
     expect(reducer({
-      offers: cityOffers
+      offers: CITY_OFFERS
     }, {
       type: ActionType.UPDATE_OFFERS,
       payload: 1
@@ -71,10 +71,10 @@ describe(`Operation work correctly`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const offersLoader = Operation.loadOffers();
-    const adaptedApiMockOffers = Offer.parseOffers(apiMockOffers);
+    const adaptedApiMockOffers = Offer.parseOffers(API_MOCK_OFFERS);
     apiMock
       .onGet(`/hotels`)
-      .reply(200, apiMockOffers);
+      .reply(200, API_MOCK_OFFERS);
 
     return offersLoader(dispatch, () => {}, api)
       .then(() => {

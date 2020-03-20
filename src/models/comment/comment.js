@@ -12,21 +12,6 @@ class Comment {
     };
   }
 
-  toRAW() {
-    return {
-      'comment': this.comment,
-      'date': this.date.toISOString(),
-      'id': this.id,
-      'rating': this.rating,
-      'user': {
-        'avatar_url': this.user.avatarUrl,
-        'id': this.user.id,
-        'is_pro': this.user.isPro,
-        'name': this.user.name
-      }
-    };
-  }
-
   static parseComment(comment) {
     return new Comment(comment);
   }

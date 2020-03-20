@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Gallery should render Gallery correctly 1`] = `
+exports[`Gallery should render Gallery with max count 6 1`] = `
 <div
   className="property__gallery-container container"
 >
@@ -47,6 +47,48 @@ exports[`Gallery should render Gallery correctly 1`] = `
         alt="Interior photo"
         className="property__image"
         src="image3"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+      style={
+        Object {
+          "width": "259px",
+        }
+      }
+    >
+      <img
+        alt="Interior photo"
+        className="property__image"
+        src="image4"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+      style={
+        Object {
+          "width": "259px",
+        }
+      }
+    >
+      <img
+        alt="Interior photo"
+        className="property__image"
+        src="image5"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+      style={
+        Object {
+          "width": "259px",
+        }
+      }
+    >
+      <img
+        alt="Interior photo"
+        className="property__image"
+        src="image6"
       />
     </div>
   </div>

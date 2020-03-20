@@ -1,15 +1,15 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import PropertyHost from './property-host';
-import {users} from '../../mocks/const';
+import {USERS} from '../../mocks/const';
 
-const childrensContent = <div>Childrens content</div>;
+const CHILDREN = <div>Childrens content</div>;
 
 describe(`PropertyHost`, () => {
   it(`should render PropertyHost correctly`, () => {
     const tree = renderer.create(
-        <PropertyHost host={users[0]}>
-          {childrensContent}
+        <PropertyHost host={USERS[0]}>
+          {CHILDREN}
         </PropertyHost>
     ).toJSON();
     expect(tree).toMatchSnapshot();

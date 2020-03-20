@@ -3,25 +3,25 @@ import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import {storeWithAuth} from '../../mocks/tests';
+import {STORE_WITH_AUTH} from '../../mocks/tests';
 import {PlaceCard} from './place-card';
-import {cityOffers} from '../../mocks/const';
+import {CITY_OFFERS} from '../../mocks/const';
 
+const PREFIXES = [`cities`, `near-places`];
 configure({
   adapter: new Adapter(),
 });
 const mockFn = () => {};
-const prefixes = [`cities`, `near-places`];
 
 describe(`PlaceCard`, () => {
   it(`should card on hover to call cb with offer on mouseenter and null on mouseleave`, () => {
-    const cardOffer = cityOffers[0];
+    const cardOffer = CITY_OFFERS[0];
     const setActiveOffer = jest.fn();
     const placeCard = mount(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BrowserRouter>
             <PlaceCard
-              prefix={prefixes[0]}
+              prefix={PREFIXES[0]}
               offer={cardOffer}
               setActiveOffer={setActiveOffer}
               onFavoriteClick={mockFn}

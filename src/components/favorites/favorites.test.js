@@ -2,18 +2,18 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-import {storeWithAuth} from '../../mocks/tests';
-import {appUsers} from '../../mocks/const';
-import Favorites from './favorites';
+import {STORE_WITH_AUTH} from '../../mocks/tests';
+import {APP_USERS} from '../../mocks/const';
+import {Favorites} from './favorites';
 
 describe(`Favorites`, () => {
   it(`should render Favorites with no empty favorites offers`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BrowserRouter>
             <Favorites
               isAuth
-              user={appUsers[0]}
+              user={APP_USERS[0]}
               isEmpty={false}
             />
           </BrowserRouter>
@@ -24,11 +24,11 @@ describe(`Favorites`, () => {
 
   it(`should render Favorites with empty favorites offers`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BrowserRouter>
             <Favorites
               isAuth
-              user={appUsers[0]}
+              user={APP_USERS[0]}
               isEmpty
             />
           </BrowserRouter>

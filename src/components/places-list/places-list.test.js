@@ -2,21 +2,21 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import {storeWithAuth} from '../../mocks/tests';
+import {STORE_WITH_AUTH} from '../../mocks/tests';
 import PlacesList from './places-list';
-import {cityOffers} from '../../mocks/const';
+import {CITY_OFFERS} from '../../mocks/const';
 
-const prefixes = [`cities`, `near-places`];
+const PREFIXES = [`cities`, `near-places`];
 const mockFn = () => {};
 
 describe(`PlacesList`, () => {
   it(`should render cities PlacesList`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BrowserRouter>
             <PlacesList
-              prefix={prefixes[0]}
-              offers={cityOffers}
+              prefix={PREFIXES[0]}
+              offers={CITY_OFFERS}
               onTitleClick={mockFn}
               onCardHoverChange={mockFn}
             />
@@ -28,11 +28,11 @@ describe(`PlacesList`, () => {
 
   it(`should render near places PlacesList`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BrowserRouter>
             <PlacesList
-              prefix={prefixes[1]}
-              offers={cityOffers}
+              prefix={PREFIXES[1]}
+              offers={CITY_OFFERS}
               onTitleClick={mockFn}
               onCardHoverChange={mockFn}
             />

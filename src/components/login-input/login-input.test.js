@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import LoginInput from './login-input';
+import {LOGIN, PASSWORD} from '../../mocks/const';
 
 const mockFn = () => {};
 
@@ -9,7 +10,7 @@ describe(`LoginInput`, () => {
     const tree = renderer.create(
         <LoginInput
           name={`email`}
-          value={`keks@gmail.com`}
+          value={LOGIN}
           onChange={mockFn}
         />
     ).toJSON();
@@ -20,7 +21,7 @@ describe(`LoginInput`, () => {
     const tree = renderer.create(
         <LoginInput
           name={`password`}
-          value={`SecretCatPass`}
+          value={PASSWORD}
           onChange={mockFn}
         />
     ).toJSON();

@@ -2,6 +2,7 @@ import React from 'react';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import LoginInput from './login-input';
+import {LOGIN} from '../../mocks/const';
 
 configure({
   adapter: new Adapter(),
@@ -13,7 +14,7 @@ describe(`LoginInput`, () => {
     const wrapper = shallow(
         <LoginInput
           name={`email`}
-          value={`keks@gmail.com`}
+          value={LOGIN}
           onChange={onChange}
         />
     );

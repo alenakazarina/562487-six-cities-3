@@ -3,19 +3,19 @@ import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {LocationsListItem} from './locations-list-item';
 
-const city = `Amsterdam`;
+const CITY = `Amsterdam`;
 
 configure({
   adapter: new Adapter(),
 });
 
 describe(`LocationsListItem`, () => {
-  it(`should LocationsListItem be pressed and invoke callback fn`, () => {
+  it(`should LocationsListItem be pressed and invoke cb with Amsterdam city`, () => {
     const setActiveCity = jest.fn();
     const locationsListItem = shallow(
         <LocationsListItem
           nodeType="li"
-          city={city}
+          city={CITY}
           isActive={false}
           setActiveCity={setActiveCity}
         />

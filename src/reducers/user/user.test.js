@@ -1,8 +1,8 @@
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api';
 import {Operation, reducer, ActionCreator, ActionType, AuthStatus, DEFAULT_USER} from './user';
-import {apiMockAppUser} from '../../mocks/const';
-import User from '../../models/user';
+import {API_MOCK_APP_USER} from '../../mocks/const';
+import User from '../../models/user/user';
 
 const api = createAPI(() => {});
 
@@ -100,10 +100,10 @@ describe(`Operation work correctly`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const authChecker = Operation.checkAuth();
-    const adaptedUser = User.parseUser(apiMockAppUser);
+    const adaptedUser = User.parseUser(API_MOCK_APP_USER);
     apiMock
       .onGet(`/login`)
-      .reply(200, apiMockAppUser);
+      .reply(200, API_MOCK_APP_USER);
 
     return authChecker(dispatch, () => {}, api)
       .then(() => {
@@ -125,10 +125,10 @@ describe(`Operation work correctly`, () => {
       login: `alena@gmail.com`,
       password: `6_cities`
     });
-    const adaptedUser = User.parseUser(apiMockAppUser);
+    const adaptedUser = User.parseUser(API_MOCK_APP_USER);
     apiMock
       .onPost(`/login`)
-      .reply(200, apiMockAppUser);
+      .reply(200, API_MOCK_APP_USER);
 
     return loginer(dispatch, () => {}, api)
       .then(() => {

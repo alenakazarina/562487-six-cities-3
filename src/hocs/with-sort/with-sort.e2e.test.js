@@ -3,7 +3,7 @@ import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import withSort from './with-sort';
 import {SortType} from '../../const';
-import {cityOffers} from '../../mocks/const';
+import {CITY_OFFERS} from '../../mocks/const';
 
 configure({adapter: new Adapter()});
 
@@ -14,7 +14,7 @@ describe(`withSort HOC`, () => {
   it(`should change active sort type of wrapped component`, () => {
     const wrapper = shallow(
         <MockComponentWrapped
-          offers={cityOffers}
+          offers={CITY_OFFERS}
         />
     );
     expect(wrapper.props().activeSortType).toBe(SortType.POPULAR);

@@ -1,9 +1,9 @@
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api';
 import {reducer, ActionType, Operation} from './offer';
-import {cityOffers, apiMockOffers, reviews, apiMockReviews} from '../../mocks/const';
-import Offer from '../../models/offer';
-import Comment from '../../models/comment';
+import {CITY_OFFERS, API_MOCK_OFFERS, REVIEWS, API_MOCK_REVIEWS} from '../../mocks/const';
+import Offer from '../../models/offer/offer';
+import Comment from '../../models/comment/comment';
 
 const api = createAPI(() => {});
 const activeOfferId = 1;
@@ -23,9 +23,9 @@ describe(`Offer reducer works correctly`, () => {
       nearOffers: []
     }, {
       type: ActionType.LOAD_NEAR_OFFERS,
-      payload: cityOffers
+      payload: CITY_OFFERS
     })).toEqual({
-      nearOffers: cityOffers
+      nearOffers: CITY_OFFERS
     });
   });
 
@@ -34,21 +34,21 @@ describe(`Offer reducer works correctly`, () => {
       comments: []
     }, {
       type: ActionType.LOAD_COMMENTS,
-      payload: reviews
+      payload: REVIEWS
     })).toEqual({
-      comments: reviews
+      comments: REVIEWS
     });
   });
 
   it(`Reducer should update comments`, () => {
-    const prevReviews = reviews.slice(0, 1);
+    const prevReviews = REVIEWS.slice(0, 1);
     expect(reducer({
       comments: prevReviews
     }, {
       type: ActionType.UPDATE_COMMENTS,
-      payload: reviews
+      payload: REVIEWS
     })).toEqual({
-      comments: reviews
+      comments: REVIEWS
     });
   });
 
@@ -57,15 +57,15 @@ describe(`Offer reducer works correctly`, () => {
       activeOffer: null
     }, {
       type: ActionType.SET_ACTIVE_OFFER,
-      payload: cityOffers[0]
+      payload: CITY_OFFERS[0]
     })).toEqual({
-      activeOffer: cityOffers[0]
+      activeOffer: CITY_OFFERS[0]
     });
   });
 
   it(`Reducer should reset active offer`, () => {
     expect(reducer({
-      activeOffer: cityOffers[0]
+      activeOffer: CITY_OFFERS[0]
     }, {
       type: ActionType.SET_ACTIVE_OFFER,
       payload: null
@@ -79,11 +79,11 @@ describe(`Operation work correctly`, () => {
   it(`Should make a correct API call to /hotels/:id/nearby`, () => {
     const dispatch = jest.fn();
     const nearOffersLoader = Operation.loadNearOffers(activeOfferId);
-    const adaptedApiMockOffers = Offer.parseOffers(apiMockOffers);
+    const adaptedApiMockOffers = Offer.parseOffers(API_MOCK_OFFERS);
 
     apiMock
       .onGet(`/hotels/${activeOfferId}/nearby`)
-      .reply(200, apiMockOffers);
+      .reply(200, API_MOCK_OFFERS);
 
     return nearOffersLoader(dispatch, () => {}, api)
       .then(() => {
@@ -98,11 +98,11 @@ describe(`Operation work correctly`, () => {
   it(`Should make a correct API call to /comments/:id`, () => {
     const dispatch = jest.fn();
     const commentsLoader = Operation.loadComments(activeOfferId);
-    const adaptedApiMockReviews = Comment.parseComments(apiMockReviews);
+    const adaptedApiMockReviews = Comment.parseComments(API_MOCK_REVIEWS);
 
     apiMock
       .onGet(`/comments/${activeOfferId}`)
-      .reply(200, apiMockReviews);
+      .reply(200, API_MOCK_REVIEWS);
 
     return commentsLoader(dispatch, () => {}, api)
       .then(() => {
@@ -120,11 +120,11 @@ describe(`Operation work correctly`, () => {
       rating: 4,
       text: `Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country.`
     });
-    const adaptedApiMockReviews = Comment.parseComments(apiMockReviews);
+    const adaptedApiMockReviews = Comment.parseComments(API_MOCK_REVIEWS);
 
     apiMock
       .onPost(`/comments/${activeOfferId}`)
-      .reply(200, apiMockReviews);
+      .reply(200, API_MOCK_REVIEWS);
 
     return commentsUpdater(dispatch, () => {}, api)
       .then(() => {

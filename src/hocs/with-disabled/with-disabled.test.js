@@ -3,7 +3,9 @@ import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import withDisabled from './with-disabled';
 
-configure({adapter: new Adapter()});
+configure({
+  adapter: new Adapter()
+});
 const MockComponent = () => <div />;
 const MockComponentWrapped = withDisabled(MockComponent);
 

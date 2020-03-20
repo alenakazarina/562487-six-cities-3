@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import {storeWithAuth} from '../../mocks/tests';
+import {STORE_WITH_AUTH} from '../../mocks/tests';
 import BookmarkButton from './bookmark-button';
 
 const mockFn = () => {};
@@ -9,7 +9,7 @@ const mockFn = () => {};
 describe(`BookmarkButton`, () => {
   it(`should render property's BookmarkButton active`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BookmarkButton
             id={1}
             prefix={`property`}
@@ -26,7 +26,7 @@ describe(`BookmarkButton`, () => {
 
   it(`should render place card's BookmarkButton`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BookmarkButton
             id={2}
             prefix={`place-card`}

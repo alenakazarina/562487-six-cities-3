@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import LoginForm from './login-form';
+import {LOGIN, PASSWORD} from '../../mocks/const';
 
 const mockFn = () => {};
 
@@ -23,8 +24,8 @@ describe(`LoginForm`, () => {
   it(`should render LoginForm filled with data`, () => {
     const tree = renderer.create(
         <LoginForm
-          userLogin={`keks@gmail.com`}
-          userPassword={`SecretCatPass`}
+          userLogin={LOGIN}
+          userPassword={PASSWORD}
           errorStatus={0}
           isDisabled={false}
           setDisabled={mockFn}
@@ -38,8 +39,8 @@ describe(`LoginForm`, () => {
   it(`should render LoginForm disabled`, () => {
     const tree = renderer.create(
         <LoginForm
-          userLogin={`keks@gmail.com`}
-          userPassword={`SecretCatPass`}
+          userLogin={LOGIN}
+          userPassword={PASSWORD}
           errorStatus={0}
           isDisabled={true}
           setDisabled={mockFn}

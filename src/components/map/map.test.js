@@ -1,17 +1,17 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Map from './map';
-import {cityOffers} from '../../mocks/const';
+import {CITY_OFFERS} from '../../mocks/const';
 
-const prefixes = [`cities`, `property`];
+const PREFIXES = [`cities`, `property`];
 
 describe(`Map`, () => {
   it(`should render cities Map correctly`, () => {
     const tree = renderer.create(
         <Map
-          prefix={prefixes[0]}
-          offers={cityOffers}
-          activeOffer={cityOffers[0]}
+          prefix={PREFIXES[0]}
+          offers={CITY_OFFERS}
+          activeOffer={CITY_OFFERS[0]}
         />,
         {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();
@@ -21,9 +21,9 @@ describe(`Map`, () => {
   it(`should render property Map correctly`, () => {
     const tree = renderer.create(
         <Map
-          prefix={prefixes[1]}
-          offers={cityOffers}
-          activeOffer={cityOffers[1]}
+          prefix={PREFIXES[1]}
+          offers={CITY_OFFERS}
+          activeOffer={CITY_OFFERS[1]}
         />,
         {createNodeMock: () => document.createElement(`div`)}
     ).toJSON();

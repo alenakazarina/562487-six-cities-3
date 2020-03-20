@@ -2,19 +2,19 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import App from './app';
-import {storeWithNoAuth} from '../../mocks/tests';
-import {cityOffers, appUsers, defaultUser} from '../../mocks/const';
+import {STORE_WITH_NO_AUTH} from '../../mocks/tests';
+import {CITY_OFFERS, APP_USERS, DEFAULT_USER} from '../../mocks/const';
 
 const mockFn = () => {};
 
 describe(`App`, () => {
   it(`should render App`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithNoAuth}>
+        <Provider store={STORE_WITH_NO_AUTH}>
           <App
-            initialOffers={cityOffers}
+            initialOffers={CITY_OFFERS}
             isAuth={false}
-            user={defaultUser}
+            user={DEFAULT_USER}
             errorStatus={0}
             resetError={mockFn}
           />
@@ -26,11 +26,11 @@ describe(`App`, () => {
 
   it(`should render App`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithNoAuth}>
+        <Provider store={STORE_WITH_NO_AUTH}>
           <App
-            initialOffers={cityOffers}
+            initialOffers={CITY_OFFERS}
             isAuth
-            user={appUsers[0]}
+            user={APP_USERS[0]}
             errorStatus={0}
             resetError={mockFn}
           />

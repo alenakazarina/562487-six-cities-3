@@ -1,15 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Gallery from './gallery';
-
-const imageSources = [
-  `image1`, `image2`, `image3`
-];
+import {IMAGES} from '../../mocks/const';
 
 describe(`Gallery`, () => {
-  it(`should render Gallery correctly`, () => {
+  it(`should render Gallery with max count 6`, () => {
     const tree = renderer.create(
-        <Gallery images={imageSources} />
+        <Gallery images={IMAGES} />
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });

@@ -1,5 +1,5 @@
 import {extend} from '../../utils';
-import User from '../../models/user';
+import User from '../../models/user/user';
 
 export const DEFAULT_USER = {
   id: -1,

@@ -1,14 +1,17 @@
-const titles = [
+export const LOGIN = `keks@gmail.com`;
+export const PASSWORD = `SecretCatPass`;
+
+export const TITLES = [
   `Amazing and Extremely Central Flat`,
   `The house among olive`,
   `Nice, cozy, warm big bed apartment`
 ];
 
-const galleryImages = [`image1`, `image2`, `image3`, `image4`, `image5`, `image6`, `image7`];
+export const IMAGES = [`image1`, `image2`, `image3`, `image4`, `image5`, `image6`, `image7`];
 
-export const cities = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
+export const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
 
-const locations = [
+export const LOCATIONS = [
   {
     name: `Paris`,
     location: {
@@ -27,16 +30,16 @@ const locations = [
   }
 ];
 
-const offerTypes = [`apartment`, `room`, `house`, `hotel`];
+export const OFFER_TYPES = [`apartment`, `room`, `house`, `hotel`];
 
-const goods = [`Breakfast`, `Laptop friendly workspace`, `Washer`];
+export const GOODS = [`Breakfast`, `Laptop friendly workspace`, `Washer`];
 
-const sentences = [
+export const SENTENCES = [
   `Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country.`,
   `In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.`
 ];
 
-export const users = [
+export const USERS = [
   {
     avatarUrl: `/user1_avatar`,
     id: 1,
@@ -51,9 +54,9 @@ export const users = [
   }
 ];
 
-export const appUsers = users.map((user) => Object.assign({}, user, {email: `user@gmail.com`}));
+export const APP_USERS = USERS.map((user) => Object.assign({}, user, {email: `user@gmail.com`}));
 
-export const defaultUser = {
+export const DEFAULT_USER = {
   id: -1,
   email: ``,
   name: ``,
@@ -61,85 +64,85 @@ export const defaultUser = {
   avatarUrl: ``
 };
 
-const dates = [
+export const DATES = [
   new Date(`2020.03.04 14:00`),
   new Date(`2020.03.03 10:00`)
 ];
 
-export const reviews = [{
+export const REVIEWS = [{
   id: 1,
-  user: users[0],
+  user: USERS[0],
   rating: 4,
-  comment: sentences[0],
-  date: dates[0]
+  comment: SENTENCES[0],
+  date: DATES[0]
 }, {
   id: 2,
-  user: users[1],
+  user: USERS[1],
   rating: 5,
-  comment: sentences[1],
-  date: dates[1]
+  comment: SENTENCES[1],
+  date: DATES[1]
 }];
 
-export const cityOffers = [{
+export const CITY_OFFERS = [{
   id: 1,
-  city: locations[0],
-  previewImage: galleryImages[0],
-  images: galleryImages,
-  title: titles[0],
+  city: LOCATIONS[0],
+  previewImage: IMAGES[0],
+  images: IMAGES,
+  title: TITLES[0],
   isFavorite: true,
   isPremium: true,
   rating: 5,
-  type: offerTypes[0],
+  type: OFFER_TYPES[0],
   bedrooms: 3,
   maxAdults: 5,
   price: 400,
-  amenities: goods,
-  host: users[0],
-  description: sentences[0],
-  location: locations[0].location
+  amenities: GOODS,
+  host: USERS[0],
+  description: SENTENCES[0],
+  location: LOCATIONS[0].location
 }, {
   id: 2,
-  city: locations[1],
-  previewImage: galleryImages[2],
-  images: galleryImages,
-  title: titles[1],
+  city: LOCATIONS[1],
+  previewImage: IMAGES[2],
+  images: IMAGES,
+  title: TITLES[1],
   isFavorite: false,
   isPremium: false,
   rating: 4,
-  type: offerTypes[2],
+  type: OFFER_TYPES[2],
   bedrooms: 1,
   maxAdults: 7,
   price: 500,
-  amenities: goods,
-  host: users[1],
-  description: sentences[1],
-  location: locations[1].location
+  amenities: GOODS,
+  host: USERS[1],
+  description: SENTENCES[1],
+  location: LOCATIONS[1].location
 }, {
   id: 3,
-  city: locations[1],
-  previewImage: galleryImages[2],
-  images: galleryImages,
-  title: titles[0],
+  city: LOCATIONS[1],
+  previewImage: IMAGES[2],
+  images: IMAGES,
+  title: TITLES[0],
   isFavorite: false,
   isPremium: true,
   rating: 3,
-  type: offerTypes[1],
+  type: OFFER_TYPES[1],
   bedrooms: 2,
   maxAdults: 2,
   price: 600,
-  amenities: goods,
-  host: users[0],
-  description: sentences[0],
-  location: locations[1].location
+  amenities: GOODS,
+  host: USERS[0],
+  description: SENTENCES[0],
+  location: LOCATIONS[1].location
 }];
 
-export const favoriteOffers = cityOffers.map((offer) => Object.assign({}, offer, {isFavorite: true}));
+export const FAVORITE_OFFERS = CITY_OFFERS.map((offer) => Object.assign({}, offer, {isFavorite: true}));
 
-export const apiMockOffers = [{
+export const API_MOCK_OFFERS = [{
   'bedrooms': 3,
-  'city': `Paris`,
-  'description': sentences[1],
-  'goods': goods,
+  'city': LOCATIONS[1],
+  'description': SENTENCES[1],
+  'goods': GOODS,
   'host': {
     'avatar_url': `avatar`,
     'id': 1,
@@ -147,21 +150,21 @@ export const apiMockOffers = [{
     'name': `Alena`
   },
   'id': 1,
-  'images': galleryImages,
+  'images': IMAGES,
   'is_favorite': true,
   'is_premium': true,
-  'location': locations[1],
+  'location': LOCATIONS[1],
   'max_adults': 3,
-  'preview_image': galleryImages[0],
+  'preview_image': IMAGES[0],
   'price': 600,
   'rating': 3,
-  'title': titles[1],
-  'type': offerTypes[1]
+  'title': TITLES[1],
+  'type': OFFER_TYPES[1]
 }];
 
-export const apiMockReviews = [{
-  'comment': sentences[1],
-  'date': dates[1].toISOString(),
+export const API_MOCK_REVIEWS = [{
+  'comment': SENTENCES[1],
+  'date': DATES[1].toISOString(),
   'id': 1,
   'rating': 3.5,
   'user': {
@@ -172,7 +175,7 @@ export const apiMockReviews = [{
   }
 }];
 
-export const apiMockAppUser = {
+export const API_MOCK_APP_USER = {
   'id': 1,
   'email': `alena@gmail.com`,
   'name': `Alena`,

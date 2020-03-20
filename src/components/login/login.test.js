@@ -2,22 +2,22 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-import {storeWithNoAuth} from '../../mocks/tests';
-import {defaultUser} from '../../mocks/const';
+import {STORE_WITH_NO_AUTH} from '../../mocks/tests';
+import {DEFAULT_USER} from '../../mocks/const';
 import Login from './login';
 
-const city = `Paris`;
+const CITY = `Amsterdam`;
 const mockFn = () => {};
 
 describe(`Login`, () => {
   it(`should render Login Page correctly`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithNoAuth}>
+        <Provider store={STORE_WITH_NO_AUTH}>
           <BrowserRouter>
             <Login
               isAuth={false}
-              user={defaultUser}
-              activeCity={city}
+              user={DEFAULT_USER}
+              activeCity={CITY}
               errorStatus={0}
               login={mockFn}
             />

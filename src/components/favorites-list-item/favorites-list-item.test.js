@@ -3,24 +3,20 @@ import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
 import FavoritesListItem from './favorites-list-item';
 import {Provider} from 'react-redux';
-import {storeWithAuth} from '../../mocks/tests';
-import {cityOffers} from '../../mocks/const';
+import {STORE_WITH_AUTH} from '../../mocks/tests';
+import {CITY_OFFERS} from '../../mocks/const';
 
-const mockFn = () => {};
-const city = `Paris`;
+const CITY = `Paris`;
 
 describe(`FavoritesListItem`, () => {
   it(`should render FavoritesListItem correctly`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BrowserRouter>
             <FavoritesListItem
-              city={city}
-              offers={cityOffers}
+              city={CITY}
+              offers={CITY_OFFERS}
               isActive={false}
-              onTitleClick={mockFn}
-              onFavoriteClick={mockFn}
-              onTabClick={mockFn}
             />
           </BrowserRouter>
         </Provider>
@@ -30,15 +26,12 @@ describe(`FavoritesListItem`, () => {
 
   it(`should render FavoritesListItem with active location tab`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BrowserRouter>
             <FavoritesListItem
-              city={city}
-              offers={cityOffers}
+              city={CITY}
+              offers={CITY_OFFERS}
               isActive
-              onTitleClick={mockFn}
-              onFavoriteClick={mockFn}
-              onTabClick={mockFn}
             />
           </BrowserRouter>
         </Provider>

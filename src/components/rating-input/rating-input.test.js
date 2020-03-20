@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import RatingInput from './rating-input';
 
 const mockFn = () => {};
-const ratings = [
+const RATINGS = [
   {
     value: 5,
     title: `perfect`
@@ -18,7 +18,7 @@ describe(`RatingInput`, () => {
   it(`should render RatingInput not checked`, () => {
     const tree = renderer.create(
         <RatingInput
-          rating={ratings[0]}
+          rating={RATINGS[0]}
           isChecked={false}
           onChange={mockFn}
         />
@@ -28,7 +28,7 @@ describe(`RatingInput`, () => {
   it(`should render RatingInput checked`, () => {
     const tree = renderer.create(
         <RatingInput
-          rating={ratings[1]}
+          rating={RATINGS[1]}
           isChecked
           onChange={mockFn}
         />

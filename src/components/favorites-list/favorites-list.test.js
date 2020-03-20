@@ -2,13 +2,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import {storeWithAuth} from '../../mocks/tests';
+import {STORE_WITH_AUTH} from '../../mocks/tests';
 import FavoritesList from './favorites-list';
 
 describe(`FavoritesList`, () => {
   it(`should render FavoritesList correctly`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BrowserRouter>
             <FavoritesList />
           </BrowserRouter>

@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
-import {defaultUser, appUsers} from '../../mocks/const';
+import {DEFAULT_USER, APP_USERS} from '../../mocks/const';
 import Header from './header';
 
 describe(`Header`, () => {
@@ -10,7 +10,7 @@ describe(`Header`, () => {
         <BrowserRouter>
           <Header
             isAuth
-            user={appUsers[0]}
+            user={APP_USERS[0]}
           />
         </BrowserRouter>
     ).toJSON();
@@ -22,7 +22,7 @@ describe(`Header`, () => {
         <BrowserRouter>
           <Header
             isAuth={false}
-            user={defaultUser}
+            user={DEFAULT_USER}
           />
         </BrowserRouter>
     ).toJSON();

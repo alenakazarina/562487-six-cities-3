@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import BookmarkButton from './bookmark-button';
-import {storeWithAuth} from '../../mocks/tests';
+import {STORE_WITH_AUTH} from '../../mocks/tests';
 
 const mockFn = () => {};
 configure({
@@ -14,7 +14,7 @@ describe(`BookmarkButton`, () => {
   it(`should BookmarkButton be pressed and invoke cb to remove from favorites`, () => {
     const onFavoriteClick = jest.fn();
     const wrapper = mount(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BookmarkButton
             id={1}
             prefix={`property`}
@@ -36,7 +36,7 @@ describe(`BookmarkButton`, () => {
   it(`should BookmarkButton be pressed and invoke cb to add to favorites`, () => {
     const onFavoriteClick = jest.fn();
     const wrapper = mount(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BookmarkButton
             id={2}
             prefix={`property`}

@@ -1,6 +1,6 @@
 import configureStore from 'redux-mock-store';
 import {AuthStatus} from '../reducers/user/user';
-import {cityOffers, reviews, appUsers} from './const';
+import {CITY_OFFERS, REVIEWS, APP_USERS} from './const';
 
 const defaultUser = {
   id: -1,
@@ -12,35 +12,35 @@ const defaultUser = {
 
 const mockStore = configureStore([]);
 
-export const storeWithAuth = mockStore({
+export const STORE_WITH_AUTH = mockStore({
   USER: {
     authStatus: AuthStatus.AUTH,
-    user: appUsers[0]
+    user: APP_USERS[0]
   },
   OFFERS: {
-    offers: cityOffers,
+    offers: CITY_OFFERS,
     activeCity: `Paris`
   },
   OFFER: {
-    activeOffer: cityOffers[1],
-    nearOffers: cityOffers.slice(0, 2),
-    comments: reviews
+    activeOffer: CITY_OFFERS[1],
+    nearOffers: CITY_OFFERS.slice(0, 2),
+    comments: REVIEWS
   },
   FAVORITES: {
-    favorites: cityOffers.filter((offer) => offer.isFavorite)
+    favorites: CITY_OFFERS.filter((offer) => offer.isFavorite)
   },
   ERRORS: {
     errorStatus: 0
   }
 });
 
-export const storeWithNoAuth = mockStore({
+export const STORE_WITH_NO_AUTH = mockStore({
   USER: {
     authStatus: AuthStatus.NO_AUTH,
     user: defaultUser
   },
   OFFERS: {
-    offers: cityOffers,
+    offers: CITY_OFFERS,
     activeCity: `Paris`
   },
   OFFER: {
@@ -56,7 +56,7 @@ export const storeWithNoAuth = mockStore({
   }
 });
 
-export const storeWithNoOffers = mockStore({
+export const STORE_WITH_NO_OFFERS = mockStore({
   USER: {
     authStatus: AuthStatus.NO_AUTH,
     user: defaultUser

@@ -2,14 +2,14 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import PropertyTitle from './property-title';
 
-const childrensContent = <div>Childrens content</div>;
-const title = `Property Title`;
+const CHILDREN = <div>Childrens content</div>;
+const TITLE = `Property Title`;
 
 describe(`PropertyTitle`, () => {
   it(`should render PropertyTitle correctly`, () => {
     const tree = renderer.create(
-        <PropertyTitle title={title} >
-          {childrensContent}
+        <PropertyTitle title={TITLE} >
+          {CHILDREN}
         </PropertyTitle>
     ).toJSON();
     expect(tree).toMatchSnapshot();

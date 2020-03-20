@@ -2,24 +2,24 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import {storeWithAuth} from '../../mocks/tests';
+import {STORE_WITH_AUTH} from '../../mocks/tests';
+import {CITY_OFFERS, APP_USERS, REVIEWS} from '../../mocks/const';
 import Property from './property';
-import {cityOffers, appUsers, reviews} from '../../mocks/const';
 
 const mockFn = () => {};
 
 describe(`Property`, () => {
   it(`should render Property correctly`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <BrowserRouter>
             <Property
               isAuth
-              user={appUsers[0]}
+              user={APP_USERS[0]}
               errorStatus={0}
-              activeOffer={cityOffers[0]}
-              nearOffers={cityOffers.slice(1)}
-              reviews={reviews}
+              activeOffer={CITY_OFFERS[0]}
+              nearOffers={CITY_OFFERS.slice(1)}
+              reviews={REVIEWS}
               onReviewSubmit={mockFn}
               onOfferPageLoad={mockFn}
             />

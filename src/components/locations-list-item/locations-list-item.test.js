@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
 import {LocationsListItem} from './locations-list-item';
 
-const city = `Amsterdam`;
+const CITY = `Amsterdam`;
 const mockFn = () => {};
 
 describe(`LocationsListItem`, () => {
@@ -11,7 +11,7 @@ describe(`LocationsListItem`, () => {
     const tree = renderer.create(
         <LocationsListItem
           nodeType="li"
-          city={city}
+          city={CITY}
           isActive={true}
           setActiveCity={mockFn}
         />
@@ -24,7 +24,7 @@ describe(`LocationsListItem`, () => {
         <BrowserRouter>
           <LocationsListItem
             nodeType="div"
-            city={city}
+            city={CITY}
             isActive={false}
             setActiveCity={mockFn}
           />

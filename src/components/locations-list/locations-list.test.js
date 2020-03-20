@@ -1,19 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import {storeWithAuth} from '../../mocks/tests';
+import {STORE_WITH_AUTH} from '../../mocks/tests';
+import {CITIES} from '../../mocks/const';
 import LocationsList from './locations-list';
-import {cities} from '../../mocks/const';
 
-const activeCity = `Brussels`;
+const CITY = `Brussels`;
 
 describe(`LocationsList`, () => {
   it(`should render LocationsList correctly`, () => {
     const tree = renderer.create(
-        <Provider store={storeWithAuth}>
+        <Provider store={STORE_WITH_AUTH}>
           <LocationsList
-            cities={cities}
-            activeCity={activeCity}
+            cities={CITIES}
+            activeCity={CITY}
           />
         </Provider>
     ).toJSON();

@@ -1,5 +1,5 @@
 import {extend} from '../../utils.js';
-import Offer from '../../models/offer';
+import Offer from '../../models/offer/offer';
 
 const initialState = {
   favorites: []

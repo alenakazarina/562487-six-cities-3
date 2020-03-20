@@ -2,6 +2,7 @@ import React from 'react';
 import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import LoginForm from './login-form';
+import {LOGIN, PASSWORD} from '../../mocks/const';
 
 configure({
   adapter: new Adapter(),
@@ -22,8 +23,8 @@ describe(`LoginForm`, () => {
           login={mockFn}
         />
     );
-    wrapper.find(`input`).at(0).simulate(`change`, {target: {name: `email`, value: `keks@gmail.com`}});
-    wrapper.find(`input`).at(1).simulate(`change`, {target: {name: `password`, value: `SecretCatPass`}});
+    wrapper.find(`input`).at(0).simulate(`change`, {target: {name: `email`, value: LOGIN}});
+    wrapper.find(`input`).at(1).simulate(`change`, {target: {name: `password`, value: PASSWORD}});
     expect(onChange).toHaveBeenCalledTimes(2);
   });
 
@@ -32,8 +33,8 @@ describe(`LoginForm`, () => {
     const login = jest.fn();
     const wrapper = mount(
         <LoginForm
-          userLogin={`keks@gmail.com`}
-          userPassword={`SecretCatPass`}
+          userLogin={LOGIN}
+          userPassword={PASSWORD}
           errorStatus={0}
           isDisabled={false}
           setDisabled={setDisabled}
@@ -46,8 +47,8 @@ describe(`LoginForm`, () => {
     expect(setDisabled.mock.calls[0][0]).toEqual(true);
     expect(login).toHaveBeenCalledTimes(1);
     expect(login.mock.calls[0][0]).toMatchObject({
-      login: `keks@gmail.com`,
-      password: `SecretCatPass`
+      login: LOGIN,
+      password: PASSWORD
     });
   });
 });

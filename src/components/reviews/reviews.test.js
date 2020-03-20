@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {cityOffers, reviews} from '../../mocks/const';
+import {CITY_OFFERS, REVIEWS} from '../../mocks/const';
 import Reviews from './reviews';
 
 const mockFn = () => {};
@@ -11,9 +11,9 @@ describe(`Reviews`, () => {
         <Reviews
           isAuth
           errorStatus={0}
-          activeOffer={cityOffers[0]}
-          reviews={reviews}
-          reviewsCount={reviews.length}
+          activeOffer={CITY_OFFERS[0]}
+          reviews={REVIEWS}
+          reviewsCount={REVIEWS.length}
           onReviewSubmit={mockFn}
         />
     ).toJSON();
@@ -25,9 +25,9 @@ describe(`Reviews`, () => {
         <Reviews
           isAuth={false}
           errorStatus={0}
-          activeOffer={cityOffers[0]}
-          reviews={reviews}
-          reviewsCount={reviews.length}
+          activeOffer={CITY_OFFERS[0]}
+          reviews={REVIEWS}
+          reviewsCount={REVIEWS.length}
           onReviewSubmit={mockFn}
         />
     ).toJSON();
@@ -39,7 +39,7 @@ describe(`Reviews`, () => {
         <Reviews
           isAuth={true}
           errorStatus={0}
-          activeOffer={cityOffers[0]}
+          activeOffer={CITY_OFFERS[0]}
           reviews={[]}
           reviewsCount={0}
           onReviewSubmit={mockFn}

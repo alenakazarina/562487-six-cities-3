@@ -1,6 +1,6 @@
 import {extend} from '../../utils.js';
-import Offer from '../../models/offer';
-import Comment from '../../models/comment';
+import Offer from '../../models/offer/offer';
+import Comment from '../../models/comment/comment';
 import {batch} from 'react-redux';
 
 const initialState = {

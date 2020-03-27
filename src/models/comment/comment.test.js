@@ -18,7 +18,7 @@ const RAW_COMMENT = {
 };
 
 const COMMENT = {
-  comment: `Comment`,
+  text: `Comment`,
   date: COMMENT_DATE,
   id: 5,
   rating: 5,

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginInput should render LoginInput email 1`] = `
+<div
+  className="login__input-wrapper form__input-wrapper"
+>
+  <label
+    className="visually-hidden"
+  >
+    Email
+  </label>
+  <input
+    className="login__input form__input"
+    name="email"
+    onChange={[MockFunction]}
+    placeholder="Email"
+    required={true}
+    type="email"
+    value="keks@gmail.com"
+  />
+</div>
+`;
+
+exports[`LoginInput should render LoginInput password 1`] = `
+<div
+  className="login__input-wrapper form__input-wrapper"
+>
+  <label
+    className="visually-hidden"
+  >
+    Password
+  </label>
+  <input
+    className="login__input form__input"
+    name="password"
+    onChange={[MockFunction]}
+    placeholder="Password"
+    required={true}
+    type="password"
+    value="SecretCatPass"
+  />
+</div>
+`;

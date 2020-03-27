@@ -1,15 +1,20 @@
-import React from 'react';
-import {string, func, bool} from 'prop-types';
+import * as React from 'react';
 import {SortType} from '../../const';
 import SortItem from '../sort-item/sort-item';
 
-const Sort = (props) => {
-  const {
+interface Props {
+  isActive: boolean;
+  activeSortType: string;
+  onToggleClick: () => void;
+  onSortTypeChange: (sortType: string) => void;
+};
+
+const Sort: React.FC<Props> = ({
     isActive,
     onToggleClick,
     activeSortType,
     onSortTypeChange
-  } = props;
+  }) => {
 
   const openedClass = isActive ? `places__options--opened` : ``;
   return (
@@ -17,7 +22,7 @@ const Sort = (props) => {
       <span className="places__sorting-caption">Sort by </span>
       <span
         className="places__sorting-type"
-        tabIndex="0"
+        tabIndex={0}
         onClick={onToggleClick}
       >
         {activeSortType}
@@ -29,7 +34,7 @@ const Sort = (props) => {
         className={`places__options places__options--custom ${openedClass}`}
         onClick={onToggleClick}
       >
-        {Object.values(SortType).map((sortType, i) => {
+        {Object.values(SortType).map((sortType: string, i: number) => {
           const key = Object.keys(SortType)[i].toLowerCase();
           return (
             <SortItem
@@ -43,13 +48,6 @@ const Sort = (props) => {
       </ul>
     </form>
   );
-};
-
-Sort.propTypes = {
-  isActive: bool.isRequired,
-  onToggleClick: func.isRequired,
-  activeSortType: string.isRequired,
-  onSortTypeChange: func.isRequired
 };
 
 export default React.memo(Sort);

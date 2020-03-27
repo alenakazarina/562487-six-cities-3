@@ -1,7 +1,10 @@
-import React from 'react';
-import {string} from 'prop-types';
+import * as React from 'react';
 
-const NoPlaces = ({city}) => (
+type Props = {
+  city: string
+};
+
+const NoPlaces: React.FC<Props> = ({city}) => (
   <section className="cities__no-places">
     <div className="cities__status-wrapper tabs__content">
       <b className="cities__status">No places to stay available</b>
@@ -9,9 +12,5 @@ const NoPlaces = ({city}) => (
     </div>
   </section>
 );
-
-NoPlaces.propTypes = {
-  city: string.isRequired
-};
 
 export default NoPlaces;

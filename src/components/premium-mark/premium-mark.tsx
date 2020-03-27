@@ -1,14 +1,13 @@
-import React from 'react';
-import {string} from 'prop-types';
+import * as React from 'react';
 
-const PremiumMark = ({prefix}) => (
+type Props = {
+  prefix: `place-card` | `property`;
+};
+
+const PremiumMark: React.FC<Props> = ({prefix}) => (
   <div className={`${prefix}__mark`}>
     <span>Premium</span>
   </div>
 );
-
-PremiumMark.propTypes = {
-  prefix: string.isRequired
-};
 
 export default React.memo(PremiumMark);

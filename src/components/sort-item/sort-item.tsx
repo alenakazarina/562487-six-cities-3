@@ -1,10 +1,15 @@
-import React from 'react';
-import {string, bool, func} from 'prop-types';
+import * as React from 'react';
 
-const SortItem = ({sortType, isActive, onSortTypeChange}) => (
+interface Props {
+  isActive: boolean;
+  sortType: string;
+  onSortTypeChange: (sortType: string) => void;
+};
+
+const SortItem: React.FC<Props> = ({isActive, sortType, onSortTypeChange}) => (
   <li
     className={`places__option ${isActive ? `places__option--active` : ``}`}
-    tabIndex="0"
+    tabIndex={0}
     onClick={() => {
       if (isActive) {
         return;
@@ -13,11 +18,5 @@ const SortItem = ({sortType, isActive, onSortTypeChange}) => (
     }}
   >{sortType}</li>
 );
-
-SortItem.propTypes = {
-  isActive: bool.isRequired,
-  sortType: string.isRequired,
-  onSortTypeChange: func.isRequired
-};
 
 export default SortItem;

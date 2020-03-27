@@ -1,9 +1,9 @@
-import React, {PureComponent} from 'react';
-import {arrayOf} from 'prop-types';
-import {offerPropTypes} from '../../types';
+import * as React from 'react';
+import {Subtract} from 'utility-types';
+import {OfferTypes} from '../../types';
 import {SortType} from '../../const';
 
-export const getSortedOffers = (offers, activeSortType) => {
+export const getSortedOffers = (offers: OfferTypes[], activeSortType: string) => {
   switch (activeSortType) {
     case SortType.PRICE_TO_LOW:
       return offers.slice().sort((firstOffer, secondOffer) => secondOffer.price - firstOffer.price);
@@ -16,8 +16,24 @@ export const getSortedOffers = (offers, activeSortType) => {
   }
 };
 
+interface InjectingProps {
+  offers: OfferTypes[];
+  activeSortType: string;
+  onSortTypeChange: (sortType: string) => void;
+};
+
+type State = {
+  activeSortType: string
+};
+
 const withSort = (Component) => {
-  class WithSort extends PureComponent {
+  type InitialProps = React.ComponentProps<typeof Component>;
+  type Props = Subtract<InitialProps, InjectingProps>;
+
+  class WithSort extends React.PureComponent<Props, State> {
+    props: Props;
+    state: State;
+
     constructor(props) {
       super(props);
       this.state = {
@@ -45,10 +61,6 @@ const withSort = (Component) => {
       );
     }
   }
-
-  WithSort.propTypes = {
-    offers: arrayOf(offerPropTypes)
-  };
 
   return WithSort;
 };

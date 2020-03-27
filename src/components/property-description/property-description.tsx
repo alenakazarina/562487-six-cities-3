@@ -1,14 +1,13 @@
-import React from 'react';
-import {string} from 'prop-types';
+import * as React from 'react';
 
-const PropertyDescription = ({description}) => (
+type Props = {
+  description: string
+};
+
+const PropertyDescription: React.FC<Props> = ({description}) => (
   <div className="property__description">
     <p className="property__text">{description}</p>
   </div>
 );
-
-PropertyDescription.propTypes = {
-  description: string.isRequired
-};
 
 export default React.memo(PropertyDescription);

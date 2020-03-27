@@ -1,19 +1,22 @@
-import React from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
-import {array, arrayOf, string} from 'prop-types';
+import {OfferTypes} from '../../types';
 import {getActiveCity} from '../../reducers/offers/selectors';
 import {getFavorites, getFavoritesLocations} from '../../reducers/favorites/selectors';
 import FavoritesListItem from '../favorites-list-item/favorites-list-item';
 import {getOffersByCity} from '../../utils';
 
-const FavoritesList = (props) => {
-  const {
+interface Props {
+  favorites: OfferTypes[];
+  favoritesLocations: string[];
+  activeCity: string;
+};
+
+const FavoritesList: React.FC<Props> = ({
     favorites,
     favoritesLocations,
     activeCity
-  } = props;
-
-  return (
+  }) => (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
       <ul className="favorites__list">
@@ -28,13 +31,6 @@ const FavoritesList = (props) => {
       </ul>
     </section>
   );
-};
-
-FavoritesList.propTypes = {
-  favorites: array.isRequired,
-  favoritesLocations: arrayOf(string).isRequired,
-  activeCity: string.isRequired
-};
 
 const mapStateToProps = (state) => ({
   favorites: getFavorites(state),

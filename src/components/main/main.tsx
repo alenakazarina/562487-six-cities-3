@@ -1,21 +1,24 @@
-import React from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
-import {bool, string, arrayOf} from 'prop-types';
-import {appUserPropTypes} from '../../types';
+import {AppUser} from '../../types';
 import {getCities, getActiveCity} from '../../reducers/offers/selectors';
 import Header from '../../components/header/header';
 import LocationsList from '../locations-list/locations-list';
 import Cities from '../cities/cities';
 
-const Main = (props) => {
-  const {
+interface Props {
+  isAuth: boolean;
+  user: AppUser;
+  activeCity: string;
+  cities: string[];
+};
+
+const Main: React.FC<Props> = ({
     isAuth,
     user,
     activeCity,
     cities
-  } = props;
-
-  return (
+  }) => (
     <div className="page page--gray page--main">
       <Header
         isAuth={isAuth}
@@ -33,14 +36,6 @@ const Main = (props) => {
       </main>
     </div>
   );
-};
-
-Main.propTypes = {
-  isAuth: bool.isRequired,
-  user: appUserPropTypes,
-  activeCity: string.isRequired,
-  cities: arrayOf(string).isRequired
-};
 
 const mapStateToProps = (state) => ({
   cities: getCities(state),

@@ -1,7 +1,11 @@
-import React from 'react';
-import {bool, string} from 'prop-types';
+import * as React from 'react';
 
-const SubmitButton = ({prefix, isDisabled}) => {
+interface Props {
+  prefix: `login` | `reviews`;
+  isDisabled: boolean;
+};
+
+const SubmitButton: React.FC<Props> = ({prefix, isDisabled}) => {
   const text = prefix === `login` ? `Sign in` : `Submit`;
   return (
     <button
@@ -10,11 +14,6 @@ const SubmitButton = ({prefix, isDisabled}) => {
       type="submit"
     >{text}</button>
   );
-};
-
-SubmitButton.propTypes = {
-  prefix: string.isRequired,
-  isDisabled: bool.isRequired
 };
 
 export default React.memo(SubmitButton);

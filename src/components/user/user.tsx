@@ -1,8 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {userPropTypes} from '../../types';
+import * as React from 'react';
+import {UserType} from '../../types';
 
-const User = ({prefix, user}) => {
+interface Props {
+  prefix: string;
+  user: UserType;
+};
+
+const User: React.FC<Props> = ({prefix, user}) => {
   const {name, isPro, avatarUrl} = user;
   const proClass = isPro ? `${prefix}__avatar-wrapper--pro` : ``;
   const isHost = prefix === `property` ? `host-` : ``;
@@ -22,11 +26,6 @@ const User = ({prefix, user}) => {
       </span>
     </div>
   );
-};
-
-User.propTypes = {
-  prefix: PropTypes.string.isRequired,
-  user: userPropTypes
 };
 
 export default React.memo(User);

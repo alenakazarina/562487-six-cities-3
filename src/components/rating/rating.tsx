@@ -1,9 +1,14 @@
-import React from 'react';
-import {string, number, bool} from 'prop-types';
+import * as React from 'react';
 
 const RATING_TO_WIDTH = Array.from({length: 6}, (it, i) => `${i * 20}%`);
 
-const Rating = ({prefix, rating, isValue}) => {
+type Props = {
+  prefix: string,
+  rating: number,
+  isValue: boolean
+};
+
+const Rating: React.FC<Props> = ({prefix, rating, isValue}) => {
   const ratingValue = Math.round(rating);
   return (
     <div className={`${prefix}__rating rating`}>
@@ -14,12 +19,6 @@ const Rating = ({prefix, rating, isValue}) => {
       {isValue && <span className={`${prefix}__rating-value rating__value`}>{rating}</span>}
     </div>
   );
-};
-
-Rating.propTypes = {
-  prefix: string.isRequired,
-  rating: number.isRequired,
-  isValue: bool.isRequired
 };
 
 export default React.memo(Rating);

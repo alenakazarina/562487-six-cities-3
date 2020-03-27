@@ -16,14 +16,10 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        resolve: {
-          extensions: [`.js`, `.jsx`]
-        },
         use: {
-          loader: `babel-loader`
-        }
-      },
-      {
+          loader: `babel-loader`,
+        },
+      }, {
         test: /\.(tsx|ts)?$/,
         loader: `ts-loader`
       }

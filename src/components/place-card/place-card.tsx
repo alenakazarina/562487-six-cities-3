@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {string, func} from 'prop-types';
-import {offerPropTypes} from '../../types';
+import {OfferTypes} from '../../types';
 import {ActionCreator as OfferActionCreator} from '../../reducers/offer/offer';
 import {Operation as FavoritesOperation} from '../../reducers/favorites/favorites';
 import PremiumMark from '../premium-mark/premium-mark';
@@ -15,7 +14,17 @@ import withDisabled from '../../hocs/with-disabled/with-disabled';
 
 const BookmarkButtonWrapped = withDisabled(BookmarkButton);
 
-class PlaceCard extends Component {
+interface Props {
+  prefix: `cities` | `favorites` | `near-places`;
+  offer: OfferTypes;
+  setActiveOffer: (offer: OfferTypes) => void;
+  onFavoriteClick: (id: number, status: boolean) => void;
+};
+
+class PlaceCard extends React.Component<Props> {
+  props: Props;
+  _prefix: `place-card`;
+
   constructor(props) {
     super(props);
     this._prefix = `place-card`;
@@ -96,13 +105,6 @@ class PlaceCard extends Component {
     );
   }
 }
-
-PlaceCard.propTypes = {
-  prefix: string.isRequired,
-  offer: offerPropTypes,
-  setActiveOffer: func.isRequired,
-  onFavoriteClick: func.isRequired
-};
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveOffer(offer) {

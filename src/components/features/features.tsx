@@ -1,27 +1,24 @@
-import React from 'react';
-import {string, number} from 'prop-types';
+import * as React from 'react';
 import {formatPluralNouns} from '../../utils';
 
-const Features = ({type, bedrooms, maxAdults}) => {
-  return (
-    <ul className="property__features">
-      <li className="property__feature property__feature--entire">
-        {type}
-      </li>
-      <li className="property__feature property__feature--bedrooms">
-        {formatPluralNouns(bedrooms, `Bedroom`)}
-      </li>
-      <li className="property__feature property__feature--adults">
-        Max {formatPluralNouns(maxAdults, `adult`)}
-      </li>
-    </ul>
-  );
+interface Props {
+  type: string;
+  bedrooms: number;
+  maxAdults: number;
 };
 
-Features.propTypes = {
-  type: string.isRequired,
-  bedrooms: number.isRequired,
-  maxAdults: number.isRequired
-};
+const Features: React.FC<Props> = ({type, bedrooms, maxAdults}) => (
+  <ul className="property__features">
+    <li className="property__feature property__feature--entire">
+      {type}
+    </li>
+    <li className="property__feature property__feature--bedrooms">
+      {formatPluralNouns(bedrooms, `Bedroom`)}
+    </li>
+    <li className="property__feature property__feature--adults">
+      Max {formatPluralNouns(maxAdults, `adult`)}
+    </li>
+  </ul>
+);
 
 export default React.memo(Features);

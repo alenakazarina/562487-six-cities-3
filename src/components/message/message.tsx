@@ -1,37 +1,43 @@
-import React, {PureComponent} from 'react';
-import {number, func} from 'prop-types';
+import * as React from 'react';
 
-const styles = {
-  message: {
-    position: `fixed`,
-    top: `5%`,
-    right: `5%`,
-    zIndex: 1000,
-    padding: `20px 20px 10px 20px`,
-    backgroundColor: `#f47d75`,
-    borderRadius: `3px`,
-    color: `#ffffff`
-  },
-  header: {
-    paddingBottom: `10px`,
-    borderBottom: `1px solid rgba(255, 255, 255, 0.5)`
-  },
-  button: {
-    position: `absolute`,
-    top: `5px`,
-    right: `5px`,
-    zIndex: 10,
-    padding: `10px`,
-    backgroundSize: `18px`,
-    backgroundImage: `url(./img/close.svg)`,
-    backgroundPosition: `center`,
-    backgroundRepeat: `no-repeat`,
-    color: `#ffffff`,
-    fontWeight: `bold`
-  }
+const MessageStyles: React.CSSProperties = {
+  position: `fixed`,
+  top: `5%`,
+  right: `5%`,
+  zIndex: 1000,
+  padding: `20px 20px 10px 20px`,
+  backgroundColor: `#f47d75`,
+  borderRadius: `3px`,
+  color: `#ffffff`
 };
 
-class Message extends PureComponent {
+const MessageHeaderStyles: React.CSSProperties = {
+  paddingBottom: `10px`,
+  borderBottom: `1px solid rgba(255, 255, 255, 0.5)`
+};
+
+const ButtonStyles: React.CSSProperties = {
+  position: `absolute`,
+  top: `5px`,
+  right: `5px`,
+  zIndex: 10,
+  padding: `10px`,
+  backgroundSize: `18px`,
+  backgroundImage: `url(./img/close.svg)`,
+  backgroundPosition: `center`,
+  backgroundRepeat: `no-repeat`,
+  color: `#ffffff`,
+  fontWeight: `bold`
+};
+
+interface Props {
+  status: number;
+  onClose: () => void;
+};
+
+class Message extends React.PureComponent<Props> {
+  props: Props;
+
   constructor(props) {
     super(props);
     this._onEscKeyDown = this._onEscKeyDown.bind(this);
@@ -61,10 +67,10 @@ class Message extends PureComponent {
     return (
       <section
         className="message message--error"
-        style={styles.message}
+        style={MessageStyles}
       >
         <div className="message__header"
-          style={styles.header}
+          style={MessageHeaderStyles}
         >
           <b>{status}. That’s an error.</b>
         </div>
@@ -74,16 +80,11 @@ class Message extends PureComponent {
         </div>
         <button
           className="message__button button"
-          style={styles.button}
+          style={ButtonStyles}
           onClick={this._handleClose}></button>
       </section>
     );
   }
 }
-
-Message.propTypes = {
-  status: number.isRequired,
-  onClose: func.isRequired
-};
 
 export default React.memo(Message);

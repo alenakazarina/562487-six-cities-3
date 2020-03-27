@@ -1,12 +1,18 @@
-import React from 'react';
+import * as React from 'react';
 import {Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {bool, string, func} from 'prop-types';
 import {AppRoute} from '../../const';
 import {AuthStatus} from '../../reducers/user/user';
 import {getAuthStatus} from '../../reducers/user/selectors';
 
-const PrivateRoute = (props) => {
+interface Props {
+  isAuth: boolean;
+  exact: boolean;
+  path: string;
+  render: () => void;
+};
+
+const PrivateRoute: React.FC<Props> = (props) => {
   const {render, path, exact, isAuth} = props;
 
   return (
@@ -28,13 +34,6 @@ const PrivateRoute = (props) => {
       }}
     />
   );
-};
-
-PrivateRoute.propTypes = {
-  isAuth: bool.isRequired,
-  exact: bool.isRequired,
-  path: string.isRequired,
-  render: func.isRequired
 };
 
 const mapStateToProps = (state) => ({

@@ -1,24 +1,28 @@
-import React from 'react';
-import {string, func, bool, number} from 'prop-types';
-import {appUserPropTypes} from '../../types';
+import * as React from 'react';
+import { AppUser, AuthData } from '../../types';
 import Header from '../../components/header/header';
 import LocationsListItem from '../locations-list-item/locations-list-item';
 import LoginForm from '../login-form/login-form';
-import withLogin from '../../hocs/with-login/with-login';
+import withLogin from '../../hocs/with-change/with-change';
 import withDisabled from '../../hocs/with-disabled/with-disabled';
 
-const LoginFormWrapped = withDisabled(withLogin(LoginForm));
+const LoginFormWrapped = withDisabled(LoginForm);
 
-const Login = (props) => {
-  const {
+interface Props {
+  isAuth: boolean;
+  user: AppUser;
+  activeCity: string;
+  errorStatus: number;
+  login: (authData: AuthData) => void;
+};
+
+const Login: React.FC<Props> = ({
     isAuth,
     user,
     activeCity,
     errorStatus,
     login
-  } = props;
-
-  return (
+  }) => (
     <div className="page page--gray page--login">
       <Header
         isAuth={isAuth}
@@ -44,14 +48,5 @@ const Login = (props) => {
       </main>
     </div>
   );
-};
-
-Login.propTypes = {
-  isAuth: bool.isRequired,
-  user: appUserPropTypes,
-  activeCity: string.isRequired,
-  errorStatus: number.isRequired,
-  login: func.isRequired
-};
 
 export default React.memo(Login);

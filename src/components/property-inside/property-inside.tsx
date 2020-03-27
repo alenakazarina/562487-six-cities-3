@@ -1,7 +1,10 @@
-import React from 'react';
-import {arrayOf, string} from 'prop-types';
+import * as React from 'react';
 
-const PropertyInside = ({amenities}) => (
+type Props = {
+  amenities: string[]
+};
+
+const PropertyInside: React.FC<Props> = ({amenities}) => (
   <div className="property__inside">
     <h2 className="property__inside-title">What&apos;s inside</h2>
     <ul className="property__inside-list">
@@ -11,9 +14,5 @@ const PropertyInside = ({amenities}) => (
     </ul>
   </div>
 );
-
-PropertyInside.propTypes = {
-  amenities: arrayOf(string).isRequired,
-};
 
 export default React.memo(PropertyInside);

@@ -1,7 +1,17 @@
-import React from 'react';
-import {shape, number, string, func, bool} from 'prop-types';
+import * as React from 'react';
 
-const RatingInput = ({rating, isChecked, onChange}) => (
+type Rating = {
+  value: 0|1|2|3|4|5,
+  title: ``|`terribly`|`badly`|`not bad`|`good`|`perfect`
+};
+
+interface Props {
+  rating: Rating;
+  isChecked: boolean;
+  onChange: (evt: React.ChangeEvent) => void;
+};
+
+const RatingInput: React.FC<Props> = ({rating, isChecked, onChange}) => (
   <>
     <input className="form__rating-input visually-hidden"
       type="radio"
@@ -20,14 +30,5 @@ const RatingInput = ({rating, isChecked, onChange}) => (
     </label>
   </>
 );
-
-RatingInput.propTypes = {
-  rating: shape({
-    value: number.isRequired,
-    title: string.isRequired
-  }),
-  isChecked: bool.isRequired,
-  onChange: func.isRequired
-};
 
 export default React.memo(RatingInput);

@@ -1,22 +1,40 @@
-import React, {PureComponent} from 'react';
-import {number} from 'prop-types';
+import * as React from 'react';
+import {Subtract} from 'utility-types';
 
-const INITIAL_FORM_STATE = {
-  ratingValue: 0,
-  comment: ``
+type InjectingProps = {
+  rating: number,
+  text: string,
+  onChange: (evt: React.ChangeEvent) => void;
+};
+
+interface State {
+  rating: number,
+  text: string
 };
 
 const withRating = (Component) => {
-  class WithRating extends PureComponent {
+  type InitialProps = React.ComponentProps<typeof Component>;
+  type Props = Subtract<InitialProps, InjectingProps>;
+
+  class WithRating extends React.PureComponent<Props, State> {
+    props: Props;
+    state: State;
+
     constructor(props) {
       super(props);
-      this.state = INITIAL_FORM_STATE;
+      this.state = {
+        rating: 0,
+        text: ``
+      };
       this._handleChange = this._handleChange.bind(this);
     }
 
     componentDidUpdate({reviewsCount}) {
       if (reviewsCount < this.props.reviewsCount) {
-        this.setState(INITIAL_FORM_STATE);
+        this.setState({
+          rating: 0,
+          text: ``
+        });
       }
     }
 
@@ -24,12 +42,12 @@ const withRating = (Component) => {
       switch (currentTarget.name) {
         case `rating`:
           this.setState({
-            ratingValue: parseInt(currentTarget.value, 10)
+            rating: parseInt(currentTarget.value, 10)
           });
           break;
         case `review`:
           this.setState({
-            comment: currentTarget.value
+            text: currentTarget.value
           });
           break;
       }
@@ -37,25 +55,20 @@ const withRating = (Component) => {
 
     render() {
       const {
-        ratingValue,
-        comment
+        rating,
+        text
       } = this.state;
 
       return (
         <Component
           {...this.props}
-          ratingValue={ratingValue}
-          comment={comment}
+          rating={rating}
+          text={text}
           onChange={this._handleChange}
-          onSubmit={this._handleSubmit}
         />
       );
     }
   }
-
-  WithRating.propTypes = {
-    reviewsCount: number.isRequired
-  };
 
   return WithRating;
 };

@@ -1,10 +1,23 @@
-import React, {PureComponent} from 'react';
-import {number, string, func, bool} from 'prop-types';
+import * as React from 'react';
 import RatingInput from '../rating-input/rating-input';
 import SubmitButton from '../submit-button/submit-button';
 import {RATINGS} from '../../const';
 
-class ReviewsForm extends PureComponent {
+interface Props {
+  rating: number;
+  text: string;
+  errorStatus: number;
+  reviewsCount: number;
+  offerId: number;
+  isDisabled: boolean;
+  setDisabled: (status: boolean) => void;
+  onChange: (evt: React.ChangeEvent) => void;
+  onReviewSubmit: (id: number, userComment: {rating: string, text: string}) => void;
+};
+
+class ReviewsForm extends React.PureComponent<Props> {
+  props: Props;
+
   constructor(props) {
     super(props);
     this._handleSubmit = this._handleSubmit.bind(this);
@@ -17,15 +30,15 @@ class ReviewsForm extends PureComponent {
   }
 
   _checkSubmitDisabled() {
-    const {ratingValue, comment} = this.props;
-    return (ratingValue === 0 || comment.length <= 50 || comment.length >= 300) ? true : false;
+    const {rating, text} = this.props;
+    return (rating === 0 || text.length <= 50 || text.length >= 300) ? true : false;
   }
 
   _handleSubmit(evt) {
     evt.preventDefault();
     const {
-      ratingValue,
-      comment,
+      rating,
+      text,
       offerId,
       setDisabled,
       onReviewSubmit
@@ -34,15 +47,15 @@ class ReviewsForm extends PureComponent {
     setDisabled(true);
 
     onReviewSubmit(offerId, {
-      rating: ratingValue,
-      text: comment
+      rating: rating,
+      text: text
     });
   }
 
   render() {
     const {
-      ratingValue,
-      comment,
+      rating,
+      text,
       isDisabled,
       onChange
     } = this.props;
@@ -61,11 +74,11 @@ class ReviewsForm extends PureComponent {
         >
           <label className="reviews__label form__label" htmlFor="review">Your review</label>
           <div className="reviews__rating-form form__rating">
-            {RATINGS.map((rating) => (
+            {RATINGS.map((inputRating) => (
               <RatingInput
-                key={rating.value}
-                rating={rating}
-                isChecked={rating.value === ratingValue}
+                key={inputRating.value}
+                rating={inputRating}
+                isChecked={inputRating.value === rating}
                 onChange={onChange}
               />
             ))}
@@ -75,7 +88,7 @@ class ReviewsForm extends PureComponent {
             id="review"
             name="review"
             placeholder="Tell how was your stay, what you like and what can be improved"
-            value={comment}
+            value={text}
             onChange={onChange}
           />
         </fieldset>
@@ -92,17 +105,5 @@ class ReviewsForm extends PureComponent {
     );
   }
 }
-
-ReviewsForm.propTypes = {
-  ratingValue: number.isRequired,
-  comment: string.isRequired,
-  errorStatus: number.isRequired,
-  reviewsCount: number.isRequired,
-  offerId: number.isRequired,
-  isDisabled: bool.isRequired,
-  setDisabled: func.isRequired,
-  onChange: func.isRequired,
-  onReviewSubmit: func.isRequired
-};
 
 export default ReviewsForm;

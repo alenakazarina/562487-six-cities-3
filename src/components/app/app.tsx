@@ -1,8 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import {BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {arrayOf, bool, number, func, string} from 'prop-types';
-import {offerPropTypes, appUserPropTypes} from '../../types';
+import {AppUser, OfferTypes, AuthData} from '../../types';
 import {getOffers} from '../../reducers/offers/selectors';
 import {getAuthStatus, getUser} from '../../reducers/user/selectors';
 import {getErrorStatus} from '../../reducers/errors/selectors';
@@ -19,13 +18,23 @@ import NotFound from '../not-found/not-found';
 import {AppRoute} from '../../const';
 import withMessage from '../../hocs/with-message/with-message';
 
+interface Props {
+  isAuth: boolean;
+  user: AppUser;
+  initialOffers: OfferTypes[];
+  activeCity: string;
+  errorStatus: number;
+  resetError: () => void;
+  login: (authData: AuthData) => void;
+  onOfferPageLoad: (offer: OfferTypes) => void;
+};
+
 const LoginWrapped = withMessage(Login);
 const MainWrapped = withMessage(Main);
 const PropertyWrapped = withMessage(Property);
 const FavoritesWrapped = withMessage(Favorites);
 
-const App = (props) => {
-  const {
+const App: React.FC<Props> = ({
     initialOffers,
     isAuth,
     user,
@@ -34,10 +43,10 @@ const App = (props) => {
     resetError,
     login,
     onOfferPageLoad
-  } = props;
+  }) => {
 
   if (initialOffers.length === 0) {
-    return ``;
+    return <></>;
   }
 
   return (
@@ -115,17 +124,6 @@ const App = (props) => {
       </Switch>
     </BrowserRouter>
   );
-};
-
-App.propTypes = {
-  isAuth: bool.isRequired,
-  user: appUserPropTypes,
-  initialOffers: arrayOf(offerPropTypes).isRequired,
-  activeCity: string.isRequired,
-  errorStatus: number.isRequired,
-  resetError: func.isRequired,
-  login: func.isRequired,
-  onOfferPageLoad: func.isRequired
 };
 
 const mapStateToProps = (state) => ({

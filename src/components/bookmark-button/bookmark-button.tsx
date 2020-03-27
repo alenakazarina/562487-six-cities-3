@@ -1,14 +1,28 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {bool, func, number, string} from 'prop-types';
 import {getAuthStatus} from '../../reducers/user/selectors';
 import {getErrorStatus} from '../../reducers/errors/selectors';
 import {checkFavorite} from '../../reducers/favorites/selectors';
 import {AuthStatus} from '../../reducers/user/user';
 import {AppRoute} from '../../const';
 
-class BookmarkButton extends PureComponent {
+interface Props {
+  isAuth: boolean;
+  isFavorite: boolean;
+  prefix: `property` | `place-card`;
+  id: number;
+  width: number;
+  height: number;
+  errorStatus: number;
+  isDisabled: boolean;
+  setDisabled: (status: boolean) => void;
+  onFavoriteClick: (id: number, status: boolean) => void;
+}
+
+class BookmarkButton extends React.PureComponent<Props> {
+  props: Props;
+
   constructor(props) {
     super(props);
     this._handleFavorite = this._handleFavorite.bind(this);
@@ -67,19 +81,6 @@ class BookmarkButton extends PureComponent {
     );
   }
 }
-
-BookmarkButton.propTypes = {
-  isAuth: bool.isRequired,
-  isFavorite: bool.isRequired,
-  prefix: string.isRequired,
-  id: number.isRequired,
-  width: number.isRequired,
-  height: number.isRequired,
-  errorStatus: number.isRequired,
-  isDisabled: bool.isRequired,
-  setDisabled: func.isRequired,
-  onFavoriteClick: func.isRequired
-};
 
 const mapStateToProps = (state, props) => ({
   isAuth: getAuthStatus(state) === AuthStatus.AUTH,

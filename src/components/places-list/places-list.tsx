@@ -1,14 +1,13 @@
-import React from 'react';
-import {string, arrayOf} from 'prop-types';
-import {offerPropTypes} from '../../types';
+import * as React from 'react';
+import {OfferTypes} from '../../types';
 import PlaceCard from '../place-card/place-card';
 
-const PlacesList = (props) => {
-  const {
-    prefix,
-    offers
-  } = props;
+type Props = {
+  prefix: string,
+  offers: OfferTypes[]
+};
 
+const PlacesList: React.FC<Props> = ({prefix, offers}) => {
   const className = (prefix === `cities`) ?
     `cities__places-list places__list tabs__content`
     : `near-places__list places__list`;
@@ -24,11 +23,6 @@ const PlacesList = (props) => {
       ))}
     </div>
   );
-};
-
-PlacesList.propTypes = {
-  prefix: string.isRequired,
-  offers: arrayOf(offerPropTypes).isRequired
 };
 
 export default React.memo(PlacesList);

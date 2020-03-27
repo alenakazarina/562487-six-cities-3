@@ -1,9 +1,19 @@
-import React, {PureComponent} from 'react';
-import {func, number} from 'prop-types';
+import * as React from 'react';
+import {Subtract} from 'utility-types';
 import Message from '../../components/message/message';
 
+interface InjectingProps {
+  status: number;
+  onClose: () => void;
+};
+
 const withMessage = (Component) => {
-  class WithMessage extends PureComponent {
+  type InitialProps = React.ComponentProps<typeof Component>;
+  type Props = Subtract<InitialProps, InjectingProps>;
+
+  class WithMessage extends React.PureComponent<Props> {
+    props: Props;
+
     render() {
       const {errorStatus, resetError} = this.props;
       return (
@@ -17,11 +27,6 @@ const withMessage = (Component) => {
       );
     }
   }
-
-  WithMessage.propTypes = {
-    errorStatus: number.isRequired,
-    resetError: func.isRequired
-  };
 
   return WithMessage;
 };

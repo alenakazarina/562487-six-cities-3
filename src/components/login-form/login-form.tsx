@@ -1,11 +1,28 @@
-import React, {PureComponent} from 'react';
-import {func, bool, string, number} from 'prop-types';
+import * as React from 'react';
+import {AuthData} from '../../types';
 import LoginInput from '../login-input/login-input';
 import SubmitButton from '../submit-button/submit-button';
+import withChange from '../../hocs/with-change/with-change';
 
-class LoginForm extends PureComponent {
+interface Props {
+  errorStatus: number;
+  isDisabled: boolean;
+  setDisabled: (status: boolean) => void;
+  login: (authData: AuthData) => void;
+};
+
+const LoginInputWrapped = withChange(LoginInput);
+
+class LoginForm extends React.PureComponent<Props> {
+  props: Props;
+
+  private loginRef: React.RefObject<HTMLInputElement>;
+  private passRef: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
+    this.loginRef = React.createRef();
+    this.passRef = React.createRef();
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
@@ -17,7 +34,8 @@ class LoginForm extends PureComponent {
 
   _handleSubmit(evt) {
     evt.preventDefault();
-    const {userLogin, userPassword} = this.props;
+    const userLogin = this.loginRef.current.value;
+    const userPassword = this.passRef.current.value;
     this.props.setDisabled(true);
     this.props.login({
       login: userLogin,
@@ -26,12 +44,7 @@ class LoginForm extends PureComponent {
   }
 
   render() {
-    const {
-      userLogin,
-      userPassword,
-      isDisabled,
-      onChange
-    } = this.props;
+    const {isDisabled} = this.props;
 
     return (
       <form
@@ -44,17 +57,13 @@ class LoginForm extends PureComponent {
           disabled={isDisabled}
           style={{border: `none`, padding: `0`}}
         >
-          <LoginInput
-            key={`email`}
+          <LoginInputWrapped
             name={`email`}
-            value={userLogin}
-            onChange={onChange}
+            ref={this.loginRef}
           />
-          <LoginInput
-            key={`password`}
+          <LoginInputWrapped
             name={`password`}
-            value={userPassword}
-            onChange={onChange}
+            ref={this.passRef}
           />
           <SubmitButton
             prefix="login"
@@ -65,15 +74,5 @@ class LoginForm extends PureComponent {
     );
   }
 }
-
-LoginForm.propTypes = {
-  userLogin: string.isRequired,
-  userPassword: string.isRequired,
-  errorStatus: number.isRequired,
-  isDisabled: bool.isRequired,
-  setDisabled: func.isRequired,
-  onChange: func.isRequired,
-  login: func.isRequired
-};
 
 export default LoginForm;

@@ -1,7 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
-const Price = ({prefix, price}) => {
+type Props = {
+  prefix: string,
+  price: number
+};
+
+const Price: React.FC<Props> = ({prefix, price}) => {
   const priceText = prefix === `property` ? ` night` : `/ night`;
   return (
     <div className={`${prefix}__price`}>
@@ -11,11 +15,6 @@ const Price = ({prefix, price}) => {
       >{priceText}</span>
     </div>
   );
-};
-
-Price.propTypes = {
-  prefix: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired
 };
 
 export default React.memo(Price);

@@ -1,7 +1,6 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
-import {arrayOf, bool, func, number} from 'prop-types';
-import {offerPropTypes, reviewPropTypes, appUserPropTypes} from '../../types';
+import {OfferTypes, Review, Comment, AppUser} from '../../types';
 import {getNearOffersToShow, getCommentsToShow, getCommentsLength} from '../../reducers/offer/selectors';
 import {Operation as OfferOperation} from '../../reducers/offer/offer';
 import {Operation as FavoritesOperation} from '../../reducers/favorites/favorites';
@@ -23,7 +22,23 @@ import withDisabled from '../../hocs/with-disabled/with-disabled';
 
 const BookmarkButtonWrapped = withDisabled(BookmarkButton);
 
-class Property extends PureComponent {
+interface Props {
+  isAuth: boolean;
+  user: AppUser;
+  errorStatus: number;
+  activeOffer: OfferTypes;
+  nearOffers: OfferTypes[];
+  reviews: Review[];
+  reviewsCount: number;
+  onOfferPageLoad: (offer: OfferTypes) => void;
+  onReviewSubmit: (id: number, userComment: Comment) => void;
+  onFavoriteClick: (id: number, status: boolean) => void;
+};
+
+class Property extends React.PureComponent<Props> {
+  props: Props;
+  _prefix: `property`;
+
   constructor(props) {
     super(props);
     this._prefix = `property`;
@@ -108,7 +123,9 @@ class Property extends PureComponent {
               /> : ``}
             </section>
             <div className="container">
-              <NearPlaces nearOffers={nearOffers} />
+              {nearOffers.length ? <NearPlaces
+                nearOffers={nearOffers}
+                /> : ``}
             </div>
           </main>
         </div>
@@ -117,19 +134,6 @@ class Property extends PureComponent {
   }
 }
 
-Property.propTypes = {
-  isAuth: bool.isRequired,
-  user: appUserPropTypes,
-  errorStatus: number.isRequired,
-  activeOffer: offerPropTypes,
-  nearOffers: arrayOf(offerPropTypes),
-  reviews: arrayOf(reviewPropTypes),
-  reviewsCount: number.isRequired,
-  onReviewSubmit: func.isRequired,
-  onOfferPageLoad: func.isRequired,
-  onFavoriteClick: func.isRequired
-};
-
 const mapStateToProps = (state) => ({
   nearOffers: getNearOffersToShow(state),
   reviews: getCommentsToShow(state),
@@ -137,8 +141,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onReviewSubmit(id, comment) {
-    dispatch(OfferOperation.updateComments(id, comment));
+  onReviewSubmit(id, userComment) {
+    dispatch(OfferOperation.updateComments(id, userComment));
   },
   onFavoriteClick(id, status) {
     if (status) {

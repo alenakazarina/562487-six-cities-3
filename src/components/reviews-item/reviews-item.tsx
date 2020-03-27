@@ -1,11 +1,15 @@
-import React from 'react';
-import {reviewPropTypes} from '../../types';
+import * as React from 'react';
+import {Review} from '../../types';
 import {formatDatetime, formatMonthYear} from '../../utils';
 import User from '../user/user';
 import Rating from '../rating/rating';
 
-const ReviewsItem = ({review}) => {
-  const {id, user, comment, date, rating} = review;
+type Props = {
+  review: Review
+};
+
+const ReviewsItem: React.FC<Props> = ({review}) => {
+  const {id, user, text, date, rating} = review;
   const dateTime = formatDatetime(date);
   const reviewDate = formatMonthYear(date);
 
@@ -16,18 +20,13 @@ const ReviewsItem = ({review}) => {
         <Rating
           prefix={`reviews`}
           rating={rating}
-          reviews={[]}
           isValue={false}
         />
-        <p className="reviews__text">{comment}</p>
+        <p className="reviews__text">{text}</p>
         <time className="reviews__time" dateTime={dateTime}>{reviewDate}</time>
       </div>
     </li>
   );
-};
-
-ReviewsItem.propTypes = {
-  review: reviewPropTypes
 };
 
 export default ReviewsItem;

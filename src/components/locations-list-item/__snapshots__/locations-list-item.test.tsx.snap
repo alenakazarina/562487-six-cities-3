@@ -22,7 +22,7 @@ exports[`LocationsListItem should render LocationsListItem as listItem with acti
 >
   <a
     className="locations__item-link tabs__item tabs__item--active"
-    onClick={[Function]}
+    onClick={[MockFunction]}
   >
     <span>
       Amsterdam

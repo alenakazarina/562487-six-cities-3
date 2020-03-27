@@ -6,7 +6,7 @@ import ReviewsForm from './reviews-form';
 configure({
   adapter: new Adapter(),
 });
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`ReviewForm`, () => {
   it(`should ReviewForm inputs and textarea be changed and onChange cb be invoked`, () => {

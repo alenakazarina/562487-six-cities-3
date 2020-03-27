@@ -7,27 +7,30 @@ interface Props {
   isActive: boolean;
   city: string;
   offers: OfferTypes[];
-};
+}
 
-const FavoritesListItem: React.FC<Props> = ({city, offers, isActive}) => (
-  <li className="favorites__locations-items">
-    <div className="favorites__locations locations locations--current">
-      <LocationsListItem
-        nodeType="div"
-        city={city}
-        isActive={isActive}
-      />
-    </div>
-    <div className="favorites__places">
-      {offers.map((offer) => (
-        <PlaceCard
-          key={offer.id}
-          prefix={`favorites`}
-          offer={offer}
+const FavoritesListItem: React.FC<Props> = (props: Props) => {
+  const {city, offers, isActive} = props;
+  return (
+    <li className="favorites__locations-items">
+      <div className="favorites__locations locations locations--current">
+        <LocationsListItem
+          nodeType="div"
+          city={city}
+          isActive={isActive}
         />
-      ))}
-    </div>
-  </li>
-);
+      </div>
+      <div className="favorites__places">
+        {offers.map((offer) => (
+          <PlaceCard
+            key={offer.id}
+            prefix={`favorites`}
+            offer={offer}
+          />
+        ))}
+      </div>
+    </li>
+  );
+};
 
 export default React.memo(FavoritesListItem);

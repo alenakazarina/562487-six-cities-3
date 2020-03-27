@@ -7,7 +7,7 @@ import {LOGIN, PASSWORD} from '../../mocks/const';
 configure({
   adapter: new Adapter(),
 });
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`LoginForm`, () => {
   it(`should LoginForm be submitted and onSubmit cb be invoked`, () => {
@@ -15,19 +15,18 @@ describe(`LoginForm`, () => {
     const login = jest.fn();
     const wrapper = mount(
         <LoginForm
+          userLogin={LOGIN}
+          userPassword={PASSWORD}
           errorStatus={0}
           isDisabled={false}
           setDisabled={setDisabled}
           login={login}
+          onChange={mockFn}
         />
     );
     wrapper.find(`form`).simulate(`submit`);
     expect(setDisabled).toHaveBeenCalledTimes(1);
     expect(setDisabled.mock.calls[0][0]).toEqual(true);
     expect(login).toHaveBeenCalledTimes(1);
-    expect(login.mock.calls[0][0]).toMatchObject({
-      login: LOGIN,
-      password: PASSWORD
-    });
   });
 });

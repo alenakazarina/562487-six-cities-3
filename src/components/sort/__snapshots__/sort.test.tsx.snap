@@ -13,7 +13,7 @@ exports[`Sort should render closed Sort with active sort type - top rated 1`] = 
   </span>
   <span
     className="places__sorting-type"
-    onClick={[Function]}
+    onClick={[MockFunction]}
     tabIndex={0}
   >
     Top rated first
@@ -29,7 +29,7 @@ exports[`Sort should render closed Sort with active sort type - top rated 1`] = 
   </span>
   <ul
     className="places__options places__options--custom "
-    onClick={[Function]}
+    onClick={[MockFunction]}
   >
     <li
       className="places__option "
@@ -76,7 +76,7 @@ exports[`Sort should render opened Sort with active sort type - top rated 1`] = 
   </span>
   <span
     className="places__sorting-type"
-    onClick={[Function]}
+    onClick={[MockFunction]}
     tabIndex={0}
   >
     Top rated first
@@ -92,7 +92,7 @@ exports[`Sort should render opened Sort with active sort type - top rated 1`] = 
   </span>
   <ul
     className="places__options places__options--custom places__options--opened"
-    onClick={[Function]}
+    onClick={[MockFunction]}
   >
     <li
       className="places__option "

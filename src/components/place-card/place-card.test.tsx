@@ -7,7 +7,7 @@ import PlaceCard from './place-card';
 import {CITY_OFFERS} from '../../mocks/const';
 
 const PREFIXES = [`cities`, `near-places`];
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`PlaceCard`, () => {
   it(`should render cities PlaceCard`, () => {

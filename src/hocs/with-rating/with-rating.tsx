@@ -2,15 +2,15 @@ import * as React from 'react';
 import {Subtract} from 'utility-types';
 
 type InjectingProps = {
-  rating: number,
-  text: string,
+  rating: number;
+  text: string;
   onChange: (evt: React.ChangeEvent) => void;
-};
+}
 
 interface State {
-  rating: number,
-  text: string
-};
+  rating: number;
+  text: string;
+}
 
 const withRating = (Component) => {
   type InitialProps = React.ComponentProps<typeof Component>;

@@ -1,34 +1,37 @@
 import * as React from 'react';
 
 type Rating = {
-  value: 0|1|2|3|4|5,
-  title: ``|`terribly`|`badly`|`not bad`|`good`|`perfect`
-};
+  value: 0|1|2|3|4|5;
+  title: ``|`terribly`|`badly`|`not bad`|`good`|`perfect`;
+}
 
 interface Props {
   rating: Rating;
   isChecked: boolean;
   onChange: (evt: React.ChangeEvent) => void;
-};
+}
 
-const RatingInput: React.FC<Props> = ({rating, isChecked, onChange}) => (
-  <>
-    <input className="form__rating-input visually-hidden"
-      type="radio"
-      name="rating"
-      value={rating.value}
-      id={`${rating.value}-stars`}
-      checked={isChecked}
-      onChange={onChange}
-    />
-    <label className="reviews__rating-label form__rating-label"
-      htmlFor={`${rating.value}-stars`}
-      title={rating.title}>
-      <svg className="form__star-image" width="37" height="33">
-        <use xlinkHref="#icon-star"></use>
-      </svg>
-    </label>
-  </>
-);
+const RatingInput: React.FC<Props> = (props: Props) => {
+  const {rating, isChecked, onChange} = props;
+  return (
+    <>
+      <input className="form__rating-input visually-hidden"
+        type="radio"
+        name="rating"
+        value={rating.value}
+        id={`${rating.value}-stars`}
+        checked={isChecked}
+        onChange={onChange}
+      />
+      <label className="reviews__rating-label form__rating-label"
+        htmlFor={`${rating.value}-stars`}
+        title={rating.title}>
+        <svg className="form__star-image" width="37" height="33">
+          <use xlinkHref="#icon-star"></use>
+        </svg>
+      </label>
+    </>
+  );
+};
 
 export default React.memo(RatingInput);

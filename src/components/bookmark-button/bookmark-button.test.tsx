@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {STORE_WITH_AUTH} from '../../mocks/tests';
 import BookmarkButton from './bookmark-button';
 
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`BookmarkButton`, () => {
   it(`should render property's BookmarkButton active`, () => {

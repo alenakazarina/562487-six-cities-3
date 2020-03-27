@@ -4,9 +4,10 @@ import {UserType} from '../../types';
 interface Props {
   prefix: string;
   user: UserType;
-};
+}
 
-const User: React.FC<Props> = ({prefix, user}) => {
+const User: React.FC<Props> = (props: Props) => {
+  const {prefix, user} = props;
   const {name, isPro, avatarUrl} = user;
   const proClass = isPro ? `${prefix}__avatar-wrapper--pro` : ``;
   const isHost = prefix === `property` ? `host-` : ``;

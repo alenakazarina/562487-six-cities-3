@@ -20,11 +20,11 @@ interface InjectingProps {
   offers: OfferTypes[];
   activeSortType: string;
   onSortTypeChange: (sortType: string) => void;
-};
+}
 
-type State = {
-  activeSortType: string
-};
+interface State {
+  activeSortType: string;
+}
 
 const withSort = (Component) => {
   type InitialProps = React.ComponentProps<typeof Component>;

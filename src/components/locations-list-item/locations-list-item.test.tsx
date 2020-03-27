@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 import {LocationsListItem} from './locations-list-item';
 
 const CITY = `Amsterdam`;
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`LocationsListItem`, () => {
   it(`should render LocationsListItem as listItem with active class`, () => {

@@ -6,7 +6,7 @@ import {STORE_WITH_AUTH} from '../../mocks/tests';
 import {CITY_OFFERS, APP_USERS, REVIEWS} from '../../mocks/const';
 import Property from './property';
 
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`Property`, () => {
   it(`should render Property correctly`, () => {

@@ -11,25 +11,28 @@ interface Props {
   isAuth: boolean;
   user: AppUser;
   isEmpty: boolean;
-};
+}
 
-const Favorites: React.FC<Props> = ({isAuth, user, isEmpty}) => (
-  <div className={`page page--favorites ${isEmpty ? `page--favorites-empty` : ``}`}>
-    <Header
-      isAuth={isAuth}
-      user={user}
-    />
-    <main className={`page__main page__main--favorites ${isEmpty ? `page__main--favorites-empty` : ``}`}>
-      <div className="page__favorites-container container">
-        {isEmpty ?
-          <FavoritesEmpty /> :
-          <FavoritesList />
-        }
-      </div>
-    </main>
-    <Footer/>
-  </div>
-);
+const Favorites: React.FC<Props> = (props: Props) => {
+  const {isAuth, user, isEmpty} = props;
+  return (
+    <div className={`page page--favorites ${isEmpty ? `page--favorites-empty` : ``}`}>
+      <Header
+        isAuth={isAuth}
+        user={user}
+      />
+      <main className={`page__main page__main--favorites ${isEmpty ? `page__main--favorites-empty` : ``}`}>
+        <div className="page__favorites-container container">
+          {isEmpty ?
+            <FavoritesEmpty /> :
+            <FavoritesList />
+          }
+        </div>
+      </main>
+      <Footer/>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   isEmpty: getFavorites(state).length === 0

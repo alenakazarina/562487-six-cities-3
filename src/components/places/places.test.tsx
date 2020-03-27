@@ -7,7 +7,7 @@ import {CITY_OFFERS} from '../../mocks/const';
 import {SortType} from '../../const';
 import Places from './places';
 
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`Places`, () => {
   it(`should render Places correctly`, () => {

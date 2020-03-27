@@ -3,17 +3,20 @@ import {OfferTypes} from '../../types';
 import PlacesList from '../places-list/places-list';
 
 type Props = {
-  nearOffers: OfferTypes[]
-};
+  nearOffers: OfferTypes[];
+}
 
-const NearPlaces: React.FC<Props> = ({nearOffers}) => (
-  <section className="near-places places">
-    <h2 className="near-places__title">Other places in the neighbourhood</h2>
-    <PlacesList
-      prefix={`near-places`}
-      offers={nearOffers}
-    />
-  </section>
-);
+const NearPlaces: React.FC<Props> = (props: Props) => {
+  const {nearOffers} = props;
+  return (
+    <section className="near-places places">
+      <h2 className="near-places__title">Other places in the neighbourhood</h2>
+      <PlacesList
+        prefix={`near-places`}
+        offers={nearOffers}
+      />
+    </section>
+  );
+};
 
 export default React.memo(NearPlaces);

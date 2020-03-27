@@ -3,12 +3,13 @@ import * as React from 'react';
 const RATING_TO_WIDTH = Array.from({length: 6}, (it, i) => `${i * 20}%`);
 
 type Props = {
-  prefix: string,
-  rating: number,
-  isValue: boolean
-};
+  prefix: string;
+  rating: number;
+  isValue: boolean;
+}
 
-const Rating: React.FC<Props> = ({prefix, rating, isValue}) => {
+const Rating: React.FC<Props> = (props: Props) => {
+  const {prefix, rating, isValue} = props;
   const ratingValue = Math.round(rating);
   return (
     <div className={`${prefix}__rating rating`}>

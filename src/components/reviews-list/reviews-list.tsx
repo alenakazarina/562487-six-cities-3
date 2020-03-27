@@ -3,15 +3,18 @@ import {Review} from '../../types';
 import ReviewsItem from '../reviews-item/reviews-item';
 
 type Props = {
-  reviews: Review[]
-};
+  reviews: Review[];
+}
 
-const ReviewsList: React.FC<Props> = ({reviews}) => (
-  <ul className="reviews__list">
-    {reviews.map((review) =>
-      <ReviewsItem key={review.id} review={review} />
-    )}
-  </ul>
-);
+const ReviewsList: React.FC<Props> = (props: Props) => {
+  const {reviews} = props;
+  return (
+    <ul className="reviews__list">
+      {reviews.map((review) =>
+        <ReviewsItem key={review.id} review={review} />
+      )}
+    </ul>
+  );
+};
 
 export default React.memo(ReviewsList);

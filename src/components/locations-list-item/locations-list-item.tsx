@@ -9,15 +9,15 @@ interface Props {
   city: string;
   isActive: boolean;
   setActiveCity: () => void;
-};
+}
 
-const LocationsListItem: React.FC<Props> = ({
+const LocationsListItem: React.FC<Props> = (props: Props) => {
+  const {
     nodeType,
     city,
     isActive,
     setActiveCity
-  }) => {
-
+  } = props;
   const activeClass = isActive ? `tabs__item--active` : ``;
 
   return nodeType === `li` ? (

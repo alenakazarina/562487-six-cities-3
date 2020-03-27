@@ -7,7 +7,7 @@ import {DEFAULT_USER} from '../../mocks/const';
 import Login from './login';
 
 const CITY = `Amsterdam`;
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`Login`, () => {
   it(`should render Login Page correctly`, () => {

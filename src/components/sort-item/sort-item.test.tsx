@@ -4,7 +4,7 @@ import SortItem from './sort-item';
 import {SortType} from '../../const';
 
 const sortType = SortType.POPULAR;
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`SortItem`, () => {
   it(`should render SortItem`, () => {

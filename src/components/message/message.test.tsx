@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import Message from './message';
 
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`Message`, () => {
   it(`should render Message correctly`, () => {

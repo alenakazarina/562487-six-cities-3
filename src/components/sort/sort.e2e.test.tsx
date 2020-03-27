@@ -4,7 +4,7 @@ import {configure, shallow} from 'enzyme';
 import Sort from './sort';
 import {SortType} from '../../const';
 
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 configure({
   adapter: new Adapter(),

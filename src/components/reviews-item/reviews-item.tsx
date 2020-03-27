@@ -5,10 +5,11 @@ import User from '../user/user';
 import Rating from '../rating/rating';
 
 type Props = {
-  review: Review
-};
+  review: Review;
+}
 
-const ReviewsItem: React.FC<Props> = ({review}) => {
+const ReviewsItem: React.FC<Props> = (props: Props) => {
+  const {review} = props;
   const {id, user, text, date, rating} = review;
   const dateTime = formatDatetime(date);
   const reviewDate = formatMonthYear(date);

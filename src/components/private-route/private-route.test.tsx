@@ -9,6 +9,7 @@ const PATH = `/favorites`;
 
 describe(`PrivateRoute`, () => {
   it(`should render PrivateRoute`, () => {
+    const render = jest.fn();
     const tree = renderer.create(
         <Provider store={STORE_WITH_AUTH}>
           <BrowserRouter>
@@ -16,7 +17,7 @@ describe(`PrivateRoute`, () => {
               isAuth={true}
               exact
               path={PATH}
-              render={() => {}}
+              render={render}
             />
           </BrowserRouter>
         </Provider>

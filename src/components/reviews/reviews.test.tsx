@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import {CITY_OFFERS, REVIEWS} from '../../mocks/const';
 import Reviews from './reviews';
 
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`Reviews`, () => {
   it(`should render Reviews with Form`, () => {

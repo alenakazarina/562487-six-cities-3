@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import LoginInput from './login-input';
 import {LOGIN, PASSWORD} from '../../mocks/const';
 
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`LoginInput`, () => {
   it(`should render LoginInput email`, () => {
@@ -12,7 +12,6 @@ describe(`LoginInput`, () => {
           name={`email`}
           value={LOGIN}
           onChange={mockFn}
-          inputRef={{current: document.createElement(`input`)}}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();
@@ -24,7 +23,6 @@ describe(`LoginInput`, () => {
           name={`password`}
           value={PASSWORD}
           onChange={mockFn}
-          inputRef={{current: document.createElement(`input`)}}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();

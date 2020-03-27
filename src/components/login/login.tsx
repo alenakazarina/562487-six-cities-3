@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { AppUser, AuthData } from '../../types';
+import {AppUser, AuthData} from '../../types';
 import Header from '../../components/header/header';
 import LocationsListItem from '../locations-list-item/locations-list-item';
 import LoginForm from '../login-form/login-form';
-import withLogin from '../../hocs/with-change/with-change';
+import withLogin from '../../hocs/with-login/with-login';
 import withDisabled from '../../hocs/with-disabled/with-disabled';
 
-const LoginFormWrapped = withDisabled(LoginForm);
+const LoginFormWrapped = withDisabled(withLogin(LoginForm));
 
 interface Props {
   isAuth: boolean;
@@ -14,15 +14,17 @@ interface Props {
   activeCity: string;
   errorStatus: number;
   login: (authData: AuthData) => void;
-};
+}
 
-const Login: React.FC<Props> = ({
+const Login: React.FC<Props> = (props: Props) => {
+  const {
     isAuth,
     user,
     activeCity,
     errorStatus,
     login
-  }) => (
+  } = props;
+  return (
     <div className="page page--gray page--login">
       <Header
         isAuth={isAuth}
@@ -48,5 +50,6 @@ const Login: React.FC<Props> = ({
       </main>
     </div>
   );
+};
 
 export default React.memo(Login);

@@ -5,7 +5,7 @@ import {configure, mount} from 'enzyme';
 import BookmarkButton from './bookmark-button';
 import {STORE_WITH_AUTH} from '../../mocks/tests';
 
-const mockFn = () => {};
+const mockFn = jest.fn();
 configure({
   adapter: new Adapter(),
 });

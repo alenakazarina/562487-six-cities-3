@@ -11,14 +11,16 @@ interface Props {
   user: AppUser;
   activeCity: string;
   cities: string[];
-};
+}
 
-const Main: React.FC<Props> = ({
+const Main: React.FC<Props> = (props: Props) => {
+  const {
     isAuth,
     user,
     activeCity,
     cities
-  }) => (
+  } = props;
+  return (
     <div className="page page--gray page--main">
       <Header
         isAuth={isAuth}
@@ -36,6 +38,7 @@ const Main: React.FC<Props> = ({
       </main>
     </div>
   );
+};
 
 const mapStateToProps = (state) => ({
   cities: getCities(state),

@@ -6,7 +6,7 @@ interface Props {
   prefix: string;
   offers: OfferTypes[];
   activeOffer: OfferTypes;
-};
+}
 
 class Map extends React.PureComponent<Props> {
   props: Props;
@@ -30,7 +30,10 @@ class Map extends React.PureComponent<Props> {
 
   componentDidMount() {
     const mapElement = this._mapRef.current;
-    this._map = leaflet.map(mapElement);
+    this._map = leaflet.map(mapElement, {
+      zoomControl: false,
+      attributionControl: false
+    });
     this._addTileLayer();
     this._addMarkers();
     this._update();

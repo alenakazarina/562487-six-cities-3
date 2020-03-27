@@ -12,7 +12,7 @@ const PREFIX = `cities`;
 configure({
   adapter: new Adapter(),
 });
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`PlaceCard`, () => {
   it(`should card on hover to call cb with offer on mouseenter and null on mouseleave`, () => {

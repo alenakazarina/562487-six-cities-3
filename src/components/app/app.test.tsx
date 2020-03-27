@@ -5,7 +5,7 @@ import App from './app';
 import {STORE_WITH_NO_AUTH} from '../../mocks/tests';
 import {CITY_OFFERS, APP_USERS, DEFAULT_USER} from '../../mocks/const';
 
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`App`, () => {
   it(`should render App`, () => {

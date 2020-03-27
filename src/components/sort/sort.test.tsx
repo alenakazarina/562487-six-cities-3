@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import Sort from './sort';
 import {SortType} from '../../const';
 
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`Sort`, () => {
   it(`should render opened Sort with active sort type - top rated`, () => {

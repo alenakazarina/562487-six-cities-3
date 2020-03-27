@@ -20,8 +20,6 @@ import Map from '../map/map';
 import NearPlaces from '../near-places/near-places';
 import withDisabled from '../../hocs/with-disabled/with-disabled';
 
-const BookmarkButtonWrapped = withDisabled(BookmarkButton);
-
 interface Props {
   isAuth: boolean;
   user: AppUser;
@@ -33,7 +31,9 @@ interface Props {
   onOfferPageLoad: (offer: OfferTypes) => void;
   onReviewSubmit: (id: number, userComment: Comment) => void;
   onFavoriteClick: (id: number, status: boolean) => void;
-};
+}
+
+const BookmarkButtonWrapped = withDisabled(BookmarkButton);
 
 class Property extends React.PureComponent<Props> {
   props: Props;
@@ -123,9 +123,7 @@ class Property extends React.PureComponent<Props> {
               /> : ``}
             </section>
             <div className="container">
-              {nearOffers.length ? <NearPlaces
-                nearOffers={nearOffers}
-                /> : ``}
+              {nearOffers.length ? <NearPlaces nearOffers={nearOffers}/> : ``}
             </div>
           </main>
         </div>

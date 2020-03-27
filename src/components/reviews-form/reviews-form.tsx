@@ -1,5 +1,6 @@
 import * as React from 'react';
 import RatingInput from '../rating-input/rating-input';
+import ReviewsFormText from '../reviews-form-text/reviews-form-text';
 import SubmitButton from '../submit-button/submit-button';
 import {RATINGS} from '../../const';
 
@@ -12,8 +13,8 @@ interface Props {
   isDisabled: boolean;
   setDisabled: (status: boolean) => void;
   onChange: (evt: React.ChangeEvent) => void;
-  onReviewSubmit: (id: number, userComment: {rating: string, text: string}) => void;
-};
+  onReviewSubmit: (id: number, userComment: {rating: number; text: string}) => void;
+}
 
 class ReviewsForm extends React.PureComponent<Props> {
   props: Props;
@@ -37,8 +38,6 @@ class ReviewsForm extends React.PureComponent<Props> {
   _handleSubmit(evt) {
     evt.preventDefault();
     const {
-      rating,
-      text,
       offerId,
       setDisabled,
       onReviewSubmit
@@ -47,8 +46,8 @@ class ReviewsForm extends React.PureComponent<Props> {
     setDisabled(true);
 
     onReviewSubmit(offerId, {
-      rating: rating,
-      text: text
+      rating: this.props.rating,
+      text: this.props.text
     });
   }
 
@@ -83,12 +82,8 @@ class ReviewsForm extends React.PureComponent<Props> {
               />
             ))}
           </div>
-          <textarea
-            className="reviews__textarea form__textarea"
-            id="review"
-            name="review"
-            placeholder="Tell how was your stay, what you like and what can be improved"
-            value={text}
+          <ReviewsFormText
+            text={text}
             onChange={onChange}
           />
         </fieldset>

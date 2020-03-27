@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import ReviewsForm from './reviews-form';
 
-const mockFn = () => {};
+const mockFn = jest.fn();
 
 describe(`ReviewForm`, () => {
   it(`should render ReviewForm with initial state`, () => {

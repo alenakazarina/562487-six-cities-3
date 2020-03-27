@@ -12,7 +12,7 @@ exports[`LoginInput should render LoginInput email 1`] = `
   <input
     className="login__input form__input"
     name="email"
-    onChange={[Function]}
+    onChange={[MockFunction]}
     placeholder="Email"
     required={true}
     type="email"
@@ -33,7 +33,7 @@ exports[`LoginInput should render LoginInput password 1`] = `
   <input
     className="login__input form__input"
     name="password"
-    onChange={[Function]}
+    onChange={[MockFunction]}
     placeholder="Password"
     required={true}
     type="password"

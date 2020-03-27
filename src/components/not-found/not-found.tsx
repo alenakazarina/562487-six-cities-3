@@ -5,6 +5,12 @@ import {getActiveCity} from '../../reducers/offers/selectors';
 import Header from '../../components/header/header';
 import LocationsListItem from '../locations-list-item/locations-list-item';
 
+interface Props {
+  isAuth: boolean;
+  user: AppUser;
+  activeCity: string;
+}
+
 const WrapperStyles: React.CSSProperties = {
   width: `420px`,
   marginTop: `16.7vh`,
@@ -38,17 +44,13 @@ const CityStyles: React.CSSProperties = {
   marginTop: `20px`
 };
 
-interface Props {
-  isAuth: boolean;
-  user: AppUser;
-  activeCity: string;
-};
-
-const NotFound: React.FC<Props> = ({
+const NotFound: React.FC<Props> = (props: Props) => {
+  const {
     isAuth,
     user,
     activeCity
-  }) => (
+  } = props;
+  return (
     <div className="page page--gray page--not-found">
       <Header
         isAuth={isAuth}
@@ -71,6 +73,7 @@ const NotFound: React.FC<Props> = ({
       </main>
     </div>
   );
+};
 
 const mapStateToProps = (state) => ({
   activeCity: getActiveCity(state)

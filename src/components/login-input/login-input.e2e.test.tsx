@@ -16,7 +16,6 @@ describe(`LoginInput`, () => {
           name={`email`}
           value={LOGIN}
           onChange={onChange}
-          inputRef={{current: document.createElement(`input`)}}
         />
     );
     wrapper.find(`input`).at(0).simulate(`change`);

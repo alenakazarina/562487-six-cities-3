@@ -27,14 +27,15 @@ interface Props {
   resetError: () => void;
   login: (authData: AuthData) => void;
   onOfferPageLoad: (offer: OfferTypes) => void;
-};
+}
 
 const LoginWrapped = withMessage(Login);
 const MainWrapped = withMessage(Main);
 const PropertyWrapped = withMessage(Property);
 const FavoritesWrapped = withMessage(Favorites);
 
-const App: React.FC<Props> = ({
+const App: React.FC<Props> = (props: Props) => {
+  const {
     initialOffers,
     isAuth,
     user,
@@ -43,7 +44,7 @@ const App: React.FC<Props> = ({
     resetError,
     login,
     onOfferPageLoad
-  }) => {
+  } = props;
 
   if (initialOffers.length === 0) {
     return <></>;

@@ -5,7 +5,7 @@ import withMessage from './with-message';
 
 configure({adapter: new Adapter()});
 const MockComponent = () => <div />;
-const mockFn = () => {};
+const mockFn = jest.fn();
 const MockComponentWrapped = withMessage(MockComponent);
 
 describe(`withMessage HOC`, () => {

@@ -4,11 +4,11 @@ import {Subtract} from 'utility-types';
 interface InjectingProps {
   isActive: boolean;
   onToggleClick: () => void;
-};
+}
 
-type State = {
-  isActive: boolean
-};
+interface State {
+  isActive: boolean;
+}
 
 const withToggle = (Component) => {
   type InitialProps = React.ComponentProps<typeof Component>;

@@ -5,15 +5,17 @@ import PlacesList from '../places-list/places-list';
 import withToggle from '../../hocs/with-toggle/with-toggle';
 import {formatPluralNouns} from '../../utils';
 
-const SortWithToggle = withToggle(Sort);
-
 interface Props {
   offers: OfferTypes[];
   activeSortType: string;
   onSortTypeChange: (sortType: string) => void;
-};
+}
 
-const Places: React.FC<Props> = ({offers, activeSortType, onSortTypeChange}) => (
+const SortWithToggle = withToggle(Sort);
+
+const Places: React.FC<Props> = (props: Props) => {
+  const {offers, activeSortType, onSortTypeChange} = props;
+  return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">{formatPluralNouns(offers.length, `place`)} to stay in {offers[0].city.name}</b>
@@ -26,6 +28,6 @@ const Places: React.FC<Props> = ({offers, activeSortType, onSortTypeChange}) => 
         offers={offers}
       />
     </section>
-);
-
+  );
+};
 export default React.memo(Places);

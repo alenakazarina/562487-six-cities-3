@@ -1,11 +1,12 @@
 import * as React from 'react';
 
 type Props = {
-  prefix: string,
-  price: number
-};
+  prefix: string;
+  price: number;
+}
 
-const Price: React.FC<Props> = ({prefix, price}) => {
+const Price: React.FC<Props> = (props: Props) => {
+  const {prefix, price} = props;
   const priceText = prefix === `property` ? ` night` : `/ night`;
   return (
     <div className={`${prefix}__price`}>

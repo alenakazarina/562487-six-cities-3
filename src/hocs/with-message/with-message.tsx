@@ -5,7 +5,7 @@ import Message from '../../components/message/message';
 interface InjectingProps {
   status: number;
   onClose: () => void;
-};
+}
 
 const withMessage = (Component) => {
   type InitialProps = React.ComponentProps<typeof Component>;

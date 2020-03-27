@@ -14,25 +14,28 @@ interface Props {
   offers: OfferTypes[];
   activeOffer: OfferTypes;
   activeCity: string;
-};
+}
 
-const Cities: React.FC<Props> = ({offers, activeOffer, activeCity}) => (
-  <div className="cities">
-    <div className={`cities__places-container container ${offers.length === 0 ? `cities__places-container--empty` : ``}`}>
-      {offers.length === 0 ?
-        <NoPlaces city={activeCity} /> :
-        <PlacesWithSort offers={offers} />
-      }
-      <div className="cities__right-section">
-        {offers.length && <Map prefix={`cities`}
-          offers={offers}
-          activeOffer={activeOffer}
-        />
+const Cities: React.FC<Props> = (props: Props) => {
+  const {offers, activeOffer, activeCity} = props;
+  return (
+    <div className="cities">
+      <div className={`cities__places-container container ${offers.length === 0 ? `cities__places-container--empty` : ``}`}>
+        {offers.length === 0 ?
+          <NoPlaces city={activeCity} /> :
+          <PlacesWithSort offers={offers} />
         }
+        <div className="cities__right-section">
+          {offers.length && <Map prefix={`cities`}
+            offers={offers}
+            activeOffer={activeOffer}
+          />
+          }
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const mapStateToProps = (state) => ({
   offers: getOffersByCity(state),

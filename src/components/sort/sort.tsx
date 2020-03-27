@@ -7,15 +7,15 @@ interface Props {
   activeSortType: string;
   onToggleClick: () => void;
   onSortTypeChange: (sortType: string) => void;
-};
+}
 
-const Sort: React.FC<Props> = ({
+const Sort: React.FC<Props> = (props: Props) => {
+  const {
     isActive,
     onToggleClick,
     activeSortType,
     onSortTypeChange
-  }) => {
-
+  } = props;
   const openedClass = isActive ? `places__options--opened` : ``;
   return (
     <form className="places__sorting" action="#" method="get">

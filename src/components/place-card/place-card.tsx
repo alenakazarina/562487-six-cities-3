@@ -19,7 +19,7 @@ interface Props {
   offer: OfferTypes;
   setActiveOffer: (offer: OfferTypes) => void;
   onFavoriteClick: (id: number, status: boolean) => void;
-};
+}
 
 class PlaceCard extends React.Component<Props> {
   props: Props;

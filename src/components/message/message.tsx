@@ -1,5 +1,10 @@
 import * as React from 'react';
 
+interface Props {
+  status: number;
+  onClose: () => void;
+}
+
 const MessageStyles: React.CSSProperties = {
   position: `fixed`,
   top: `5%`,
@@ -28,11 +33,6 @@ const ButtonStyles: React.CSSProperties = {
   backgroundRepeat: `no-repeat`,
   color: `#ffffff`,
   fontWeight: `bold`
-};
-
-interface Props {
-  status: number;
-  onClose: () => void;
 };
 
 class Message extends React.PureComponent<Props> {

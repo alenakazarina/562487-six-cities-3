@@ -4,11 +4,11 @@ import {Subtract} from 'utility-types';
 type InjectingProps = {
   isDisabled: boolean;
   setDisabled: (status: boolean) => void;
-};
+}
 
 type State = {
-  isDisabled: boolean
-};
+  isDisabled: boolean;
+}
 
 const withDisabled = (Component) => {
   type InitialProps = React.ComponentProps<typeof Component>;

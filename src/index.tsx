@@ -25,7 +25,7 @@ const api = createAPI({onUnauthorized, onRequestError});
 const store = createStore(
     reducer,
     composeWithDevTools(
-      applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api))
     )
 );
 

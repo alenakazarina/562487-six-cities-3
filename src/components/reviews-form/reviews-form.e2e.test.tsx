@@ -8,8 +8,8 @@ configure({
 });
 const mockFn = jest.fn();
 
-describe(`ReviewForm`, () => {
-  it(`should ReviewForm inputs and textarea be changed and onChange cb be invoked`, () => {
+describe(`ReviewsForm`, () => {
+  it(`should ReviewsForm inputs and textarea be changed and onChange cb be invoked`, () => {
     const onChange = jest.fn();
     const wrapper = mount(
         <ReviewsForm
@@ -29,7 +29,7 @@ describe(`ReviewForm`, () => {
     expect(onChange).toHaveBeenCalledTimes(2);
   });
 
-  it(`should ReviewForm be submitted and set inputs disabled`, () => {
+  it(`should ReviewsForm be submitted and set inputs disabled`, () => {
     const setDisabled = jest.fn();
     const onReviewSubmit = jest.fn();
     const wrapper = mount(
@@ -58,7 +58,7 @@ describe(`ReviewForm`, () => {
   });
 
 
-  it(`should not ReviewForm be submitted when inputs values are invalid`, () => {
+  it(`should not ReviewsForm be submitted when inputs values are invalid`, () => {
     const setDisabled = jest.fn();
     const onReviewSubmit = jest.fn();
     const wrapper = mount(
@@ -78,7 +78,7 @@ describe(`ReviewForm`, () => {
     expect(wrapper.find(`button.form__submit`).props().disabled).toBeTruthy();
   });
 
-  it(`should not ReviewForm be submitted when inputs values are invalid`, () => {
+  it(`should not ReviewsForm be submitted when inputs values are invalid`, () => {
     const setDisabled = jest.fn();
     const onReviewSubmit = jest.fn();
     const wrapper = mount(

@@ -3,8 +3,8 @@ import * as renderer from 'react-test-renderer';
 import ReviewsList from './reviews-list';
 import {REVIEWS} from '../../mocks/const';
 
-describe(`Reviews`, () => {
-  it(`should render Reviews correctly`, () => {
+describe(`ReviewsList`, () => {
+  it(`should render ReviewsList correctly`, () => {
     const tree = renderer.create(
         <ReviewsList reviews={REVIEWS}/>
     ).toJSON();

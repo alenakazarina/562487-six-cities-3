@@ -9,7 +9,6 @@ import Rating from '../rating/rating';
 import Price from '../price/price';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import {OfferType} from '../../const';
-
 import withDisabled from '../../hocs/with-disabled/with-disabled';
 
 const BookmarkButtonWrapped = withDisabled(BookmarkButton);

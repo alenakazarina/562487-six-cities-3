@@ -89,7 +89,7 @@ exports[`Favorites should render Favorites with empty favorites offers 1`] = `
           <p
             className="favorites__status-description"
           >
-            Save properties to narrow down search or plan yor future trips.
+            Save properties to narrow down search or plan your future trips.
           </p>
         </div>
       </section>

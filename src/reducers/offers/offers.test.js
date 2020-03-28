@@ -37,33 +37,6 @@ describe(`Offers reducer works correctly`, () => {
       activeCity: nextActiveCity
     });
   });
-
-  it(`Reducer should update offers`, () => {
-    expect(reducer({
-      offers: CITY_OFFERS
-    }, {
-      type: ActionType.UPDATE_OFFERS
-    })).toEqual({
-      offers: CITY_OFFERS
-    });
-  });
-
-  it(`Reducer should toggle favorite status `, () => {
-    const updatedOffers = CITY_OFFERS.map((offer, i) => {
-      if (i === 0) {
-        offer.isFavorite = !offer.isFavorite;
-      }
-      return offer;
-    });
-    expect(reducer({
-      offers: CITY_OFFERS
-    }, {
-      type: ActionType.UPDATE_OFFERS,
-      payload: 1
-    })).toEqual({
-      offers: updatedOffers
-    });
-  });
 });
 
 describe(`Operation work correctly`, () => {

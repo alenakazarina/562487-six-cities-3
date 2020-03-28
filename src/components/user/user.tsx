@@ -2,7 +2,7 @@ import * as React from 'react';
 import {UserType} from '../../types';
 
 interface Props {
-  prefix: string;
+  prefix: `property` | `reviews`;
   user: UserType;
 }
 

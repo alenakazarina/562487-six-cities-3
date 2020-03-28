@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should render App 1`] = `
+exports[`App should render App with auth user 1`] = `
 Array [
   "",
   <div
@@ -43,16 +43,21 @@ Array [
               >
                 <a
                   className="header__nav-link header__nav-link--profile"
-                  href="/login"
+                  href="/favorites"
                   onClick={[Function]}
                 >
                   <div
                     className="header__avatar-wrapper user__avatar-wrapper"
+                    style={
+                      Object {
+                        "backgroundImage": "url(https://htmlacademy-react-3.appspot.com/six-cities/user1_avatar)",
+                      }
+                    }
                   />
                   <span
                     className="header__user-name user__name"
                   >
-                    Sign in
+                    user@gmail.com
                   </span>
                 </a>
               </li>
@@ -240,10 +245,11 @@ Array [
                         / night
                       </span>
                     </div>
-                    <a
-                      className="cities__bookmark-button button"
-                      href="/login"
+                    <button
+                      className="cities__bookmark-button button place-card__bookmark-button--active"
+                      disabled={false}
                       onClick={[Function]}
+                      type="button"
                     >
                       <svg
                         className="place-card__bookmark-icon"
@@ -259,7 +265,7 @@ Array [
                       >
                         To bookmarks
                       </span>
-                    </a>
+                    </button>
                   </div>
                   <div
                     className="place-card__rating rating"
@@ -314,7 +320,7 @@ Array [
 ]
 `;
 
-exports[`App should render App 2`] = `
+exports[`App should render App with no auth user 1`] = `
 Array [
   "",
   <div

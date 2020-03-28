@@ -3,19 +3,6 @@ import {Subtract} from 'utility-types';
 import {OfferTypes} from '../../types';
 import {SortType} from '../../const';
 
-export const getSortedOffers = (offers: OfferTypes[], activeSortType: string) => {
-  switch (activeSortType) {
-    case SortType.PRICE_TO_LOW:
-      return offers.slice().sort((firstOffer, secondOffer) => secondOffer.price - firstOffer.price);
-    case SortType.PRICE_TO_HIGH:
-      return offers.slice().sort((firstOffer, secondOffer) => firstOffer.price - secondOffer.price);
-    case SortType.TOP_RATED:
-      return offers.slice().sort((firstOffer, secondOffer) => secondOffer.rating - firstOffer.rating);
-    default:
-      return offers;
-  }
-};
-
 interface InjectingProps {
   offers: OfferTypes[];
   activeSortType: string;
@@ -63,6 +50,19 @@ const withSort = (Component) => {
   }
 
   return WithSort;
+};
+
+export const getSortedOffers = (offers: OfferTypes[], activeSortType: string) => {
+  switch (activeSortType) {
+    case SortType.PRICE_TO_LOW:
+      return offers.slice().sort((firstOffer, secondOffer) => secondOffer.price - firstOffer.price);
+    case SortType.PRICE_TO_HIGH:
+      return offers.slice().sort((firstOffer, secondOffer) => firstOffer.price - secondOffer.price);
+    case SortType.TOP_RATED:
+      return offers.slice().sort((firstOffer, secondOffer) => secondOffer.rating - firstOffer.rating);
+    default:
+      return offers;
+  }
 };
 
 export default withSort;

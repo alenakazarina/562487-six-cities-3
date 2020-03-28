@@ -6,8 +6,6 @@ import LoginForm from '../login-form/login-form';
 import withLogin from '../../hocs/with-login/with-login';
 import withDisabled from '../../hocs/with-disabled/with-disabled';
 
-const LoginFormWrapped = withDisabled(withLogin(LoginForm));
-
 interface Props {
   isAuth: boolean;
   user: AppUser;
@@ -15,6 +13,8 @@ interface Props {
   errorStatus: number;
   login: (authData: AuthData) => void;
 }
+
+const LoginFormWrapped = withDisabled(withLogin(LoginForm));
 
 const Login: React.FC<Props> = (props: Props) => {
   const {

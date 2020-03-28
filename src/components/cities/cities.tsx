@@ -8,13 +8,13 @@ import NoPlaces from '../no-places/no-places';
 import Map from '../map/map';
 import withSort from '../../hocs/with-sort/with-sort';
 
-const PlacesWithSort = withSort(Places);
-
 interface Props {
   offers: OfferTypes[];
   activeOffer: OfferTypes;
   activeCity: string;
 }
+
+const PlacesWithSort = withSort(Places);
 
 const Cities: React.FC<Props> = (props: Props) => {
   const {offers, activeOffer, activeCity} = props;

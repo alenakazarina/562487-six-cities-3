@@ -9,7 +9,7 @@ describe(`Reviews`, () => {
   it(`should render Reviews with Form`, () => {
     const tree = renderer.create(
         <Reviews
-          isAuth
+          isAuth={true}
           errorStatus={0}
           activeOffer={CITY_OFFERS[0]}
           reviews={REVIEWS}

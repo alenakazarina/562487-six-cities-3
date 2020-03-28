@@ -46,7 +46,8 @@ const Operation = {
     return api.get(`/login`)
       .then((response) => {
         onUserOperationSuccess(response, dispatch);
-      });
+      })
+      .catch(() => {});
   },
 
   login: (authData) => (dispatch, getState, api) => {
@@ -56,7 +57,8 @@ const Operation = {
     })
       .then((response) => {
         onUserOperationSuccess(response, dispatch);
-      });
+      })
+      .catch(() => {});
   },
 };
 

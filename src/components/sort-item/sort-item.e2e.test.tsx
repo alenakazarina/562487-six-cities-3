@@ -21,8 +21,7 @@ describe(`SortItem`, () => {
         />
     );
     sort.find(`li.places__option`).simulate(`click`);
-    expect(onSortTypeChange).toHaveBeenCalledTimes(1);
-    expect(onSortTypeChange.mock.calls[0][0]).toBe(sortType);
+    expect(onSortTypeChange).toHaveBeenNthCalledWith(1, sortType);
   });
 
   it(`should sortItem no active be pressed and does not invoke callback`, () => {

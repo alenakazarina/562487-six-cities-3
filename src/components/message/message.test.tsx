@@ -14,4 +14,13 @@ describe(`Message`, () => {
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
+  it(`should render Message with 401 status`, () => {
+    const tree = renderer.create(
+        <Message
+          status={401}
+          onClose={mockFn}
+        />
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

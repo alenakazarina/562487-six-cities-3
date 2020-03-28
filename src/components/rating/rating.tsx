@@ -1,6 +1,8 @@
 import * as React from 'react';
 
-const RATING_TO_WIDTH = Array.from({length: 6}, (it, i) => `${i * 20}%`);
+const STARS_COUNT = 5;
+const STAR_WIDTH_PERCENT = 100 / STARS_COUNT;
+const RATING_TO_WIDTH = Array.from({length: STARS_COUNT + 1}, (it, i) => `${i * STAR_WIDTH_PERCENT}%`);
 
 type Props = {
   prefix: string;

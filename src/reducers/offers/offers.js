@@ -30,7 +30,8 @@ const Operation = {
         const offers = Offer.parseOffers(response.data);
         dispatch(ActionCreator.loadOffers(offers));
         dispatch(ActionCreator.setActiveCity(offers[0].city.name));
-      });
+      })
+      .catch(() => {});
   }
 };
 

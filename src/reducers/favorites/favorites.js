@@ -32,7 +32,8 @@ const Operation = {
       .then((response) => {
         const offers = Offer.parseOffers(response.data);
         dispatch(ActionCreator.loadFavorites(offers));
-      });
+      })
+      .catch(() => {});
   },
 
   addFavorite: (id) => (dispatch, getState, api) => {
@@ -44,7 +45,8 @@ const Operation = {
       .then((response) => {
         const offer = Offer.parseOffer(response.data);
         dispatch(ActionCreator.addFavorite(offer));
-      });
+      })
+      .catch(() => {});
   },
 
   removeFavorite: (id) => (dispatch, getState, api) => {
@@ -56,7 +58,8 @@ const Operation = {
       .then((response) => {
         const offer = Offer.parseOffer(response.data);
         dispatch(ActionCreator.removeFavorite(offer));
-      });
+      })
+      .catch(() => {});
   }
 };
 

@@ -35,6 +35,21 @@ class Message extends React.PureComponent<Props> {
 
   render() {
     const {status} = this.props;
+    const text = {
+      header: ``,
+      message: ``,
+      end: ``
+    };
+    if (status === 401) {
+      text.header = `Unauthorized.`;
+      text.message = `You are not authorized :(`;
+      text.end = `Please, Sign in to access your account.`;
+    } else {
+      text.header = `That’s an error.`;
+      text.message = `Something went wrong :(`;
+      text.end = `Please, try again later.`;
+    }
+
     return (
       <section
         className="message message--error"
@@ -43,11 +58,11 @@ class Message extends React.PureComponent<Props> {
         <div className="message__header"
           style={MessageHeaderStyles}
         >
-          <b>{status}. That’s an error.</b>
+          <b>{status}. {text.header}</b>
         </div>
         <div className="message__body">
-          <p>Something went wrong :(</p>
-          <p>Please, try again later.</p>
+          <p>{text.message}</p>
+          <p>{text.end}</p>
         </div>
         <button
           className="message__button button"

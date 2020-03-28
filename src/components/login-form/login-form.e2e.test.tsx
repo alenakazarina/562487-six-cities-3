@@ -25,8 +25,7 @@ describe(`LoginForm`, () => {
         />
     );
     wrapper.find(`form`).simulate(`submit`);
-    expect(setDisabled).toHaveBeenCalledTimes(1);
-    expect(setDisabled.mock.calls[0][0]).toEqual(true);
+    expect(setDisabled).toHaveBeenNthCalledWith(1, true);
     expect(login).toHaveBeenCalledTimes(1);
   });
 });

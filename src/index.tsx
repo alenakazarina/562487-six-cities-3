@@ -10,9 +10,14 @@ import reducer from './reducers/reducer';
 import {Operation as OffersOperation} from './reducers/offers/offers';
 import {Operation as UserOperation, ActionCreator, AuthStatus} from './reducers/user/user';
 import {ActionCreator as ErrorActionCreator} from './reducers/errors/errors';
+import withMessage from './hocs/with-message/with-message';
 
-const onUnauthorized = () => {
+const AppWrapped = withMessage(App);
+
+const onUnauthorized = (response) => {
+  const status = response.status;
   store.dispatch(ActionCreator.requireAuthorization(AuthStatus.NO_AUTH));
+  store.dispatch(ErrorActionCreator.setErrorStatus(status));
 };
 
 const onRequestError = (response) => {
@@ -34,7 +39,7 @@ store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <AppWrapped />
     </Provider>,
     document.querySelector(`#root`)
 );

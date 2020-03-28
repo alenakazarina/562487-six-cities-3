@@ -47,11 +47,8 @@ describe(`ReviewsForm`, () => {
     );
 
     wrapper.find(`button.form__submit`).simulate(`submit`);
-    expect(setDisabled).toHaveBeenCalledTimes(1);
-    expect(setDisabled.mock.calls[0][0]).toEqual(true);
-    expect(onReviewSubmit).toHaveBeenCalledTimes(1);
-    expect(onReviewSubmit.mock.calls[0][0]).toEqual(1);
-    expect(onReviewSubmit.mock.calls[0][1]).toMatchObject({
+    expect(setDisabled).toHaveBeenNthCalledWith(1, true);
+    expect(onReviewSubmit).toHaveBeenNthCalledWith(1, 1, {
       rating: 5,
       text: `I hope to have the opportunity to come back. Thank you.`
     });

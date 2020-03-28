@@ -32,7 +32,7 @@ class ReviewsForm extends React.PureComponent<Props> {
 
   _checkSubmitDisabled() {
     const {rating, text} = this.props;
-    return (rating === 0 || text.length <= 50 || text.length >= 300) ? true : false;
+    return rating === 0 || text.length <= 50 || text.length >= 300;
   }
 
   _handleSubmit(evt) {

@@ -32,10 +32,8 @@ describe(`PlaceCard`, () => {
     );
     const card = placeCard.find(`article.place-card`);
     card.simulate(`mouseenter`);
-    expect(setActiveOffer).toHaveBeenCalledTimes(1);
-    expect(setActiveOffer.mock.calls[0][0]).toMatchObject(cardOffer);
+    expect(setActiveOffer).toHaveBeenNthCalledWith(1, cardOffer);
     card.simulate(`mouseleave`);
-    expect(setActiveOffer).toHaveBeenCalledTimes(2);
-    expect(setActiveOffer.mock.calls[1][0]).toBe(null);
+    expect(setActiveOffer).toHaveBeenNthCalledWith(2, null);
   });
 });

@@ -28,9 +28,7 @@ describe(`BookmarkButton`, () => {
     );
 
     wrapper.find(`button`).at(0).simulate(`click`);
-    expect(onFavoriteClick).toHaveBeenCalledTimes(1);
-    expect(onFavoriteClick.mock.calls[0][0]).toBe(1);
-    expect(onFavoriteClick.mock.calls[0][1]).toBe(false);
+    expect(onFavoriteClick).toHaveBeenNthCalledWith(1, 1, false);
   });
 
   it(`should BookmarkButton be pressed and invoke cb to add to favorites`, () => {
@@ -50,8 +48,6 @@ describe(`BookmarkButton`, () => {
     );
 
     wrapper.find(`button`).at(0).simulate(`click`);
-    expect(onFavoriteClick).toHaveBeenCalledTimes(1);
-    expect(onFavoriteClick.mock.calls[0][0]).toBe(2);
-    expect(onFavoriteClick.mock.calls[0][1]).toBe(true);
+    expect(onFavoriteClick).toHaveBeenNthCalledWith(1, 2, true);
   });
 });

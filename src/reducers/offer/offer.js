@@ -53,14 +53,16 @@ const Operation = {
         dispatch(ActionCreator.loadNearOffers(offers));
         dispatch(ActionCreator.loadComments(comments));
       });
-    });
+    })
+    .catch(() => {});
   },
   loadNearOffers: (id) => (dispatch, getState, api) => {
     return api.get(`/hotels/${id}/nearby`)
       .then((response) => {
         const offers = Offer.parseOffers(response.data);
         dispatch(ActionCreator.loadNearOffers(offers));
-      });
+      })
+      .catch(() => {});
   },
 
   loadComments: (id) => (dispatch, getState, api) => {
@@ -68,7 +70,8 @@ const Operation = {
       .then((response) => {
         const comments = Comment.parseComments(response.data);
         dispatch(ActionCreator.loadComments(comments));
-      });
+      })
+      .catch(() => {});
   },
 
   updateComments: (id, comment) => (dispatch, getState, api) => {
@@ -79,7 +82,8 @@ const Operation = {
       .then((response) => {
         const comments = Comment.parseComments(response.data);
         dispatch(ActionCreator.updateComments(comments));
-      });
+      })
+      .catch(() => {});
   }
 };
 

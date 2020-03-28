@@ -17,7 +17,7 @@ export const formatPluralNouns = (count, noun) => {
   return count === 1 ? `${count} ${noun}` : `${count} ${noun}s`;
 };
 
-const withLeadingZero = (value) => parseInt(value, 10) > 9 ? value : `0${value}`;
+const withLeadingZero = (value) => parseInt(value, 10) > 9 ? `${value}` : `0${value}`;
 
 export const formatDatetime = (date) => {
   const year = date.getFullYear();

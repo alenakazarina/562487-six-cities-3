@@ -27,7 +27,8 @@ exports[`Message should render Message correctly 1`] = `
   >
     <b>
       400
-      . That’s an error.
+      . 
+      That’s an error.
     </b>
   </div>
   <div
@@ -38,6 +39,69 @@ exports[`Message should render Message correctly 1`] = `
     </p>
     <p>
       Please, try again later.
+    </p>
+  </div>
+  <button
+    className="message__button button"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundImage": "url(./img/close.svg)",
+        "backgroundPosition": "center",
+        "backgroundRepeat": "no-repeat",
+        "backgroundSize": "18px",
+        "color": "#ffffff",
+        "fontWeight": "bold",
+        "padding": "10px",
+        "position": "absolute",
+        "right": "5px",
+        "top": "5px",
+        "zIndex": 10,
+      }
+    }
+  />
+</section>
+`;
+
+exports[`Message should render Message with 401 status 1`] = `
+<section
+  className="message message--error"
+  style={
+    Object {
+      "backgroundColor": "#f47d75",
+      "borderRadius": "3px",
+      "color": "#ffffff",
+      "padding": "20px 20px 10px 20px",
+      "position": "fixed",
+      "right": "5%",
+      "top": "5%",
+      "zIndex": 1000,
+    }
+  }
+>
+  <div
+    className="message__header"
+    style={
+      Object {
+        "borderBottom": "1px solid rgba(255, 255, 255, 0.5)",
+        "paddingBottom": "10px",
+      }
+    }
+  >
+    <b>
+      401
+      . 
+      Unauthorized.
+    </b>
+  </div>
+  <div
+    className="message__body"
+  >
+    <p>
+      You are not authorized :(
+    </p>
+    <p>
+      Please, Sign in to access your account.
     </p>
   </div>
   <button

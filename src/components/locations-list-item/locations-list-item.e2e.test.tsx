@@ -11,17 +11,17 @@ configure({
 
 describe(`LocationsListItem`, () => {
   it(`should LocationsListItem be pressed and invoke cb with Amsterdam city`, () => {
-    const setActiveCity = jest.fn();
+    const onLocationsItemClick = jest.fn();
     const locationsListItem = shallow(
         <LocationsListItem
           nodeType="li"
           city={CITY}
           isActive={false}
-          setActiveCity={setActiveCity}
+          onLocationsItemClick={onLocationsItemClick}
         />
     );
     locationsListItem.find(`a.locations__item-link`).simulate(`click`);
-    expect(setActiveCity).toHaveBeenCalledTimes(1);
+    expect(onLocationsItemClick).toHaveBeenCalledTimes(1);
   });
 });
 

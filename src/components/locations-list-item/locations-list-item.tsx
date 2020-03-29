@@ -8,7 +8,7 @@ interface Props {
   nodeType: `li` | `div`;
   city: string;
   isActive: boolean;
-  setActiveCity: () => void;
+  onLocationsItemClick: () => void;
 }
 
 const LocationsListItem: React.FC<Props> = (props: Props) => {
@@ -16,14 +16,14 @@ const LocationsListItem: React.FC<Props> = (props: Props) => {
     nodeType,
     city,
     isActive,
-    setActiveCity
+    onLocationsItemClick
   } = props;
   const activeClass = isActive ? `tabs__item--active` : ``;
 
   return nodeType === `li` ? (
     <li className="locations__item" key={city}>
       <a className={`locations__item-link tabs__item ${activeClass}`}
-        onClick={setActiveCity}
+        onClick={onLocationsItemClick}
       >
         <span>{city}</span>
       </a>
@@ -31,7 +31,7 @@ const LocationsListItem: React.FC<Props> = (props: Props) => {
   ) : (
     <div className="locations__item" key={city}>
       <Link to={AppRoute.ROOT} className={`locations__item-link tabs__item ${activeClass}`}
-        onClick={setActiveCity}
+        onClick={onLocationsItemClick}
       >
         <span>{city}</span>
       </Link>
@@ -40,7 +40,7 @@ const LocationsListItem: React.FC<Props> = (props: Props) => {
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  setActiveCity({currentTarget}) {
+  onLocationsItemClick({currentTarget}) {
     const city = currentTarget.text;
     if (props.isActive) {
       return;

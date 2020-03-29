@@ -13,7 +13,7 @@ describe(`LocationsListItem`, () => {
           nodeType="li"
           city={CITY}
           isActive={true}
-          setActiveCity={mockFn}
+          onLocationsItemClick={mockFn}
         />
     ).toJSON();
     expect(tree).toMatchSnapshot();
@@ -26,7 +26,7 @@ describe(`LocationsListItem`, () => {
             nodeType="div"
             city={CITY}
             isActive={false}
-            setActiveCity={mockFn}
+            onLocationsItemClick={mockFn}
           />
         </BrowserRouter>
     ).toJSON();

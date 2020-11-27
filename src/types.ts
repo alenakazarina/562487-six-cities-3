@@ -19,7 +19,7 @@ export type AuthData = {
 
 export type Comment = {
   rating: number,
-  text: string
+  comment: string
 };
 
 export type Date = {

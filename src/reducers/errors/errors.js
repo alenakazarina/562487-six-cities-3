@@ -1,9 +1,5 @@
 import {extend} from '../../utils';
 
-const initialState = {
-  errorStatus: 0
-};
-
 const ActionType = {
   SET_ERROR_STATUS: `SET_ERROR_STATUS`,
   RESET_ERROR: `RESET_ERROR`
@@ -20,7 +16,7 @@ const ActionCreator = {
   })
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case ActionType.SET_ERROR_STATUS:
       return extend(state, {errorStatus: action.payload});

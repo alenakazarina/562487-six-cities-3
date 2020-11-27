@@ -8,7 +8,7 @@ describe(`ReviewsFormText`, () => {
   it(`should render ReviewsFormText correctly`, () => {
     const tree = renderer.create(
         <ReviewsFormText
-          text={`Some text`}
+          comment={`Some text`}
           onChange={mockFn}
         />
     ).toJSON();

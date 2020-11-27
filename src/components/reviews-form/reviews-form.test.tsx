@@ -9,7 +9,7 @@ describe(`ReviewsForm`, () => {
     const tree = renderer.create(
         <ReviewsForm
           rating={0}
-          text={``}
+          comment={``}
           errorStatus={0}
           reviewsCount={1}
           offerId={1}
@@ -26,7 +26,7 @@ describe(`ReviewsForm`, () => {
     const tree = renderer.create(
         <ReviewsForm
           rating={0}
-          text={``}
+          comment={``}
           errorStatus={0}
           reviewsCount={1}
           offerId={1}

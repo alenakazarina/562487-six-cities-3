@@ -17,7 +17,7 @@ describe(`withRating HOC`, () => {
         <MockComponentWrapped reviewsCount={1} />
     );
     expect(wrapper.props().rating).toEqual(0);
-    expect(wrapper.props().text).toHaveLength(0);
+    expect(wrapper.props().comment).toHaveLength(0);
   });
 
   it(`should update wrapped component with user data`, () => {
@@ -27,6 +27,6 @@ describe(`withRating HOC`, () => {
     wrapper.props().onChange(mockEvents[0]);
     expect(wrapper.props().rating).toEqual(5);
     wrapper.props().onChange(mockEvents[1]);
-    expect(wrapper.props().text).toEqual(`Some text`);
+    expect(wrapper.props().comment).toEqual(`Some text`);
   });
 });

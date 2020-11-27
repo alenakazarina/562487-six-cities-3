@@ -1,23 +1,6 @@
 import {extend} from '../../utils';
 import User from '../../models/user/user';
-
-export const DEFAULT_USER = {
-  id: -1,
-  email: ``,
-  name: ``,
-  isPro: false,
-  avatarUrl: ``
-};
-
-export const AuthStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`,
-};
-
-const initialState = {
-  authStatus: AuthStatus.NO_AUTH,
-  user: DEFAULT_USER
-};
+import {AuthStatus} from '../../const';
 
 const ActionType = {
   REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
@@ -43,7 +26,7 @@ const onUserOperationSuccess = (response, dispatch) => {
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
-    return api.get(`/login`)
+    return api.checkAuth()
       .then((response) => {
         onUserOperationSuccess(response, dispatch);
       })
@@ -51,10 +34,7 @@ const Operation = {
   },
 
   login: (authData) => (dispatch, getState, api) => {
-    return api.post(`/login`, {
-      email: authData.login,
-      password: authData.password,
-    })
+    return api.login(authData)
       .then((response) => {
         onUserOperationSuccess(response, dispatch);
       })
@@ -62,7 +42,7 @@ const Operation = {
   },
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case ActionType.REQUIRE_AUTHORIZATION:
       return extend(state, {authStatus: action.payload});

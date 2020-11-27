@@ -52,7 +52,9 @@ exports[`ReviewsList should render ReviewsList correctly 1`] = `
       </div>
       <p
         className="reviews__text"
-      />
+      >
+        Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country.
+      </p>
       <time
         className="reviews__time"
         dateTime="2020:03:04T14:00"
@@ -109,7 +111,9 @@ exports[`ReviewsList should render ReviewsList correctly 1`] = `
       </div>
       <p
         className="reviews__text"
-      />
+      >
+        In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.
+      </p>
       <time
         className="reviews__time"
         dateTime="2020:03:03T10:00"

@@ -10,7 +10,7 @@ type Props = {
 
 const ReviewsItem: React.FC<Props> = (props: Props) => {
   const {review} = props;
-  const {id, user, text, date, rating} = review;
+  const {id, user, comment, date, rating} = review;
   const dateTime = formatDatetime(date);
   const reviewDate = formatMonthYear(date);
 
@@ -23,7 +23,7 @@ const ReviewsItem: React.FC<Props> = (props: Props) => {
           rating={rating}
           isValue={false}
         />
-        <p className="reviews__text">{text}</p>
+        <p className="reviews__text">{comment}</p>
         <time className="reviews__time" dateTime={dateTime}>{reviewDate}</time>
       </div>
     </li>

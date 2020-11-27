@@ -1,11 +1,6 @@
 import {extend} from '../../utils.js';
 import Offer from '../../models/offer/offer';
 
-const initialState = {
-  offers: [],
-  activeCity: ``
-};
-
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   SET_ACTIVE_CITY: `SET_ACTIVE_CITY`
@@ -25,7 +20,7 @@ const ActionCreator = {
 
 const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
-    return api.get(`/hotels`)
+    return api.getHotels()
       .then((response) => {
         const offers = Offer.parseOffers(response.data);
         dispatch(ActionCreator.loadOffers(offers));
@@ -35,7 +30,7 @@ const Operation = {
   }
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case ActionType.LOAD_OFFERS:
       return extend(state, {offers: action.payload});

@@ -3,12 +3,6 @@ import Offer from '../../models/offer/offer';
 import Comment from '../../models/comment/comment';
 import {batch} from 'react-redux';
 
-const initialState = {
-  activeOffer: null,
-  nearOffers: [],
-  comments: []
-};
-
 const ActionType = {
   LOAD_NEAR_OFFERS: `LOAD_NEAR_OFFERS`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
@@ -43,8 +37,8 @@ const ActionCreator = {
 const Operation = {
   loadOfferPage: (offer) => (dispatch, getState, api) => {
     return Promise.all([
-      api.get(`/hotels/${offer.id}/nearby`),
-      api.get(`/comments/${offer.id}`)
+      api.getNearByHotels(offer.id),
+      api.getComments(offer.id)
     ]).then((response) => {
       const offers = Offer.parseOffers(response[0].data);
       const comments = Comment.parseComments(response[1].data);
@@ -57,16 +51,15 @@ const Operation = {
     .catch(() => {});
   },
   loadNearOffers: (id) => (dispatch, getState, api) => {
-    return api.get(`/hotels/${id}/nearby`)
+    return api.getNearByHotels(id)
       .then((response) => {
         const offers = Offer.parseOffers(response.data);
         dispatch(ActionCreator.loadNearOffers(offers));
       })
       .catch(() => {});
   },
-
   loadComments: (id) => (dispatch, getState, api) => {
-    return api.get(`/comments/${id}`)
+    return api.getComments(id)
       .then((response) => {
         const comments = Comment.parseComments(response.data);
         dispatch(ActionCreator.loadComments(comments));
@@ -75,10 +68,7 @@ const Operation = {
   },
 
   updateComments: (id, comment) => (dispatch, getState, api) => {
-    return api.post(`/comments/${id}`, {
-      rating: comment.rating,
-      comment: comment.text
-    })
+    return api.updateComments({id, comment})
       .then((response) => {
         const comments = Comment.parseComments(response.data);
         dispatch(ActionCreator.updateComments(comments));
@@ -87,7 +77,7 @@ const Operation = {
   }
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case ActionType.LOAD_NEAR_OFFERS:
       return extend(state, {nearOffers: action.payload});

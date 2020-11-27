@@ -1,6 +1,6 @@
 class Comment {
   constructor(comment) {
-    this.text = comment[`comment`];
+    this.comment = comment[`comment`];
     this.date = new Date(comment[`date`]);
     this.id = comment[`id`];
     this.rating = comment[`rating`];

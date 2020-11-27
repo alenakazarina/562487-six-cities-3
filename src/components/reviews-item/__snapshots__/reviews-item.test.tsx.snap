@@ -49,7 +49,9 @@ exports[`ReviewsItem should render ReviewsItem correctly 1`] = `
     </div>
     <p
       className="reviews__text"
-    />
+    >
+      Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country.
+    </p>
     <time
       className="reviews__time"
       dateTime="2020:03:04T14:00"

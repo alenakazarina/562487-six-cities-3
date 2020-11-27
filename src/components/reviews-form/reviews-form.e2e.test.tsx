@@ -14,7 +14,7 @@ describe(`ReviewsForm`, () => {
     const wrapper = mount(
         <ReviewsForm
           rating={0}
-          text={``}
+          comment={``}
           errorStatus={0}
           reviewsCount={1}
           offerId={1}
@@ -35,7 +35,7 @@ describe(`ReviewsForm`, () => {
     const wrapper = mount(
         <ReviewsForm
           rating={5}
-          text={`I hope to have the opportunity to come back. Thank you.`}
+          comment={`I hope to have the opportunity to come back. Thank you.`}
           errorStatus={0}
           reviewsCount={1}
           offerId={1}
@@ -50,7 +50,7 @@ describe(`ReviewsForm`, () => {
     expect(setDisabled).toHaveBeenNthCalledWith(1, true);
     expect(onReviewSubmit).toHaveBeenNthCalledWith(1, 1, {
       rating: 5,
-      text: `I hope to have the opportunity to come back. Thank you.`
+      comment: `I hope to have the opportunity to come back. Thank you.`
     });
   });
 
@@ -61,7 +61,7 @@ describe(`ReviewsForm`, () => {
     const wrapper = mount(
         <ReviewsForm
           rating={5}
-          text={`Review Text`}
+          comment={`Review Text`}
           errorStatus={0}
           reviewsCount={1}
           offerId={1}
@@ -81,7 +81,7 @@ describe(`ReviewsForm`, () => {
     const wrapper = mount(
         <ReviewsForm
           rating={0}
-          text={` I hope to have the opportunity to come back. Thank you.`}
+          comment={`I hope to have the opportunity to come back. Thank you.`}
           errorStatus={0}
           reviewsCount={1}
           offerId={1}

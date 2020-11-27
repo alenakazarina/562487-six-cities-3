@@ -1,6 +1,6 @@
 import configureStore from 'redux-mock-store';
-import {AuthStatus} from '../reducers/user/user';
 import {CITY_OFFERS, REVIEWS, APP_USERS} from './const';
+import {AuthStatus} from '../const';
 
 const defaultUser = {
   id: -1,

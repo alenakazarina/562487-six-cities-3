@@ -1,17 +1,17 @@
 import MockAdapter from 'axios-mock-adapter';
-import {createAPI} from '../../api';
-import {Operation, reducer, ActionCreator, ActionType, AuthStatus, DEFAULT_USER} from './user';
+import API from '../../api';
+import {Operation, reducer, ActionCreator, ActionType, DEFAULT_USER} from './user';
 import {API_MOCK_APP_USER} from '../../mocks/const';
 import User from '../../models/user/user';
+import {AuthStatus} from '../../const';
 
-const api = createAPI(() => {});
+const api = new API();
+api.create({});
+const apiMock = new MockAdapter(api.getAxios());
 
 describe(`User reducer works correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
-    expect(reducer(void 0, {})).toEqual({
-      authStatus: AuthStatus.NO_AUTH,
-      user: DEFAULT_USER
-    });
+    expect(reducer(void 0, {})).toEqual({});
   });
 
   it(`Reducer should change authStatus by a given value`, () => {
@@ -97,7 +97,6 @@ describe(`Action creators work correctly`, () => {
 
 describe(`Operation work correctly`, () => {
   it(`Should make a correct API call to /login - check auth success`, function () {
-    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const authChecker = Operation.checkAuth();
     const adaptedUser = User.parseUser(API_MOCK_APP_USER);
@@ -119,7 +118,6 @@ describe(`Operation work correctly`, () => {
       });
   });
   it(`Should make a correct API call to /login - login success`, function () {
-    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const loginer = Operation.login({
       login: `alena@gmail.com`,

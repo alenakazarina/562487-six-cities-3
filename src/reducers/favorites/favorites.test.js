@@ -1,16 +1,16 @@
 import MockAdapter from 'axios-mock-adapter';
-import {createAPI} from '../../api';
+import API from '../../api';
 import {reducer, ActionType, Operation} from './favorites';
 import {FAVORITE_OFFERS, CITY_OFFERS, API_MOCK_OFFERS} from '../../mocks/const';
 import Offer from '../../models/offer/offer';
 
-const api = createAPI(() => {});
+const api = new API();
+api.create({});
+const apiMock = new MockAdapter(api.getAxios());
 
 describe(`Favorites reducer works correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
-    expect(reducer(void 0, {})).toEqual({
-      favorites: []
-    });
+    expect(reducer(void 0, {})).toEqual({});
   });
 
   it(`Reducer should load favorites`, () => {
@@ -52,7 +52,6 @@ describe(`Favorites reducer works correctly`, () => {
 
 describe(`Operation work correctly`, () => {
   it(`Should make a correct API call to /favorite`, function () {
-    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const favoritesLoader = Operation.loadFavorites();
     const adaptedApiMockOffers = Offer.parseOffers(API_MOCK_OFFERS);
@@ -71,7 +70,6 @@ describe(`Operation work correctly`, () => {
   });
 
   it(`Should make a correct API call to /favorite/:id/1 to add`, function () {
-    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const favoritesUpdater = Operation.addFavorite(1);
     const adaptedApiMockOffer = Offer.parseOffer(API_MOCK_OFFERS[0]);
@@ -90,7 +88,6 @@ describe(`Operation work correctly`, () => {
   });
 
   it(`Should make a correct API call to /favorite/:id/0 to remove`, function () {
-    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const favoritesRemover = Operation.removeFavorite(1);
     const notFavoriteOffer = Object.assign({}, API_MOCK_OFFERS[0], {'is_favorite': false});

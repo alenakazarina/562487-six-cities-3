@@ -49,3 +49,37 @@ export const MONTHS = [
   `May`, `June`, `July`, `August`,
   `September`, `October`, `November`, `December`
 ];
+
+export const AuthStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+export const InitialState = {
+  USER: {
+    authStatus: `NO_AUTH`,
+    user: {
+      id: -1,
+      email: ``,
+      name: ``,
+      isPro: false,
+      avatarUrl: ``
+    }
+  },
+  FAVORITES: {
+    favorites: []
+  },
+  OFFER: {
+    activeOffer: null,
+    nearOffers: [],
+    comments: []
+  },
+  OFFERS: {
+    offers: [],
+    activeCity: ``
+  },
+  ERRORS: {
+    errorStatus: null
+  }
+};
+

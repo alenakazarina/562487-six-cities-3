@@ -6,14 +6,14 @@ import {RATINGS} from '../../const';
 
 interface Props {
   rating: number;
-  text: string;
+  comment: string;
   errorStatus: number;
   reviewsCount: number;
   offerId: number;
   isDisabled: boolean;
   setDisabled: (status: boolean) => void;
   onChange: (evt: React.ChangeEvent) => void;
-  onReviewSubmit: (id: number, userComment: {rating: number; text: string}) => void;
+  onReviewSubmit: (id: number, userComment: {rating: number; comment: string}) => void;
 }
 
 class ReviewsForm extends React.PureComponent<Props> {
@@ -31,13 +31,15 @@ class ReviewsForm extends React.PureComponent<Props> {
   }
 
   _checkSubmitDisabled() {
-    const {rating, text} = this.props;
-    return rating === 0 || text.length <= 50 || text.length >= 300;
+    const {rating, comment} = this.props;
+    return rating === 0 || comment.length <= 50 || comment.length >= 300;
   }
 
   _handleSubmit(evt) {
     evt.preventDefault();
     const {
+      rating,
+      comment,
       offerId,
       setDisabled,
       onReviewSubmit
@@ -45,16 +47,13 @@ class ReviewsForm extends React.PureComponent<Props> {
 
     setDisabled(true);
 
-    onReviewSubmit(offerId, {
-      rating: this.props.rating,
-      text: this.props.text
-    });
+    onReviewSubmit(offerId, {rating, comment});
   }
 
   render() {
     const {
       rating,
-      text,
+      comment,
       isDisabled,
       onChange
     } = this.props;
@@ -83,7 +82,7 @@ class ReviewsForm extends React.PureComponent<Props> {
             ))}
           </div>
           <ReviewsFormText
-            text={text}
+            comment={comment}
             onChange={onChange}
           />
         </fieldset>

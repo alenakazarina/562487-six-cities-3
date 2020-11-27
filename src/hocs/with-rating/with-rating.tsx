@@ -3,13 +3,13 @@ import {Subtract} from 'utility-types';
 
 type InjectingProps = {
   rating: number;
-  text: string;
+  comment: string;
   onChange: (evt: React.ChangeEvent) => void;
 }
 
 interface State {
   rating: number;
-  text: string;
+  comment: string;
 }
 
 const withRating = (Component) => {
@@ -24,7 +24,7 @@ const withRating = (Component) => {
       super(props);
       this.state = {
         rating: 0,
-        text: ``
+        comment: ``
       };
       this._handleChange = this._handleChange.bind(this);
     }
@@ -33,7 +33,7 @@ const withRating = (Component) => {
       if (reviewsCount < this.props.reviewsCount) {
         this.setState({
           rating: 0,
-          text: ``
+          comment: ``
         });
       }
     }
@@ -47,7 +47,7 @@ const withRating = (Component) => {
           break;
         case `review`:
           this.setState({
-            text: currentTarget.value
+            comment: currentTarget.value
           });
           break;
       }
@@ -56,14 +56,14 @@ const withRating = (Component) => {
     render() {
       const {
         rating,
-        text
+        comment
       } = this.state;
 
       return (
         <Component
           {...this.props}
           rating={rating}
-          text={text}
+          comment={comment}
           onChange={this._handleChange}
         />
       );

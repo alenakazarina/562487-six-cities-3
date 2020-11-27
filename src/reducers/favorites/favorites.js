@@ -1,10 +1,6 @@
 import {extend} from '../../utils.js';
 import Offer from '../../models/offer/offer';
 
-const initialState = {
-  favorites: []
-};
-
 const ActionType = {
   LOAD_FAVORITES: `LOAD_FAVORITES`,
   ADD_FAVORITE: `ADD_FAVORITE`,
@@ -28,7 +24,7 @@ const ActionCreator = {
 
 const Operation = {
   loadFavorites: () => (dispatch, getState, api) => {
-    return api.get(`/favorite`)
+    return api.getFavorites()
       .then((response) => {
         const offers = Offer.parseOffers(response.data);
         dispatch(ActionCreator.loadFavorites(offers));
@@ -37,11 +33,7 @@ const Operation = {
   },
 
   addFavorite: (id) => (dispatch, getState, api) => {
-    const status = 1;
-    return api.post(`/favorite/${id}/${status}`, {
-      'hotel_id': id,
-      'status': status
-    })
+    return api.addFavorite(id)
       .then((response) => {
         const offer = Offer.parseOffer(response.data);
         dispatch(ActionCreator.addFavorite(offer));
@@ -50,11 +42,7 @@ const Operation = {
   },
 
   removeFavorite: (id) => (dispatch, getState, api) => {
-    const status = 0;
-    return api.post(`/favorite/${id}/${status}`, {
-      'hotel_id': id,
-      'status': status
-    })
+    return api.removeFavorite(id)
       .then((response) => {
         const offer = Offer.parseOffer(response.data);
         dispatch(ActionCreator.removeFavorite(offer));
@@ -63,7 +51,7 @@ const Operation = {
   }
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = {}, action) => {
   switch (action.type) {
     case ActionType.LOAD_FAVORITES:
       return extend(state, {favorites: action.payload});

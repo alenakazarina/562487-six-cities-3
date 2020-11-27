@@ -1,21 +1,18 @@
 import MockAdapter from 'axios-mock-adapter';
-import {createAPI} from '../../api';
+import API from '../../api';
 import {reducer, ActionType, Operation} from './offer';
 import {CITY_OFFERS, API_MOCK_OFFERS, REVIEWS, API_MOCK_REVIEWS} from '../../mocks/const';
 import Offer from '../../models/offer/offer';
 import Comment from '../../models/comment/comment';
 
-const api = createAPI(() => {});
 const activeOfferId = 1;
-const apiMock = new MockAdapter(api);
+const api = new API();
+api.create({});
+const apiMock = new MockAdapter(api.getAxios());
 
 describe(`Offer reducer works correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
-    expect(reducer(void 0, {})).toEqual({
-      activeOffer: null,
-      nearOffers: [],
-      comments: []
-    });
+    expect(reducer(void 0, {})).toEqual({});
   });
 
   it(`Reducer should load near offers`, () => {

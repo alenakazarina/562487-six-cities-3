@@ -2,9 +2,7 @@ import {reducer, ActionType} from './errors';
 
 describe(`Errors reducer works correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
-    expect(reducer(void 0, {})).toEqual({
-      errorStatus: 0
-    });
+    expect(reducer(void 0, {})).toEqual({});
   });
 
   it(`Reducer should set error status`, () => {

@@ -4,8 +4,7 @@ import {connect} from 'react-redux';
 import {getAuthStatus} from '../../reducers/user/selectors';
 import {getErrorStatus} from '../../reducers/errors/selectors';
 import {checkFavorite} from '../../reducers/favorites/selectors';
-import {AuthStatus} from '../../reducers/user/user';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthStatus} from '../../const';
 
 interface Props {
   isAuth: boolean;

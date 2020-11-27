@@ -6,7 +6,7 @@ import {getOffers} from '../../reducers/offers/selectors';
 import {getAuthStatus, getUser} from '../../reducers/user/selectors';
 import {getErrorStatus} from '../../reducers/errors/selectors';
 import {getActiveCity} from '../../reducers/offers/selectors';
-import {Operation as UserOperation, AuthStatus} from '../../reducers/user/user';
+import {Operation as UserOperation} from '../../reducers/user/user';
 import {ActionCreator as ErrorActionCreator} from '../../reducers/errors/errors';
 import {Operation as OfferOperation} from '../../reducers/offer/offer';
 import Main from '../main/main';
@@ -15,7 +15,7 @@ import Favorites from '../favorites/favorites';
 import Property from '../property/property';
 import PrivateRoute from '../private-route/private-route';
 import NotFound from '../not-found/not-found';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthStatus} from '../../const';
 import withMessage from '../../hocs/with-message/with-message';
 
 interface Props {

@@ -12,7 +12,7 @@ describe(`ReviewsFormText`, () => {
     const onChange = jest.fn();
     const wrapper = mount(
         <ReviewsFormText
-          text={`Some text`}
+          comment={`Some text`}
           onChange={onChange}
         />
     );

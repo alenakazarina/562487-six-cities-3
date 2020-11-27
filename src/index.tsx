@@ -4,42 +4,31 @@ import {createStore, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import createAPI from './api';
+import API from './api';
 import App from './components/app/app';
 import reducer from './reducers/reducer';
 import {Operation as OffersOperation} from './reducers/offers/offers';
-import {Operation as UserOperation, ActionCreator, AuthStatus} from './reducers/user/user';
-import {ActionCreator as ErrorActionCreator} from './reducers/errors/errors';
-import withMessage from './hocs/with-message/with-message';
+import {Operation as UserOperation} from './reducers/user/user';
+import {InitialState} from './const';
 
-const AppWrapped = withMessage(App);
-
-const onUnauthorized = (response) => {
-  const status = response.status;
-  store.dispatch(ActionCreator.requireAuthorization(AuthStatus.NO_AUTH));
-  store.dispatch(ErrorActionCreator.setErrorStatus(status));
-};
-
-const onRequestError = (response) => {
-  const status = response.status;
-  store.dispatch(ErrorActionCreator.setErrorStatus(status));
-};
-
-const api = createAPI({onUnauthorized, onRequestError});
+const api = new API();
 
 const store = createStore(
     reducer,
+    InitialState,
     composeWithDevTools(
         applyMiddleware(thunk.withExtraArgument(api))
     )
 );
+
+api.create(store);
 
 store.dispatch(OffersOperation.loadOffers());
 store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
-      <AppWrapped />
+      <App />
     </Provider>,
     document.querySelector(`#root`)
 );

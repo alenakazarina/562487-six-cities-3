@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {Route, Redirect, RouteProps} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {AppRoute} from '../../const';
-import {AuthStatus} from '../../reducers/user/user';
+import {AppRoute, AuthStatus} from '../../const';
 import {getAuthStatus} from '../../reducers/user/selectors';
 
 type Props = RouteProps & {

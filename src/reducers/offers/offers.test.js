@@ -1,17 +1,16 @@
 import MockAdapter from 'axios-mock-adapter';
-import {createAPI} from '../../api';
+import API from '../../api';
 import {reducer, ActionType, Operation} from './offers';
 import {CITY_OFFERS, API_MOCK_OFFERS} from '../../mocks/const';
 import Offer from '../../models/offer/offer';
 
-const api = createAPI(() => {});
+const api = new API();
+api.create({});
+const apiMock = new MockAdapter(api.getAxios());
 
 describe(`Offers reducer works correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
-    expect(reducer(void 0, {})).toEqual({
-      offers: [],
-      activeCity: ``
-    });
+    expect(reducer(void 0, {})).toEqual({});
   });
 
   it(`Reducer should load offers`, () => {
@@ -41,7 +40,6 @@ describe(`Offers reducer works correctly`, () => {
 
 describe(`Operation work correctly`, () => {
   it(`Should make a correct API call to /hotels`, function () {
-    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const offersLoader = Operation.loadOffers();
     const adaptedApiMockOffers = Offer.parseOffers(API_MOCK_OFFERS);

@@ -1,8 +1,8 @@
 env:
   es6: true
   browser: true
-  commonjs: true
   jest: true
+  node: true
 
 extends: ['htmlacademy/es6', 'plugin:react/recommended']
 
